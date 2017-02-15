@@ -1,0 +1,50 @@
+{
+  "name": "caporal",
+  "version": "0.1.0-alpha",
+  "description": "A full-featured framework for building command line applications (cli) with node.js",
+  "main": "index.js",
+  "scripts": {
+    "lint": "./node_modules/.bin/eslint lib/**/*.js",
+    "test": "./node_modules/mocha/bin/mocha --require ./tests/utils/bootstrap.js --full-trace --recursive -R mocha-unfunk-reporter tests/",
+    "coverage": "./node_modules/.bin/istanbul cover --include-all-sources true --print both ./node_modules/.bin/_mocha -- --require ./tests/utils/bootstrap.js -R spec --recursive tests/",
+    "commit": "git-cz",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -w -r 0",
+    "pre-commit": "npm test",
+    "pre-push": "npm test",
+    "commit-msg": "validate-commit-msg",
+    "postinstall": "node node_modules/husky/bin/install.js"
+  },
+  "engines": {
+    "node": ">= 4.0.0"
+  },
+  "keywords": [
+    "cli",
+    "argument-parser",
+    "command",
+    "commander",
+    "clap"
+  ],
+  "author": "Matthias ETIENNE",
+  "license": "MIT",
+  "devDependencies": {
+    "commitizen": "^2.9.5",
+    "cz-conventional-changelog": "^1.2.0",
+    "eslint": "^3.15.0",
+    "husky": "^0.13.1",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.2.0",
+    "mocha-unfunk-reporter": "^0.4.0",
+    "should": "^11.2.0",
+    "sinon": "^1.17.7",
+    "validate-commit-msg": "^2.11.1"
+  },
+  "dependencies": {
+    "chalk": "^1.1.3",
+    "cli-table2": "^0.2.0",
+    "fast-levenshtein": "^2.0.6",
+    "lodash.camelcase": "^4.3.0",
+    "minimist": "^1.2.0",
+    "prettyjson": "^1.2.1",
+    "winston": "^2.3.1"
+  }
+}
