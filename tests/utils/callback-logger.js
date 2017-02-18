@@ -20,7 +20,7 @@ CaporalTransport.prototype.setCallback = function(callback) {
 };
 
 CaporalTransport.prototype.log = function (level, msg, meta, callback) {
-  if (meta && Object.keys(meta).length) {
+  if (typeof meta === 'object' && Object.keys(meta).length) {
     msg += "\n" + prettyjson.render(meta);
   }
   const levelInt = winston.levels[level];

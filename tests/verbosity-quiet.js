@@ -7,20 +7,22 @@ const program = new Program();
 program
   .logger(logger)
   .version('1.0.0')
+  .reset()
+  .command('foo', 'My foo')
   .action(function() {
     this.log("This should NOT be displayed");
     this.debug('debug should NOT be displayed');
     this.warn('This should be displayed');
   });
 
-describe('{caporal/program} --quiet', () => {
+describe('Passing --quiet', () => {
   it(`should only output warnings & errors`, (done) => {
     let output = 0;
 
     const listener = (out, level, txt) => output++;
     logger.on('logging', listener);
 
-    program.parse(makeArgv('--quiet'));
+    program.parse(makeArgv(['foo', '--quiet']));
 
     setImmediate(() => {
       should(output).eql(1);

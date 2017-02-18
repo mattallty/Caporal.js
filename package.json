@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "./node_modules/.bin/eslint lib/**/*.js",
-    "test": "./node_modules/mocha/bin/mocha --require ./tests/utils/bootstrap.js --full-trace --recursive -R mocha-unfunk-reporter tests/",
+    "test": "npm run lint && ./node_modules/mocha/bin/mocha --require ./tests/utils/bootstrap.js --full-trace --recursive -R mocha-unfunk-reporter tests/",
     "coverage": "./node_modules/.bin/istanbul cover --include-all-sources true --print both ./node_modules/.bin/_mocha -- --require ./tests/utils/bootstrap.js -R spec --recursive tests/",
     "commit": "git-cz",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -w -r 0",

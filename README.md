@@ -5,9 +5,13 @@
 > and casting, typos suggestions, and auto-complete for bash/zsh/fish.
  
 
-## Command Syntax
+## Glossary
 
-A command can have *arguments* and *options*.
+* **Program**: a cli app that you can build using caporal
+* **Command**: a command within your program. A program may have multiple commands.
+* **Argument**: a command may have one or more arguments passed after the command. 
+* **Options**: a command may have one or more options passed after (or before) arguments.
+
 Angled brackets (e.g. `<item>`) indicate required input. Square brackets (e.g. `[env]`) indicate optional input.
 
 ```javascript
@@ -17,18 +21,25 @@ prog
   .version('1.0.0')
   // you specify arguments in .command()
   // 'app' is required, 'env' is optional
-  .command('deploy <app> [env]', 'Deploy an application') 
+  .command('deploy', 'Deploy an application') 
+  .argument('<app>', 'App to deploy', /^myapp|their-app$/)
+  .argument('[env]', 'Environment to deploy on', /^dev|staging|prod$/, 'local')
   // you specify options using .option()
-   // if --tail is passed, its value is required
-  .option('--tail <lines>', 'Tail <lines> lines of logs after deploy') 
+  // if --tail is passed, its value is required
+  .option('--tail <lines>', 'Tail <lines> lines of logs after deploy', prog.INT) 
   .action(function(args, options, logger) {
-
+    // args and options are objects
+    // args = {"app": "myapp", "env": "production"}
+    // options = {"tail" : 100}
   });
 
-// ./myprog deploy myapp production --restart
+// ./myprog deploy myapp production --tail 100
 ```
 
 ### Variadic arguments
+
+You can use `...` to indicate variadic arguments. In that case, the resulted value will be an array.
+
 ```javascript
 #!/usr/bin/env node
 const prog = require('caporal');
@@ -38,7 +49,12 @@ prog
   // 'app' and 'env' are required, and you can pass additional environments through not required
   .command('deploy <app> <env> [other-env...]', 'Deploy an application to one or more environments') 
   .action(function(args, options, logger) {
-    // args = {app: 'myapp', env: 'production', otherEnv: ['google', 'azure']}
+    console.log(args);
+    // {
+    //   "app": "myapp", 
+    //   "env": "production",
+    //   "otherEnv": ["google", "azure"]
+    // }
   });
 
 // ./myprog deploy myapp production aws google azure
@@ -74,7 +90,12 @@ The default logging level is 'info'. The predifined options can be used to chang
 
 ## Coercion and casting
 
-### Using Caporal constants
+You can apply coercion and casting using either:
+ * Caporal flags
+ * Functions
+ * RegExp
+
+### Using Caporal flags
 
 * `INT` (or `INTEGER`): Check option looks like an int and cast it with parseInt()  
 * `FLOAT`: Will Check option looks like a float and cast it with parseFloat()
@@ -131,12 +152,12 @@ prog
   .command('order pizza')
   .option('--kind <kind>', 'Kind of pizza', function(opt) {
     if (['margherita', 'hawaiian'].includes(opt) === false) {
-      throw new Error("You can only order margherita or hawaiian pizza!")
+      throw new Error("You can only order margherita or hawaiian pizza!");
     }
-    return opt;
+    return opt.toUpperCase();
   })
   .action(function(args, options) {
-    
+    // options = { "kind" : "MARGHERITA" }
   });
 
 // ./myprog order pizza --kind margherita
@@ -165,7 +186,15 @@ prog
 ## Typo suggestions
 
 Caporal will automaticaly make suggestions for option typos.
+If set up --foot you pass --foo, caporal will suggest you --foot.
 
 ## Credits
 
-Strongly inspired by commander.js and Symfony console.
+Caporal is strongly inspired by [commander.js](https://github.com/tj/commander.js) and [Symfony Console](http://symfony.com/doc/current/components/console.html).
+Caporal make use of teh following npm packages:
+* chalk for colors
+* cli-table2 for cli tables
+* fast-levenshtein for suggestions
+* minimist for argument parsing
+* prettyjson to output json 
+* winston for logging 

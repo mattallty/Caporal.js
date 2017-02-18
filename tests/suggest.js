@@ -10,7 +10,7 @@ program
   .version('1.0.0');
 
 
-describe('{caporal/program} --foo', () => {
+describe('Passing --foo', () => {
 
   it(`should suggest --foor and --afoo and --footx`, () => {
     program

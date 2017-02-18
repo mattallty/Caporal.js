@@ -6,11 +6,11 @@ const program = new Program();
 
 program
   .logger(logger)
-  .version('1.0.0')
+  .version('1.0.0');
 
 
 
-describe('{caporal/program} --option invalid-value', () => {
+describe('Passing --option invalid-value', () => {
 
   ['regex', 'function', 'INT', 'BOOL', 'FLOAT', 'LIST(int)', 'LIST(bool)', 'LIST(float)', 'LIST(repeated)'].forEach(function(checkType) {
     it(`should throw an error for ${checkType} check`, () => {
@@ -75,7 +75,7 @@ describe('{caporal/program} --option invalid-value', () => {
 });
 
 
-describe('{caporal/program} --option valid-value', () => {
+describe('Passing --option valid-value', () => {
 
   ['regex', 'function', 'INT', 'BOOL', 'BOOL(implicit)', 'FLOAT', 'LIST(int)', 'LIST(bool)', 'LIST(float)'].forEach(function(checkType) {
     it(`should succeed for ${checkType} check`, () => {
@@ -138,9 +138,9 @@ describe('{caporal/program} --option valid-value', () => {
 });
 
 
-describe('{caporal/program} --unknown-option (long)', () => {
+describe('Passing --unknown-option (long)', () => {
 
-  it(`should throw an error`, () => {
+  it(`should throw UnknownOptionError`, () => {
     program
       .option('-t, --time <time-in-secs>')
       .action(function() {});
@@ -155,12 +155,51 @@ describe('{caporal/program} --unknown-option (long)', () => {
   });
 });
 
+describe('Setting up an option with a default value', () => {
+  it(`should take default value if nothing is passed`, () => {
+
+    program
+      .reset()
+      .command('foo', 'Fooooo')
+      .option('--foo <foo-value>', 'My bar', /^[a-z]+$/, 'bar')
+      .action(function(args, options){
+        should(options.foo).eql('bar');
+      });
+
+    const error = sinon.stub(program, "fatalError");
+    program.parse(makeArgv(['foo']));
+    should(error.callCount).eql(0);
+    program.reset();
+    error.restore();
+  });
+});
+
+describe('Setting up an option with an optionnal value', () => {
+  it(`should work when no value is passed`, () => {
+
+    program
+      .reset()
+      .command('foo', 'Fooooo')
+      .option('--with-openssl [path]', 'Compile with openssl')
+      .action(function(args, options){
+        should(options.withOpenssl).eql(true);
+      });
+
+    const error = sinon.stub(program, "fatalError");
+    program.parse(makeArgv(['foo', '--with-openssl']));
+    should(error.callCount).eql(0);
+    program.reset();
+    error.restore();
+  });
+});
 
 
-describe('{caporal/program} -u (short)', () => {
+
+describe('Passing an unknown short option', () => {
 
   it(`should throw an error`, () => {
     program
+      .reset()
       .option('-t, --time <time-in-secs>')
       .action(function() {});
 
@@ -168,6 +207,77 @@ describe('{caporal/program} -u (short)', () => {
       should(err.name).eql('UnknownOptionError');
     });
     program.parse(makeArgv('-u'));
+    should(error.callCount).be.eql(1);
+    error.restore();
+    program.reset();
+  });
+});
+
+describe('Passing a known short option', () => {
+
+  it(`should succeed`, () => {
+    program
+      .reset()
+      .option('-t <time-in-secs>')
+      .action(function() {});
+
+    const error = sinon.stub(program, "fatalError");
+    program.parse(makeArgv('-t 278'));
+    should(error.callCount).be.eql(0);
+    error.restore();
+    program.reset();
+  });
+});
+
+describe('Setting up a required option (long)', () => {
+
+  it(`should throw MissingOptionError if not passed`, () => {
+    program
+      .command('foo')
+      .option('-t, --time <time-in-secs>', 'my option', null, null, true)
+      .action(function() {});
+
+    const error = sinon.stub(program, "fatalError", function(err) {
+      should(err.name).eql('MissingOptionError');
+    });
+    program.parse(makeArgv('foo'));
+    should(error.callCount).be.eql(1);
+    error.restore();
+    program.reset();
+  });
+});
+
+describe('Setting up a required option (short)', () => {
+
+  it(`should throw MissingOptionError if not passed`, () => {
+    program
+      .command('foo')
+      .option('-t <time-in-secs>', 'my option', null, null, true)
+      .action(function() {});
+
+    const error = sinon.stub(program, "fatalError", function(err) {
+      should(err.name).eql('MissingOptionError');
+    });
+    program.parse(makeArgv('foo'));
+    should(error.callCount).be.eql(1);
+    error.restore();
+    program.reset();
+  });
+});
+
+describe('Setting up a option synopsis containing an error', () => {
+
+  it(`should throw OptionSyntaxError`, () => {
+
+    const error = sinon.stub(program, "fatalError", function(err) {
+      should(err.name).eql('OptionSyntaxError');
+    });
+
+    program
+      .command('foo')
+      .option('-t <time-in-secs> foo', 'my option', null, null, true)
+      .action(function() {});
+
     should(error.callCount).be.eql(1);
     error.restore();
     program.reset();

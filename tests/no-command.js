@@ -6,9 +6,10 @@ const program = new Program();
 
 program
   .logger(logger)
-  .version('1.0.0');
+  .version('1.0.0')
+  .reset();
 
-describe('{caporal/program} without command()', () => {
+describe('Setting up no command() but an action()', () => {
   it(`should execute action()`, (done) => {
     program.action(() => {
       done();
