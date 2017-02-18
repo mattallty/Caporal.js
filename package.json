@@ -46,5 +46,10 @@
     "minimist": "^1.2.0",
     "prettyjson": "^1.2.1",
     "winston": "^2.3.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
