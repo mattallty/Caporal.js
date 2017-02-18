@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="./assets/caporal.png">
+    <img src="./assets/caporal.png" width="400" height="142">
 </p>
 
 # Caporal
