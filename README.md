@@ -1,3 +1,7 @@
+<p align="center">
+    <img src="./assets/caporal.png">
+</p>
+
 # Caporal
 
 > A full-featured framework for building command line applications (cli) with node.js,
@@ -58,6 +62,63 @@ prog
   });
 
 // ./myprog deploy myapp production aws google azure
+```
+
+### Single command program
+
+For a very simple program with just one command, you can omit the .command() call:
+
+```javascript
+#!/usr/bin/env node
+const prog = require('caporal');
+prog
+  .version('1.0.0')
+  .description('A simple program that says "biiiip"')
+  .action(function(args, options, logger) {
+    logger.info("biiiip")
+  });
+```
+
+## API
+
+### `require('caporal)`
+
+Returns a `Program` instance.
+
+### Program API
+
+#### .version(version) -> {Program}
+
+Set the version of your program. You may want to use your `package.json` version to fill it:
+
+```javascript
+const myProgVersion = require('./package.json').version;
+const prog = require('caporal');
+prog
+  .version(myProgVersion)
+// [...]
+```
+
+#### .command(name, description) -> {Command}
+
+Set up a new command with name and description. Multiple commands can be added to one program.
+Returns a {Command}.
+
+```javascript
+const prog = require('caporal');
+prog
+  .version('1.0.0')
+  // one command
+  .command('walk', 'Make the player walk')
+  .action((args, options, logger) => { logger.log("I'm walking !")}) // you must attach an action for your command
+  // a second command
+  .command('run', 'Make the player run')
+  .action((args, options, logger) => { logger.log("I'm running !")})
+  // a command may have multiple words
+  .command('cook pizza', 'Make the player cook a pizza')
+  .argument('<kind>', 'Kind of pizza')
+  .action((args, options, logger) => { logger.log("I'm cooking a pizza !")})
+// [...]
 ```
 
 ## Logging
@@ -205,6 +266,12 @@ prog
 
 // ./myprog order pizza --kind margherita
 ```
+
+## Auto-generated help
+
+Caporal automaticaly generates help/usage instructions for you:
+
+
 
 ## Typo suggestions
 
