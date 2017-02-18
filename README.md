@@ -74,10 +74,10 @@ prog
   .action((args, options, logger) => {
     // Available methods: 
     // - logger.debug()
-    // - logger.log() or logger.info()
+    // - logger.info() or logger.log()
     // - logger.warn()
     // - logger.error()
-    logger.log("Application deployed !");
+    logger.info("Application deployed !");
   });
 ```
 
@@ -87,6 +87,29 @@ The default logging level is 'info'. The predifined options can be used to chang
 
 * `-v, --verbose`: Set the logging level to 'debug' so debug() logs will be output.
 * `--quiet, --silent`: Set the logging level to 'warn' so only warn() and error() logs will be output. 
+
+### Custom logger
+
+caporal uses `winston` for logging. You can provide your own winston-compatible logger using `.logger()`
+ the following way:
+
+```javascript
+#!/usr/bin/env node
+const prog = require('caporal');
+const myLogger = require('/path/to/my/logger.js');
+prog
+  .version('1.0.0')
+  .logger(myLogger)
+  .command('foo', 'Foo command description') 
+  .action((args, options, logger) => {
+    logger.info("Foo !!");
+  });
+
+```
+
+* `-v, --verbose`: Set the logging level to 'debug' so debug() logs will be output.
+* `--quiet, --silent`: Set the logging level to 'warn' so only warn() and error() logs will be output. 
+
 
 ## Coercion and casting
 
