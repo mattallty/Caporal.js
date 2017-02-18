@@ -99,7 +99,12 @@ prog
 // [...]
 ```
 
-#### .command(name, description) -> {Command}
+Your program will then automaticaly handle `-V` and `--version` options:
+
+    matt@mb:~$ ./my-program --version
+    1.0.0
+
+#### .command(name, description) -> *Command*
 
 Set up a new command with name and description. Multiple commands can be added to one program.
 Returns a {Command}.
@@ -120,6 +125,41 @@ prog
   .action((args, options, logger) => { logger.log("I'm cooking a pizza !")})
 // [...]
 ```
+
+#### .logger([logger]) -> *Program | winston*
+
+Get or set the logger instance. Without argument, it returns the logger instance (*winston* by default).
+With the *logger* argument, it sets a new logger.
+
+### Command API
+
+#### .argument(synopsis, description, [validator, [defaultValue]]) -> *Command*
+
+Add an argument to the command. Can be called multiple times to add several arguments.
+
+* **synopsis** (*String*): something like `<my-required-arg>` or `<my-optional-arg>`
+* **description** (*String*): argument description
+* **validator** (*Caporal Flag | Function | RegExp*): optional validator, see [Coercion and casting ](coercion-and-casting)
+* **defaultValue** (*): optional default value
+
+#### .option(synopsis, description, [validator, [defaultValue, [required]]) -> *Command*
+
+Add an option to the command. Can be called multiple times to add several options.
+
+* **synopsis** (*String*): You can pass short or long notation here, or both. See examples.
+* **description** (*String*): option description
+* **validator** (*Caporal Flag | Function | RegExp*): optional validator, see [Coercion and casting ](coercion-and-casting)
+* **defaultValue** (*): optional default value
+* **required** (*Bool*): Is the option itself required ? Default to `false`
+
+#### .action(action) -> *Command*
+
+Define the action, e.g a *Function*, for the current command. The *action* callback will be called with
+3 arguments: *args*, *options*, and *logger*.
+
+#### .alias(alias) -> *Command*
+
+Define an alias for the current command. A command can only have one alias.
 
 ## Logging
 
@@ -267,16 +307,25 @@ prog
 // ./myprog order pizza --kind margherita
 ```
 
+## Colors
+
+By default, *Caporal* will output colors for help and errors. 
+This behaviour can be disabled by passing `--no-colors`.
+
+
 ## Auto-generated help
 
-Caporal automaticaly generates help/usage instructions for you:
-
+Caporal automaticaly generates help/usage instructions for you.
+Help can be displayed using `-h` or `--help` options, or with the default `help` command.
+ 
 
 
 ## Typo suggestions
 
 Caporal will automaticaly make suggestions for option typos.
-If set up --foot you pass --foo, caporal will suggest you --foot.
+If set up `--foot` you pass `--foo`, caporal will suggest you `--foot`.
+
+
 
 ## Credits
 
