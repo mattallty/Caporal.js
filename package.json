@@ -27,6 +27,7 @@
   "author": "Matthias ETIENNE",
   "license": "MIT",
   "devDependencies": {
+    "codacy-coverage": "^2.0.1",
     "commitizen": "^2.9.5",
     "cz-conventional-changelog": "^1.2.0",
     "eslint": "^3.15.0",

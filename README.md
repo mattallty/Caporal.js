@@ -2,6 +2,10 @@
     <img src="./assets/caporal.png" width="500" height="177">
 </p>
 
+[![Travis](https://img.shields.io/travis/mattallty/Caporal.js.svg)]()
+[![Codacy grade](https://img.shields.io/codacy/grade/6e5459fd36e341d1bd27414cf6b06e5c.svg)](https://www.codacy.com/app/matthiasetienne/Caporal-js/dashboard)
+[![Codacy coverage](https://img.shields.io/codacy/coverage/6e5459fd36e341d1bd27414cf6b06e5c.svg)]()
+
 # Caporal
 
 > A full-featured framework for building command line applications (cli) with node.js,
