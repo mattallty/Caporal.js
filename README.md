@@ -5,7 +5,7 @@
 [![Travis](https://img.shields.io/travis/mattallty/Caporal.js.svg)]()
 [![Codacy grade](https://img.shields.io/codacy/grade/6e5459fd36e341d1bd27414cf6b06e5c.svg)](https://www.codacy.com/app/matthiasetienne/Caporal-js/dashboard)
 [![Codacy coverage](https://img.shields.io/codacy/coverage/6e5459fd36e341d1bd27414cf6b06e5c.svg)]()
-[![npm](https://img.shields.io/npm/mattallty/caporal.svg)]()
+[![npm](https://img.shields.io/npm/l/caporal.svg)]()
 [![GitHub stars](https://img.shields.io/github/stars/mattallty/Caporal.js.svg?style=social&label=Star)]()
 [![GitHub forks](https://img.shields.io/github/forks/mattallty/Caporal.js.svg?style=social&label=Fork)]()
 
