@@ -2,15 +2,15 @@
     <img src="./assets/caporal.png" width="500" height="177">
 </p>
 
-[![Travis](https://img.shields.io/travis/mattallty/Caporal.js.svg)]()
+[![Travis](https://img.shields.io/travis/mattallty/Caporal.js.svg)](https://travis-ci.org/mattallty/Caporal.js)
 [![Codacy grade](https://img.shields.io/codacy/grade/6e5459fd36e341d1bd27414cf6b06e5c.svg)](https://www.codacy.com/app/matthiasetienne/Caporal-js/dashboard)
 [![Codacy coverage](https://img.shields.io/codacy/coverage/6e5459fd36e341d1bd27414cf6b06e5c.svg)]()
-[![npm](https://img.shields.io/npm/v/caporal.svg)]()
-[![npm](https://img.shields.io/npm/dm/caporal.svg)]()
-[![npm](https://img.shields.io/npm/l/caporal.svg)]()
-[![David](https://img.shields.io/david/mattallty/Caporal.js.svg)]()
-[![GitHub stars](https://img.shields.io/github/stars/mattallty/Caporal.js.svg?style=social&label=Star)]()
-[![GitHub forks](https://img.shields.io/github/forks/mattallty/Caporal.js.svg?style=social&label=Fork)]()
+[![npm](https://img.shields.io/npm/v/caporal.svg)](https://www.npmjs.com/package/caporal)
+[![npm](https://img.shields.io/npm/dm/caporal.svg)](https://www.npmjs.com/package/caporal)
+[![npm](https://img.shields.io/npm/l/caporal.svg)](https://www.npmjs.com/package/caporal)
+[![David](https://img.shields.io/david/mattallty/Caporal.js.svg)](https://david-dm.org/mattallty/Caporal.js)
+[![GitHub stars](https://img.shields.io/github/stars/mattallty/Caporal.js.svg?style=social&label=Star)](https://github.com/mattallty/Caporal.js/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/mattallty/Caporal.js.svg?style=social&label=Fork)](https://github.com/mattallty/Caporal.js/network)
 
 # Caporal
 
