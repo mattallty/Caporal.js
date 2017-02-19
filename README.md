@@ -5,6 +5,9 @@
 [![Travis](https://img.shields.io/travis/mattallty/Caporal.js.svg)]()
 [![Codacy grade](https://img.shields.io/codacy/grade/6e5459fd36e341d1bd27414cf6b06e5c.svg)](https://www.codacy.com/app/matthiasetienne/Caporal-js/dashboard)
 [![Codacy coverage](https://img.shields.io/codacy/coverage/6e5459fd36e341d1bd27414cf6b06e5c.svg)]()
+[![npm](https://img.shields.io/npm/mattallty/caporal.svg)]()
+[![GitHub stars](https://img.shields.io/github/stars/mattallty/Caporal.js.svg?style=social&label=Star)]()
+[![GitHub forks](https://img.shields.io/github/forks/mattallty/Caporal.js.svg?style=social&label=Fork)]()
 
 # Caporal
 
@@ -326,21 +329,19 @@ Caporal automaticaly generates help/usage instructions for you.
 Help can be displayed using `-h` or `--help` options, or with the default `help` command.
  
 
-
 ## Typo suggestions
 
 Caporal will automaticaly make suggestions for option typos.
 If set up `--foot` you pass `--foo`, Caporal will suggest you `--foot`.
 
 
-
 ## Credits
 
 Caporal is strongly inspired by [commander.js](https://github.com/tj/commander.js) and [Symfony Console](http://symfony.com/doc/current/components/console.html).
-Caporal make use of teh following npm packages:
-* chalk for colors
-* cli-table2 for cli tables
-* fast-levenshtein for suggestions
-* minimist for argument parsing
-* prettyjson to output json 
-* winston for logging 
+Caporal make use of the following npm packages:
+* [chalk](https://www.npmjs.com/package/chalk) for colors
+* [cli-table2](https://www.npmjs.com/package/cli-table2) for cli tables
+* [fast-levenshtein](https://www.npmjs.com/package/fast-levenshtein) for suggestions
+* [minimist](https://www.npmjs.com/package/minimist) for argument parsing
+* [prettyjson](https://www.npmjs.com/package/prettyjson) to output json 
+* [winston](https://www.npmjs.com/package/winston) for logging 
