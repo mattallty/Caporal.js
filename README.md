@@ -7,7 +7,6 @@
 [![Codacy coverage](https://img.shields.io/codacy/coverage/6e5459fd36e341d1bd27414cf6b06e5c.svg)]()
 [![npm](https://img.shields.io/npm/v/caporal.svg)](https://www.npmjs.com/package/caporal)
 [![npm](https://img.shields.io/npm/dm/caporal.svg)](https://www.npmjs.com/package/caporal)
-[![npm](https://img.shields.io/npm/l/caporal.svg)](https://www.npmjs.com/package/caporal)
 [![David](https://img.shields.io/david/mattallty/Caporal.js.svg)](https://david-dm.org/mattallty/Caporal.js)
 [![GitHub stars](https://img.shields.io/github/stars/mattallty/Caporal.js.svg?style=social&label=Star)](https://github.com/mattallty/Caporal.js/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/mattallty/Caporal.js.svg?style=social&label=Fork)](https://github.com/mattallty/Caporal.js/network)
@@ -348,3 +347,14 @@ Caporal make use of the following npm packages:
 * [minimist](https://www.npmjs.com/package/minimist) for argument parsing
 * [prettyjson](https://www.npmjs.com/package/prettyjson) to output json 
 * [winston](https://www.npmjs.com/package/winston) for logging 
+
+
+## License
+
+Copyright © Matthias ETIENNE
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+The Software is provided “as is”, without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and noninfringement. In no event shall the authors or copyright holders be liable for any claim, damages or other liability, whether in an action of contract, tort or otherwise, arising from, out of or in connection with the software or the use or other dealings in the Software.
