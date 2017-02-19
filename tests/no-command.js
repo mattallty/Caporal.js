@@ -12,11 +12,11 @@ describe('Setting up no command() but an action()', () => {
     .logger(logger)
     .version('1.0.0');
 
-  it(`should execute action()`, (done) => {
-    program.action(() => {
-      done();
-    });
+  it(`should execute action()`, () => {
+    const action = sinon.stub();
+    program.action(action);
     program.parse([]);
+    should(action.callCount).eql(1);
   });
 });
 
@@ -29,11 +29,11 @@ describe('Setting up no command() but an argument() and an action()', () => {
     .version('1.0.0')
     .argument('<foo>', 'My foo arg');
 
-  it(`should execute action()`, (done) => {
-    program.action(() => {
-      done();
-    });
+  it(`should execute action()`, () => {
+    const action = sinon.stub();
+    program.action(action);
     program.parse(makeArgv(['myarg']));
+    should(action.callCount).eql(1);
   });
 });
 

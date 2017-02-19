@@ -1,6 +1,6 @@
 "use strict";
 
-/* global Program, logger, should, makeArgv, sinon */
+/* global Program, logger, should, makeArgv */
 
 const program = new Program();
 

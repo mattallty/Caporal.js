@@ -4,7 +4,7 @@
   "description": "A full-featured framework for building command line applications (cli) with node.js",
   "main": "index.js",
   "scripts": {
-    "lint": "./node_modules/.bin/eslint lib",
+    "lint": "./node_modules/.bin/eslint lib tests examples",
     "test": "npm run lint && ./node_modules/mocha/bin/mocha --require ./tests/utils/bootstrap.js --full-trace --recursive -R mocha-unfunk-reporter tests/",
     "coverage": "./node_modules/.bin/istanbul cover --include-all-sources true --print both ./node_modules/.bin/_mocha -- --require ./tests/utils/bootstrap.js -R spec --recursive tests/",
     "commit": "git-cz",

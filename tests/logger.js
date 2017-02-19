@@ -1,6 +1,6 @@
 "use strict";
 
-/* global Program, logger, should, makeArgv, sinon */
+/* global should, sinon */
 
 const myLogger = require('../lib/logger').createLogger();
 const stripColor = require('chalk').stripColor;

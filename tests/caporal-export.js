@@ -1,6 +1,6 @@
 "use strict";
 
-/* global Program, logger, should, makeArgv, sinon */
+/* global Program, should */
 
 describe("require('caporal')", () => {
   it(`should return {new Program()}`, () => {
