@@ -13,7 +13,6 @@ describe('Setting up an invalid validator flag', () => {
   it(`should throw ValidationError`, () => {
 
     const error = sinon.stub(program, "fatalError", function(err) {
-      console.dir(err);
       should(err.name).eql('ValidationError');
     });
 
@@ -34,7 +33,6 @@ describe('Setting up an invalid validator (boolean)', () => {
   it(`should throw ValidationError`, () => {
 
     const error = sinon.stub(program, "fatalError", function(err) {
-      console.dir(err);
       should(err.name).eql('ValidationError');
     });
 
