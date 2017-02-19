@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="./assets/caporal.png" width="400" height="142">
+    <img src="./assets/caporal.png" width="500" height="177">
 </p>
 
 # Caporal
@@ -11,12 +11,14 @@
 
 ## Glossary
 
-* **Program**: a cli app that you can build using caporal
+* **Program**: a cli app that you can build using Caporal
 * **Command**: a command within your program. A program may have multiple commands.
 * **Argument**: a command may have one or more arguments passed after the command. 
 * **Options**: a command may have one or more options passed after (or before) arguments.
 
 Angled brackets (e.g. `<item>`) indicate required input. Square brackets (e.g. `[env]`) indicate optional input.
+
+## Examples
 
 ```javascript
 #!/usr/bin/env node
@@ -64,7 +66,7 @@ prog
 // ./myprog deploy myapp production aws google azure
 ```
 
-### Single command program
+### Simple program (single command)
 
 For a very simple program with just one command, you can omit the .command() call:
 
@@ -81,13 +83,13 @@ prog
 
 ## API
 
-### `require('caporal)`
+#### `require('caporal)`
 
 Returns a `Program` instance.
 
 ### Program API
 
-#### .version(version) -> {Program}
+#### `.version(version) : Program`
 
 Set the version of your program. You may want to use your `package.json` version to fill it:
 
@@ -104,7 +106,7 @@ Your program will then automaticaly handle `-V` and `--version` options:
     matt@mb:~$ ./my-program --version
     1.0.0
 
-#### .command(name, description) -> *Command*
+#### `.command(name, description) -> Command`
 
 Set up a new command with name and description. Multiple commands can be added to one program.
 Returns a {Command}.
@@ -126,7 +128,7 @@ prog
 // [...]
 ```
 
-#### .logger([logger]) -> *Program | winston*
+#### `.logger([logger]) -> Program | winston`
 
 Get or set the logger instance. Without argument, it returns the logger instance (*winston* by default).
 With the *logger* argument, it sets a new logger.
@@ -139,7 +141,7 @@ Add an argument to the command. Can be called multiple times to add several argu
 
 * **synopsis** (*String*): something like `<my-required-arg>` or `<my-optional-arg>`
 * **description** (*String*): argument description
-* **validator** (*Caporal Flag | Function | RegExp*): optional validator, see [Coercion and casting ](coercion-and-casting)
+* **validator** (*Caporal Flag | Function | RegExp*): optional validator, see [Coercion and casting ](#coercion-and-casting)
 * **defaultValue** (*): optional default value
 
 #### .option(synopsis, description, [validator, [defaultValue, [required]]) -> *Command*
@@ -148,7 +150,7 @@ Add an option to the command. Can be called multiple times to add several option
 
 * **synopsis** (*String*): You can pass short or long notation here, or both. See examples.
 * **description** (*String*): option description
-* **validator** (*Caporal Flag | Function | RegExp*): optional validator, see [Coercion and casting ](coercion-and-casting)
+* **validator** (*Caporal Flag | Function | RegExp*): optional validator, see [Coercion and casting ](#coercion-and-casting)
 * **defaultValue** (*): optional default value
 * **required** (*Bool*): Is the option itself required ? Default to `false`
 
@@ -191,7 +193,7 @@ The default logging level is 'info'. The predifined options can be used to chang
 
 ### Custom logger
 
-caporal uses `winston` for logging. You can provide your own winston-compatible logger using `.logger()`
+Caporal uses `winston` for logging. You can provide your own winston-compatible logger using `.logger()`
  the following way:
 
 ```javascript
@@ -221,9 +223,9 @@ You can apply coercion and casting using either:
 
 ### Using Caporal flags
 
-* `INT` (or `INTEGER`): Check option looks like an int and cast it with parseInt()  
-* `FLOAT`: Will Check option looks like a float and cast it with parseFloat()
-* `BOOL` (or `BOOLEAN`): Check for string like 0, 1, true, false, and cast it
+* `INT` (or `INTEGER`): Check option looks like an int and cast it with `parseInt()`  
+* `FLOAT`: Will Check option looks like a float and cast it with `parseFloat()`
+* `BOOL` (or `BOOLEAN`): Check for string like `0`, `1`, `true`, `false`, `on`, `off` and cast it
 * `LIST` (or `ARRAY`): Transform input to array by spliting it on comma  
 * `REPEATABLE`: Make the option repeatable, eg `./mycli -f foo -f bar -f joe`
 * `REQUIRED`: Make the option required in the command line
@@ -254,12 +256,13 @@ const prog = require('caporal');
 prog
   .version('1.0.0')
   .command('concat') // concat files
-  .option('-f <file>', 'File to concat', prog.REPEATABLE | prog.REQUIRED)
+  .option('-f <file>', 'File to concat', prog.REPEATABLE)
   .action(function(args, options) {
 
   });
 
-// ./myprog order pizza --kind margherita --discount=1.25 --add-ingredients=pepperoni,onion
+// Usage:
+// ./myprog concat -f file1.txt -f file2.txt -f file3.txt
 ```
 
 ### Using a function
@@ -309,7 +312,7 @@ prog
 
 ## Colors
 
-By default, *Caporal* will output colors for help and errors. 
+By default, Caporal will output colors for help and errors. 
 This behaviour can be disabled by passing `--no-colors`.
 
 
@@ -323,7 +326,7 @@ Help can be displayed using `-h` or `--help` options, or with the default `help`
 ## Typo suggestions
 
 Caporal will automaticaly make suggestions for option typos.
-If set up `--foot` you pass `--foo`, caporal will suggest you `--foot`.
+If set up `--foot` you pass `--foo`, Caporal will suggest you `--foot`.
 
 
 
