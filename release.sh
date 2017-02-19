@@ -9,8 +9,6 @@
 #
 ###############################################
 
-npm install -g trash conventional-recommended-bump conventional-changelog conventional-github-releaser conventional-commits-detector json
-
 np() {
     travis status --no-interactive &&
     ./node_modules/.bin/trash node_modules &>/dev/null;
@@ -30,7 +28,6 @@ np() {
     mv -f _package.json package.json &&
     npm version ${1:-$bump} -m "chore(release): %s" &&
     git push --follow-tags &&
-    ./node_modules/.bin/conventional-github-releaser -p ${2:-$preset} &&
     npm publish
 }
 
