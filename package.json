@@ -15,20 +15,26 @@
     "postinstall": "node node_modules/husky/bin/install.js"
   },
   "engines": {
-    "node": ">= 4.0.0"
+    "node": ">= 6.0.0"
   },
   "keywords": [
     "cli",
     "argument-parser",
     "command",
     "commander",
-    "clap"
+    "clap",
+    "cli-app",
+    "minimist",
+    "optimist",
+    "cli-table",
+    "command line apps"
   ],
-  "author": "Matthias ETIENNE",
+  "author": "Matthias ETIENNE <matthias@etienne.in>",
   "license": "MIT",
   "devDependencies": {
     "codacy-coverage": "^2.0.1",
     "commitizen": "^2.9.5",
+    "conventional-changelog-cli": "^1.2.0",
     "cz-conventional-changelog": "^1.2.0",
     "eslint": "^3.15.0",
     "husky": "^0.13.1",
