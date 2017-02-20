@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="./assets/caporal.png" width="500" height="177">
+    <img src="https://github.com/mattallty/Caporal.js/raw/master/assets/caporal.png" width="500" height="177">
 </p>
 
 [![Travis](https://img.shields.io/travis/mattallty/Caporal.js.svg)](https://travis-ci.org/mattallty/Caporal.js)
