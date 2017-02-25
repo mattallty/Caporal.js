@@ -476,6 +476,7 @@ Caporal make use of the following npm packages:
 * [chalk](https://www.npmjs.com/package/chalk) for colors
 * [cli-table2](https://www.npmjs.com/package/cli-table2) for cli tables
 * [fast-levenshtein](https://www.npmjs.com/package/fast-levenshtein) for suggestions
+* [tabtab](https://www.npmjs.com/package/tabtab) for auto-completion
 * [minimist](https://www.npmjs.com/package/minimist) for argument parsing
 * [prettyjson](https://www.npmjs.com/package/prettyjson) to output json 
 * [winston](https://www.npmjs.com/package/winston) for logging 
