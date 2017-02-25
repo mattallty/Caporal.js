@@ -9,6 +9,7 @@ program.
   .version('1.0.0');
 
 describe("program.fataError()", () => {
+
   it(`should call logger.error() and exit(2)`, () => {
     const error = sinon.stub(logger, 'error').withArgs("foo");
     const exit = sinon.stub(process, 'exit').withArgs(2);
@@ -17,10 +18,14 @@ describe("program.fataError()", () => {
 
     should(error.callCount).eql(1);
     should(exit.callCount).eql(1);
+  });
 
+  after(function () {
     logger.error.restore();
     process.exit.restore();
-  });
+  })
+
+
 });
 
 
