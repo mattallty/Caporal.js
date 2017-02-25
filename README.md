@@ -17,7 +17,7 @@
 > including help generation, colored output, verbosity control, custom logger, coercion
 > and casting, typos suggestions, and auto-complete for bash/zsh/fish.
  
-# Install
+## Install
 
 Simply add Caporal as a dependency:
 
@@ -448,33 +448,39 @@ With the *logger* argument, it sets a new logger.
 
 ### Command API
 
-#### .argument(synopsis, description, [validator, [defaultValue]]) -> *Command*
+#### `.argument(synopsis, description, [validator, [defaultValue]]) -> Command`
 
 Add an argument to the command. Can be called multiple times to add several arguments.
 
 * **synopsis** (*String*): something like `<my-required-arg>` or `<my-optional-arg>`
 * **description** (*String*): argument description
-* **validator** (*Caporal Flag | Function | RegExp*): optional validator, see [Coercion and casting ](#coercion-and-casting)
+* **validator** (*Caporal Flag | Function | Array | RegExp*): optional validator, see [Coercion and casting ](#coercion-and-casting)
 * **defaultValue** (*): optional default value
 
-#### .option(synopsis, description, [validator, [defaultValue, [required]]) -> *Command*
+#### `.option(synopsis, description, [validator, [defaultValue, [required]]) -> Command`
 
 Add an option to the command. Can be called multiple times to add several options.
 
 * **synopsis** (*String*): You can pass short or long notation here, or both. See examples.
 * **description** (*String*): option description
-* **validator** (*Caporal Flag | Function | RegExp*): optional validator, see [Coercion and casting ](#coercion-and-casting)
+* **validator** (*Caporal Flag | Function | Array | RegExp*): optional validator, see [Coercion and casting ](#coercion-and-casting)
 * **defaultValue** (*): optional default value
 * **required** (*Bool*): Is the option itself required ? Default to `false`
 
-#### .action(action) -> *Command*
+#### `.action(action) -> Command`
 
 Define the action, e.g a *Function*, for the current command. The *action* callback will be called with
 3 arguments: *args*, *options*, and *logger*.
 
-#### .alias(alias) -> *Command*
+#### `.alias(alias) -> Command`
 
 Define an alias for the current command. A command can only have one alias.
+
+#### `.compete(completer) -> Command`
+
+Define an auto-completion handler for the latest argument or option added to the command.
+
+* **completer** (*Function*): The completer function has to return either an `Array` or a `Promise` which resolves to an `Array`.
 
 
 ## Credits
