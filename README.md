@@ -120,8 +120,7 @@ The default logging level is 'info'. The predifined options can be used to chang
 
 ### Custom logger
 
-Caporal uses `winston` for logging. You can provide your own winston-compatible logger using `.logger()`
- the following way:
+Caporal uses `winston` for logging. You can provide your own winston-compatible logger using `.logger()` the following way:
 
 ```javascript
 #!/usr/bin/env node
@@ -222,8 +221,8 @@ prog
 
 Using an `Array`, Caporal will check that it contains the argument/option passed.
 
-**Note**: It is not possible to cast user input with this method, only check it,
-so it's basicaly only interesting for strings, but a major advantage is that this method
+**Note**: It is not possible to cast user input with this method, only checking it,
+so it's basically only interesting for strings, but a major advantage is that this method
 will allow autocompletion of arguments and option *values*.
 
 ```javascript
@@ -243,8 +242,8 @@ prog
 ### RegExp validator
 
 Simply pass a RegExp object to test against it.
-**Note**: It is not possible to cast user input with this method, only check it, 
-so it's basicaly only interesting for strings.
+**Note**: It is not possible to cast user input with this method, only checking it, 
+so it's basically only interesting for strings.
 
 ```javascript
 #!/usr/bin/env node
@@ -284,30 +283,36 @@ thanks to [tabtab](https://github.com/mklabs/node-tabtab).
 
 For this feature to work, you will have to:
 
-- Put your cli app in your `$PATH` (e.g. this will be the case if your app is installed globally using `npm install -g <myapp>`.)
+- Put your cli app in your `$PATH` (this is the case if your app is installed globally using `npm install -g <myapp>`)
 - Setup auto-completion for your shell, like bellow.
+
+#### If you are using bash
 
 ```bash
 # For bash
 source <(myapp completion bash)
 
-# or add it to your .bashrc to let it persist
+# or add it to your .bashrc to make it persist
 echo "source <(myapp completion bash)" >> ~/.bashrc 
 ```
+
+#### If you are using zsh
 
 ```bash
 # For zsh
 source <(myapp completion zsh)
 
-# or add it to your .bashrc to let it persist
+# or add it to your .bashrc to make it persist
 echo "source <(myapp completion zsh)" >> ~/.zshrc
 ```
+
+#### If you are using fish
 
 ```bash
 # For fish
 source <(myapp completion fish)
 
-# or add it to your .bashrc to let it persist
+# or add it to your .bashrc to make it persist
 echo "source <(myapp completion fish)" >> ~/.fishrc
 ```
 
@@ -316,51 +321,70 @@ echo "source <(myapp completion fish)" >> ~/.fishrc
 By default, it will autocomplete *commands* and *option names*.
 Also, *options* having an *Array validator* will be autocompleted. 
 
-### Example
+### Auto-completion setup example
 
 ```javascript
 #!/usr/bin/env node
 
 const prog = require('caporal');
+
 prog
   .version('1.0.0')
   // the "order" command
-  .command('order')
+  .command('order', 'Order a pizza')
+  .alias('give-it-to-me')
   // <kind> will be auto-magicaly autocompleted by providing the user with 3 choices
   .argument('<kind>', 'Kind of pizza', ["margherita", "hawaiian", "fredo"])
   .argument('<from-store>', 'Which store to order from')
-  .argument('<account>', 'Which account id to use')
-  .option('--number <num>', 'Number of pizza', prog.INT, 1)
-  .option('--discount <amount>', 'Discount offer', prog.FLOAT)
-  // --extra will be auto-magicaly autocompleted by providing the user with 3 choices
-  .option('--extra <ingredients>', 'Add extra ingredients', ['pepperoni', 'onion', 'cheese'])
-  // enable auto-completion for <from-store> argument using the `done` callback
-  .complete('from-store', function(done) {
-    done(null, ['store-1', 'store-2', 'store-3', 'store-4', 'store-5'])
+  // enable auto-completion for <from-store> argument using a sync function returning an array
+  .complete(function() {
+    return ['store-1', 'store-2', 'store-3', 'store-4', 'store-5'];
   })
+
+  .argument('<account>', 'Which account id to use')
   // enable auto-completion for <account> argument using a Promise
-  .complete('account', function() {
+  .complete(function() {
     return Promise.resolve(['account-1', 'account-2']);
   })
-  .action(function(args, options, logger) {
-   
+
+  .option('-n, --number <num>', 'Number of pizza', prog.INT, 1)
+  .option('-d, --discount <amount>', 'Discount offer', prog.FLOAT)
+  .option('-p, --pay-by <mean>', 'Pay by option')
+  // enable auto-completion for -p | --pay-by argument using a Promise
+  .complete(function() {
+    return Promise.resolve(['cash', 'credit-card']);
   })
-  
+
+  // --extra will be auto-magicaly autocompleted by providing the user with 3 choices
+  .option('-e <ingredients>', 'Add extra ingredients', ['pepperoni', 'onion', 'cheese'])
+  .action(function(args, options, logger) {
+    logger.info("Command 'order' called with:");
+    logger.info("arguments: %j", args);
+    logger.info("options: %j", options);
+  })
+
   // the "return" command
   .command('return', 'Return an order')
   // <kind> will be auto-magicaly autocompleted by providing the user with 3 choices
   .argument('<order-id>', 'Order id')
-  // enable auto-completion for <from-store> argument using the `done` callback
-  .complete('order-id', function(done) {
-    done(null, ['#82792', '#71727', '#526Z52'])
+  // enable auto-completion for <from-store> argument using a Promise
+  .complete(function() {
+    return Promise.resolve(['#82792', '#71727', '#526Z52']);
   })
+  .argument('<to-store>', 'Store id')
+  .option('--ask-change <other-kind-pizza>', 'Ask for other kind of pizza')
+  .complete(function() {
+    return Promise.resolve(["margherita", "hawaiian", "fredo"]);
+  })
+  .option('--say-something <something>', 'Say something to the manager')
   .action(function(args, options, logger) {
- 
-  })
-    
+    logger.info("Command 'return' called with:");
+    logger.info("arguments: %j", args);
+    logger.info("options: %j", options);
+  });
 
+prog.parse(process.argv);
 ```
-
 
 ## API
 

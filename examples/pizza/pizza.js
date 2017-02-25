@@ -42,7 +42,7 @@ prog
   .command('return', 'Return an order')
   // <kind> will be auto-magicaly autocompleted by providing the user with 3 choices
   .argument('<order-id>', 'Order id')
-  // enable auto-completion for <from-store> argument using the `done` callback
+  // enable auto-completion for <from-store> argument using a Promise
   .complete(function() {
     return Promise.resolve(['#82792', '#71727', '#526Z52']);
   })
