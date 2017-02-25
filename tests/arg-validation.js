@@ -2,6 +2,8 @@
 
 /* global Program, logger, should, makeArgv, sinon */
 
+const InvalidArgumentValueError = require('../lib/error/invalid-argument-value');
+const WrongNumberOfArgumentError = require('../lib/error/wrong-num-of-arg');
 const program = new Program();
 
 program
@@ -12,130 +14,144 @@ program
   .argument('<foo>', 'My bar', /^[a-z]+$/)
   .action(function(){});
 
-describe('Passing an invalid required argument value', () => {
-  it(`should throw InvalidArgumentValueError`, () => {
-    const error = sinon.stub(program, "fatalError", function(err) {
-      should(err.name).eql('InvalidArgumentValueError');
-    });
-    program.parse(makeArgv(['foo', '827E92']));
-    should(error.callCount).eql(1);
-    program.reset();
-    error.restore();
+describe("Argument validation", function() {
+
+  beforeEach(function () {
+    this.fatalError = sinon.stub(program, "fatalError");
+    this.action = sinon.spy();
   });
-});
 
-describe('Passing an invalid optional argument value', () => {
-  it(`should throw InvalidArgumentValueError`, () => {
+  afterEach(function () {
+    this.fatalError.restore();
+    program.reset();
+  });
 
+  it(`should throw InvalidArgumentValueError for an invalid required argument value (Regex validator)`, function() {
+    program.parse(makeArgv(['foo', '827E92']));
+    should(this.fatalError.callCount).eql(1);
+    should(this.fatalError.calledWith(sinon.match.instanceOf(InvalidArgumentValueError))).be.ok();
+  });
+
+  it(`should throw InvalidArgumentValueError for an invalid optional argument value (Regex validator)`, function() {
     program
-      .reset()
       .command('foo', 'Fooooo')
       .argument('[foo]', 'My bar', /^[a-z]+$/)
-      .action(function(){});
+      .action(this.action);
 
-    const error = sinon.stub(program, "fatalError", function(err) {
-      should(err.name).eql('InvalidArgumentValueError');
-    });
     program.parse(makeArgv(['foo', '827E92']));
-    should(error.callCount).eql(1);
-    program.reset();
-    error.restore();
+    should(this.fatalError.callCount).eql(1);
+    should(this.fatalError.calledWith(sinon.match.instanceOf(InvalidArgumentValueError))).be.ok();
   });
-});
 
-describe('Setting up a default argument value', () => {
-  it(`should take default value if not passed`, () => {
-
+  it(`should throw InvalidArgumentValueError for an invalid optional argument value (Array validator)`, function() {
     program
-      .reset()
+      .command('foo', 'Fooooo')
+      .argument('[foo]', 'My bar', ["bim", "bam", "boom"])
+      .action(this.action);
+
+    program.parse(makeArgv(['foo', '827E92']));
+    should(this.fatalError.callCount).eql(1);
+    should(this.fatalError.calledWith(sinon.match.instanceOf(InvalidArgumentValueError))).be.ok();
+  });
+
+
+  it(`should throw InvalidArgumentValueError for an invalid required argument value (Array validator)`, function() {
+    program
+      .command('foo', 'Fooooo')
+      .argument('<foo>', 'My bar', ["bim", "bam", "boom"])
+      .action(this.action);
+
+    program.parse(makeArgv(['foo', '827E92']));
+    should(this.fatalError.callCount).eql(1);
+    should(this.fatalError.calledWith(sinon.match.instanceOf(InvalidArgumentValueError))).be.ok();
+  });
+
+  it(`should not throw InvalidArgumentValueError for an valid required argument value (Array validator)`, function() {
+    program
+      .command('foo', 'Fooooo')
+      .argument('<foo>', 'My bar', ["bim", "bam", "boom"])
+      .action(this.action);
+
+    program.parse(makeArgv(['foo', 'bam']));
+    should(this.fatalError.callCount).eql(0);
+  });
+
+  it(`should take default value if not passed when setting up a default argument value`, function() {
+    program
       .command('foo', 'Fooooo')
       .argument('[foo]', 'My bar', /^[a-z]+$/, 'bar')
-      .action(function(args){
-        should(args.foo).eql('bar');
-      });
+      .action(this.action);
 
-    const error = sinon.stub(program, "fatalError");
     program.parse(makeArgv(['foo']));
-    should(error.callCount).eql(0);
-    program.reset();
-    error.restore();
+    should(this.action.callCount).eql(1);
+    should(this.action.calledWith({foo:"bar"}));
+    should(this.fatalError.callCount).eql(0);
   });
-});
 
-describe('Passing an unknown argument', () => {
-
-  it(`should throw WrongNumberOfArgumentError`, () => {
-
+  it(`should throw WrongNumberOfArgumentError when passing an unknown argument for a command that does not accept arguments`, function() {
     program
-      .reset()
       .command('foo', 'Fooooo')
-      .action(function(){});
-
-    const error = sinon.stub(program, "fatalError", function(err) {
-      should(err.name).eql('WrongNumberOfArgumentError');
-    });
+      .action(this.action);
 
     program.parse(makeArgv(['foo', '827E92']));
-    should(error.callCount).eql(1);
-    program.reset();
-    error.restore();
+    should(this.fatalError.callCount).eql(1);
+    should(this.fatalError.calledWith(sinon.match.instanceOf(WrongNumberOfArgumentError))).be.ok();
   });
-});
 
-describe('Setting up an argument without validator', () => {
-
-  it(`should not throw any error`, () => {
+  it(`should throw WrongNumberOfArgumentError for a known command when forgetting an argument`, function() {
 
     program
-      .reset()
+      .command('foo', 'Fooooo')
+      .argument('<joe>', 'max')
+      .argument('<jiji...>', 'jiji')
+      .action(this.action);
+
+    program.parse(makeArgv(['foo']));
+    should(this.fatalError.callCount).eql(1);
+    should(this.fatalError.calledWith(sinon.match.instanceOf(WrongNumberOfArgumentError))).be.ok();
+  });
+
+  it(`should throw WrongNumberOfArgumentError for a default command when forgetting an argument`, function() {
+    program
+      .argument('<joe>', 'max')
+      .argument('<jiji...>', 'jiji')
+      .action(this.action);
+
+    program.parse(makeArgv(['foo']));
+    should(this.fatalError.callCount).eql(1);
+    should(this.fatalError.calledWith(sinon.match.instanceOf(WrongNumberOfArgumentError))).be.ok();
+  });
+
+  it(`should not throw any error when passing an argument without validator`, function() {
+    program
       .command('foo', 'Fooooo')
       .argument('<foo>', 'My foo')
-      .action(function(){});
-
-    const error = sinon.stub(program, "fatalError");
+      .action(this.action);
 
     program.parse(makeArgv(['foo', '827E-Z92']));
-    should(error.callCount).eql(0);
-    program.reset();
-    error.restore();
+    should(this.fatalError.callCount).eql(0);
   });
-});
 
-describe('Setting up a variadic argument', () => {
-  it(`should return an array when passed`, () => {
-
+  it(`should return an array for variadic arguments without validator`, function() {
     program
-      .reset()
       .command('foo', 'Fooooo')
       .argument('[foo]', 'My bar', /^[a-z]+$/, 'bar')
       .argument('[other-foo...]', 'Other foo')
-      .action(function(args){
-        should(args.foo).eql('bar');
-        should(args.otherFoo).eql(['im', 'a', 'variadic', 'arg']);
-      });
+      .action(this.action);
 
-    const error = sinon.stub(program, "fatalError");
     program.parse(makeArgv(['foo', 'bar', 'im', 'a', 'variadic', 'arg']));
-    should(error.callCount).eql(0);
-    program.reset();
-    error.restore();
+    should(this.fatalError.callCount).eql(0);
+    should(this.action.calledWith({foo: "bar", otherFoo: ['im', 'a', 'variadic', 'arg']}))
   });
-});
 
-describe('Setting up an optionnal argument', () => {
-  it(`should succed if this argument is not passed and no default is provided`, () => {
-
-    const action = sinon.spy();
-
+  it(`should handled optional arguments with no default and no validator`, function() {
     program
-      .reset()
       .command('foo', 'Fooooo')
       .argument('[foo]', 'My bar', /^[a-z]+$/)
-      .action(action);
+      .action(this.action);
 
     program.parse(makeArgv(['foo']));
-    should(action.callCount).eql(1);
-    program.reset();
+    should(this.action.callCount).eql(1);
   });
-});
 
+});

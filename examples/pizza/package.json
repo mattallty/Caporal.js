@@ -1,0 +1,15 @@
+{
+  "name": "pizza",
+  "version": "1.0.0",
+  "description": "",
+  "main": "pizza.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies" : {
+    "caporal": "file:../../"
+  },
+  "bin" : { "fly" : "./pizza.js" },
+  "author": "",
+  "license": "ISC"
+}
