@@ -90,6 +90,278 @@ prog
   });
 ```
 
+## Logging
+
+Inside your action(), use the logger argument (third one) to log informations.
+
+```javascript
+#!/usr/bin/env node
+const prog = require('caporal');
+prog
+  .version('1.0.0')
+  .command('deploy <app> [env]', 'Deploy an application') 
+  .option('--restart', 'Make the application restart after deploy') 
+  .action((args, options, logger) => {
+    // Available methods: 
+    // - logger.debug()
+    // - logger.info() or logger.log()
+    // - logger.warn()
+    // - logger.error()
+    logger.info("Application deployed !");
+  });
+```
+
+### Logging levels
+
+The default logging level is 'info'. The predifined options can be used to change the logging level:
+
+* `-v, --verbose`: Set the logging level to 'debug' so debug() logs will be output.
+* `--quiet, --silent`: Set the logging level to 'warn' so only warn() and error() logs will be output. 
+
+### Custom logger
+
+Caporal uses `winston` for logging. You can provide your own winston-compatible logger using `.logger()`
+ the following way:
+
+```javascript
+#!/usr/bin/env node
+const prog = require('caporal');
+const myLogger = require('/path/to/my/logger.js');
+prog
+  .version('1.0.0')
+  .logger(myLogger)
+  .command('foo', 'Foo command description') 
+  .action((args, options, logger) => {
+    logger.info("Foo !!");
+  });
+
+```
+
+* `-v, --verbose`: Set the logging level to 'debug' so debug() logs will be output.
+* `--quiet, --silent`: Set the logging level to 'warn' so only warn() and error() logs will be output. 
+
+
+## Coercion and casting using validators
+
+You can apply coercion and casting using various *validators*:
+
+ * [Caporal flags](#flag-validator)
+ * [Functions](#function-validator)
+ * [Array](#array-validator)
+ * [RegExp](#regexp-validator)
+
+### Flag validator
+
+* `INT` (or `INTEGER`): Check option looks like an int and cast it with `parseInt()`  
+* `FLOAT`: Will Check option looks like a float and cast it with `parseFloat()`
+* `BOOL` (or `BOOLEAN`): Check for string like `0`, `1`, `true`, `false`, `on`, `off` and cast it
+* `LIST` (or `ARRAY`): Transform input to array by spliting it on comma  
+* `REPEATABLE`: Make the option repeatable, eg `./mycli -f foo -f bar -f joe`
+
+```javascript
+#!/usr/bin/env node
+const prog = require('caporal');
+prog
+  .version('1.0.0')
+  .command('order pizza')
+  .option('--number <num>', 'Number of pizza', prog.INT, 1)
+  .option('--kind <kind>', 'Kind of pizza', /^margherita|hawaiian$/)
+  .option('--discount <amount>', 'Discount offer', prog.FLOAT)
+  .option('--add-ingredients <ingredients>', prog.LIST)
+  .action(function(args, options) {
+    // options.kind = 'margherita'
+    // options.number = 1
+    // options.addIngredients = ['pepperoni', 'onion']
+    // options.discount = 1.25
+  });
+
+// ./myprog order pizza --kind margherita --discount=1.25 --add-ingredients=pepperoni,onion
+```
+
+```javascript
+#!/usr/bin/env node
+const prog = require('caporal');
+prog
+  .version('1.0.0')
+  .command('concat') // concat files
+  .option('-f <file>', 'File to concat', prog.REPEATABLE)
+  .action(function(args, options) {
+
+  });
+
+// Usage:
+// ./myprog concat -f file1.txt -f file2.txt -f file3.txt
+```
+
+### Function validator
+
+Using this method, you can check and cast user input. Make the check fail by throwing an `Error`,
+and cast input by returning a new value from your function. 
+
+
+```javascript
+#!/usr/bin/env node
+const prog = require('caporal');
+prog
+  .version('1.0.0')
+  .command('order pizza')
+  .option('--kind <kind>', 'Kind of pizza', function(opt) {
+    if (['margherita', 'hawaiian'].includes(opt) === false) {
+      throw new Error("You can only order margherita or hawaiian pizza!");
+    }
+    return opt.toUpperCase();
+  })
+  .action(function(args, options) {
+    // options = { "kind" : "MARGHERITA" }
+  });
+
+// ./myprog order pizza --kind margherita
+```
+
+### Array validator
+
+Using an `Array`, Caporal will check that it contains the argument/option passed.
+
+**Note**: It is not possible to cast user input with this method, only check it,
+so it's basicaly only interesting for strings, but a major advantage is that this method
+will allow autocompletion of arguments and option *values*.
+
+```javascript
+#!/usr/bin/env node
+const prog = require('caporal');
+prog
+  .version('1.0.0')
+  .command('order pizza') 
+  .option('--kind <kind>', 'Kind of pizza', ["margherita", "hawaiian"])
+  .action(function(args, options) {
+    
+  });
+
+// ./myprog order pizza --kind margherita
+```
+
+### RegExp validator
+
+Simply pass a RegExp object to test against it.
+**Note**: It is not possible to cast user input with this method, only check it, 
+so it's basicaly only interesting for strings.
+
+```javascript
+#!/usr/bin/env node
+const prog = require('caporal');
+prog
+  .version('1.0.0')
+  .command('order pizza')
+  .option('--kind <kind>', 'Kind of pizza', /^margherita|hawaiian$/)
+  .action(function(args, options) {
+    
+  });
+
+// ./myprog order pizza --kind margherita
+```
+
+## Colors
+
+By default, Caporal will output colors for help and errors. 
+This behaviour can be disabled by passing `--no-colors`.
+
+
+## Auto-generated help
+
+Caporal automaticaly generates help/usage instructions for you.
+Help can be displayed using `-h` or `--help` options, or with the default `help` command.
+ 
+
+## Typo suggestions
+
+Caporal will automaticaly make suggestions for option typos.
+If set up `--foot` you pass `--foo`, Caporal will suggest you `--foot`.
+
+## Shell auto-completion
+
+Caporal comes with an auto-completion feature out of the box for `bash`, `zsh`, and `fish`,
+thanks to [tabtab](https://github.com/mklabs/node-tabtab).
+
+For this feature to work, you will have to:
+
+- Put your cli app in your `$PATH` (e.g. this will be the case if your app is installed globally using `npm install -g <myapp>`.)
+- Setup auto-completion for your shell, like bellow.
+
+```bash
+# For bash
+source <(myapp completion bash)
+
+# or add it to your .bashrc to let it persist
+echo "source <(myapp completion bash)" >> ~/.bashrc 
+```
+
+```bash
+# For zsh
+source <(myapp completion zsh)
+
+# or add it to your .bashrc to let it persist
+echo "source <(myapp completion zsh)" >> ~/.zshrc
+```
+
+```bash
+# For fish
+source <(myapp completion fish)
+
+# or add it to your .bashrc to let it persist
+echo "source <(myapp completion fish)" >> ~/.fishrc
+```
+
+### Basic auto-completion
+
+By default, it will autocomplete *commands* and *option names*.
+Also, *options* having an *Array validator* will be autocompleted. 
+
+### Example
+
+```javascript
+#!/usr/bin/env node
+
+const prog = require('caporal');
+prog
+  .version('1.0.0')
+  // the "order" command
+  .command('order')
+  // <kind> will be auto-magicaly autocompleted by providing the user with 3 choices
+  .argument('<kind>', 'Kind of pizza', ["margherita", "hawaiian", "fredo"])
+  .argument('<from-store>', 'Which store to order from')
+  .argument('<account>', 'Which account id to use')
+  .option('--number <num>', 'Number of pizza', prog.INT, 1)
+  .option('--discount <amount>', 'Discount offer', prog.FLOAT)
+  // --extra will be auto-magicaly autocompleted by providing the user with 3 choices
+  .option('--extra <ingredients>', 'Add extra ingredients', ['pepperoni', 'onion', 'cheese'])
+  // enable auto-completion for <from-store> argument using the `done` callback
+  .complete('from-store', function(done) {
+    done(null, ['store-1', 'store-2', 'store-3', 'store-4', 'store-5'])
+  })
+  // enable auto-completion for <account> argument using a Promise
+  .complete('account', function() {
+    return Promise.resolve(['account-1', 'account-2']);
+  })
+  .action(function(args, options, logger) {
+   
+  })
+  
+  // the "return" command
+  .command('return', 'Return an order')
+  // <kind> will be auto-magicaly autocompleted by providing the user with 3 choices
+  .argument('<order-id>', 'Order id')
+  // enable auto-completion for <from-store> argument using the `done` callback
+  .complete('order-id', function(done) {
+    done(null, ['#82792', '#71727', '#526Z52'])
+  })
+  .action(function(args, options, logger) {
+ 
+  })
+    
+
+```
+
+
 ## API
 
 #### `require('caporal)`
@@ -171,170 +443,6 @@ Define the action, e.g a *Function*, for the current command. The *action* callb
 #### .alias(alias) -> *Command*
 
 Define an alias for the current command. A command can only have one alias.
-
-## Logging
-
-Inside your action(), use the logger argument (third one) to log informations.
-
-```javascript
-#!/usr/bin/env node
-const prog = require('caporal');
-prog
-  .version('1.0.0')
-  .command('deploy <app> [env]', 'Deploy an application') 
-  .option('--restart', 'Make the application restart after deploy') 
-  .action((args, options, logger) => {
-    // Available methods: 
-    // - logger.debug()
-    // - logger.info() or logger.log()
-    // - logger.warn()
-    // - logger.error()
-    logger.info("Application deployed !");
-  });
-```
-
-### Logging levels
-
-The default logging level is 'info'. The predifined options can be used to change the logging level:
-
-* `-v, --verbose`: Set the logging level to 'debug' so debug() logs will be output.
-* `--quiet, --silent`: Set the logging level to 'warn' so only warn() and error() logs will be output. 
-
-### Custom logger
-
-Caporal uses `winston` for logging. You can provide your own winston-compatible logger using `.logger()`
- the following way:
-
-```javascript
-#!/usr/bin/env node
-const prog = require('caporal');
-const myLogger = require('/path/to/my/logger.js');
-prog
-  .version('1.0.0')
-  .logger(myLogger)
-  .command('foo', 'Foo command description') 
-  .action((args, options, logger) => {
-    logger.info("Foo !!");
-  });
-
-```
-
-* `-v, --verbose`: Set the logging level to 'debug' so debug() logs will be output.
-* `--quiet, --silent`: Set the logging level to 'warn' so only warn() and error() logs will be output. 
-
-
-## Coercion and casting
-
-You can apply coercion and casting using either:
- * Caporal flags
- * Functions
- * RegExp
-
-### Using Caporal flags
-
-* `INT` (or `INTEGER`): Check option looks like an int and cast it with `parseInt()`  
-* `FLOAT`: Will Check option looks like a float and cast it with `parseFloat()`
-* `BOOL` (or `BOOLEAN`): Check for string like `0`, `1`, `true`, `false`, `on`, `off` and cast it
-* `LIST` (or `ARRAY`): Transform input to array by spliting it on comma  
-* `REPEATABLE`: Make the option repeatable, eg `./mycli -f foo -f bar -f joe`
-* `REQUIRED`: Make the option required in the command line
-
-```javascript
-#!/usr/bin/env node
-const prog = require('caporal');
-prog
-  .version('1.0.0')
-  .command('order pizza')
-  .option('--number <num>', 'Number of pizza', prog.INT, 1)
-  .option('--kind <kind>', 'Kind of pizza', /^margherita|hawaiian$/)
-  .option('--discount <amount>', 'Discount offer', prog.FLOAT)
-  .option('--add-ingredients <ingredients>', prog.LIST)
-  .action(function(args, options) {
-    // options.kind = 'margherita'
-    // options.number = 1
-    // options.addIngredients = ['pepperoni', 'onion']
-    // options.discount = 1.25
-  });
-
-// ./myprog order pizza --kind margherita --discount=1.25 --add-ingredients=pepperoni,onion
-```
-
-```javascript
-#!/usr/bin/env node
-const prog = require('caporal');
-prog
-  .version('1.0.0')
-  .command('concat') // concat files
-  .option('-f <file>', 'File to concat', prog.REPEATABLE)
-  .action(function(args, options) {
-
-  });
-
-// Usage:
-// ./myprog concat -f file1.txt -f file2.txt -f file3.txt
-```
-
-### Using a function
-
-Using this method, you can check and cast user input. Make the check fail by throwing an error,
-and cast input by returning a new value from your function. 
-
-
-```javascript
-#!/usr/bin/env node
-const prog = require('caporal');
-prog
-  .version('1.0.0')
-  .command('order pizza')
-  .option('--kind <kind>', 'Kind of pizza', function(opt) {
-    if (['margherita', 'hawaiian'].includes(opt) === false) {
-      throw new Error("You can only order margherita or hawaiian pizza!");
-    }
-    return opt.toUpperCase();
-  })
-  .action(function(args, options) {
-    // options = { "kind" : "MARGHERITA" }
-  });
-
-// ./myprog order pizza --kind margherita
-```
-
-### Using RegExp
-
-Simply pass a RegExp object in the third argument to test against it.
-**Note**: It is not possible to cast user input with this method, only check it, 
-so it's basicaly only interesting for strings.
-
-```javascript
-#!/usr/bin/env node
-const prog = require('caporal');
-prog
-  .version('1.0.0')
-  .command('order pizza') // concat files
-  .option('--kind <kind>', 'Kind of pizza', /^margherita|hawaiian$/)
-  .action(function(args, options) {
-    
-  });
-
-// ./myprog order pizza --kind margherita
-```
-
-## Colors
-
-By default, Caporal will output colors for help and errors. 
-This behaviour can be disabled by passing `--no-colors`.
-
-
-## Auto-generated help
-
-Caporal automaticaly generates help/usage instructions for you.
-Help can be displayed using `-h` or `--help` options, or with the default `help` command.
- 
-
-## Typo suggestions
-
-Caporal will automaticaly make suggestions for option typos.
-If set up `--foot` you pass `--foo`, Caporal will suggest you `--foot`.
 
 
 ## Credits

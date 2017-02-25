@@ -5,14 +5,15 @@
   "main": "index.js",
   "scripts": {
     "lint": "./node_modules/.bin/eslint lib tests examples",
-    "test": "npm run lint && ./node_modules/mocha/bin/mocha --require ./tests/utils/bootstrap.js --full-trace --recursive -R mocha-unfunk-reporter tests/",
-    "coverage": "./node_modules/.bin/istanbul cover --include-all-sources true --print both ./node_modules/.bin/_mocha -- --require ./tests/utils/bootstrap.js -R spec --recursive tests/",
+    "test": "./node_modules/mocha/bin/mocha --require ./tests/utils/bootstrap.js --full-trace --recursive -R mocha-unfunk-reporter tests/",
+    "test-watch": "npm run lint && ./node_modules/mocha/bin/mocha --require ./tests/utils/bootstrap.js --full-trace --watch --recursive -R mocha-unfunk-reporter tests/",
+    "coverage": "./node_modules/.bin/istanbul cover --include-all-sources true -x **/examples/**/* --print both ./node_modules/.bin/_mocha -- --require ./tests/utils/bootstrap.js -R spec --recursive tests/",
     "commit": "git-cz",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -w -r 0",
     "precommit": "npm test",
     "prepush": "npm test",
     "commitmsg": "validate-commit-msg",
-    "postinstall": "node node_modules/husky/bin/install.js"
+    "postinstall": "(test -f ./node_modules/husky/bin/install.js && node ./node_modules/husky/bin/install.js) || exit 0"
   },
   "engines": {
     "node": ">= 6.0.0"
@@ -51,12 +52,14 @@
     "validate-commit-msg": "^2.11.1"
   },
   "dependencies": {
+    "bluebird": "^3.4.7",
     "chalk": "^1.1.3",
     "cli-table2": "^0.2.0",
     "fast-levenshtein": "^2.0.6",
     "lodash.camelcase": "^4.3.0",
     "minimist": "^1.2.0",
     "prettyjson": "^1.2.1",
+    "tabtab": "^2.2.2",
     "winston": "^2.3.1"
   },
   "config": {
