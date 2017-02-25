@@ -1,3 +1,13 @@
+<a name="0.2.0"></a>
+# [0.2.0](https://github.com/mattallty/Caporal.js/compare/v0.1.0...v0.2.0) (2017-02-25)
+
+
+### Features
+
+* Implement auto-completion (#1) ([333c968](https://github.com/mattallty/Caporal.js/commit/333c968))
+
+
+
 <a name="0.1.0"></a>
 # 0.1.0 (2017-02-19)
 
