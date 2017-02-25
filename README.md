@@ -17,6 +17,14 @@
 > including help generation, colored output, verbosity control, custom logger, coercion
 > and casting, typos suggestions, and auto-complete for bash/zsh/fish.
  
+# Install
+
+Simply add Caporal as a dependency:
+
+    npm install caporal --save
+    
+    // Or if you are using yarn (https://yarnpkg.com/lang/en/)
+    yarn add caporal --save
 
 ## Glossary
 

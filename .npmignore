@@ -6,4 +6,7 @@ tests
 assets
 examples
 .editorconfig
+.eslintrc.json
 .gitignore
+.travis.yml
+release.sh
