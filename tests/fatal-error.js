@@ -11,7 +11,7 @@ program.
 describe("program.fataError()", () => {
 
   it(`should call logger.error() and exit(2)`, () => {
-    const error = sinon.stub(logger, 'error').withArgs("foo");
+    const error = sinon.stub(logger, 'error').withArgs("\nfoo");
     const exit = sinon.stub(process, 'exit').withArgs(2);
 
     program.fatalError(new Error("foo"));
