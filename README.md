@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://github.com/mattallty/Caporal.js/raw/master/assets/caporal.png" width="500" height="177">
+    <img src="https://github.com/mattaxllty/Caporal.js/raw/master/assets/caporal.png" width="500" height="177">
 </p>
 
 [![Travis](https://img.shields.io/travis/mattallty/Caporal.js.svg)](https://travis-ci.org/mattallty/Caporal.js)
@@ -270,8 +270,13 @@ prog
 ## Colors
 
 By default, Caporal will output colors for help and errors. 
-This behaviour can be disabled by passing `--no-colors`.
 
+<p align="center">
+    <img src="https://github.com/mattaxllty/Caporal.js/raw/master/assets/colors.png">
+</p>
+
+
+This behaviour can be disabled by passing `--no-colors`.
 
 ## Auto-generated help
 
