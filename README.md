@@ -42,7 +42,7 @@ Angled brackets (e.g. `<item>`) indicate required input. Square brackets (e.g. `
 const prog = require('caporal');
 prog
   .version('1.0.0')
-  // you specify arguments in .command()
+  // you specify arguments using .argument()
   // 'app' is required, 'env' is optional
   .command('deploy', 'Deploy an application') 
   .argument('<app>', 'App to deploy', /^myapp|their-app$/)
@@ -68,9 +68,12 @@ You can use `...` to indicate variadic arguments. In that case, the resulted val
 const prog = require('caporal');
 prog
   .version('1.0.0')
-  // you specify arguments in .command()
-  // 'app' and 'env' are required, and you can pass additional environments through not required
-  .command('deploy <app> <env> [other-env...]', 'Deploy an application to one or more environments') 
+  .command('deploy', 'Our deploy command')
+  // 'app' and 'env' are required
+  // and you can pass additional environments
+  .argument('<app>', 'App to deploy')
+  .argument('<env>', 'Environment')
+  .argument('[other-env...]', 'Other environments') 
   .action(function(args, options, logger) {
     console.log(args);
     // {
@@ -107,8 +110,7 @@ Inside your action(), use the logger argument (third one) to log informations.
 const prog = require('caporal');
 prog
   .version('1.0.0')
-  .command('deploy <app> [env]', 'Deploy an application') 
-  .option('--restart', 'Make the application restart after deploy') 
+  .command('deploy', 'The deploy command')
   .action((args, options, logger) => {
     // Available methods: 
     // - logger.debug()
