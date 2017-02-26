@@ -30,7 +30,8 @@
     "cli-table",
     "command line apps"
   ],
-  "author": "Matthias ETIENNE <matthias@etienne.in>",
+  "author": "Matthias ETIENNE <matthias@etienne.in> (https://github.com/mattallty)",
+  "repository": "mattallty/Caporal.js",
   "license": "MIT",
   "devDependencies": {
     "codacy-coverage": "^2.0.1",

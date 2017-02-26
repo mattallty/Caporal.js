@@ -62,6 +62,7 @@ prog
 ### Variadic arguments
 
 You can use `...` to indicate variadic arguments. In that case, the resulted value will be an array.
+**Note:** Only the last argument of a command can be variadic !
 
 ```javascript
 #!/usr/bin/env node
@@ -484,6 +485,21 @@ Define the action, e.g a *Function*, for the current command. The *action* callb
 #### `.alias(alias) -> Command`
 
 Define an alias for the current command. A command can only have one alias.
+
+```javascript
+const prog = require('caporal');
+prog
+  .version('1.0.0')
+  // one command
+  .command('walk', 'Make the player walk')
+  .alias('w')
+  .action((args, options, logger) => { logger.log("I'm walking !")}) // you must attach an action for your command
+
+ 
+// ./myapp w
+// same as
+// ./myapp walk
+```
 
 #### `.compete(completer) -> Command`
 
