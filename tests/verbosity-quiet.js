@@ -19,7 +19,10 @@ describe('Passing --quiet', () => {
   it(`should only output warnings & errors`, (done) => {
     let output = 0;
 
-    const listener = (out, level, txt) => output++;
+    const listener = function(out, level, txt) {
+      output++
+    };
+
     logger.on('logging', listener);
 
     program.parse(makeArgv(['foo', '--quiet']));
