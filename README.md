@@ -270,24 +270,26 @@ prog
 ## Colors
 
 By default, Caporal will output colors for help and errors. 
-
-<p align="center">
-    <img src="https://github.com/mattallty/Caporal.js/raw/master/assets/colors.png" wdith="600">
-</p>
-
-
 This behaviour can be disabled by passing `--no-colors`.
 
 ## Auto-generated help
 
 Caporal automaticaly generates help/usage instructions for you.
 Help can be displayed using `-h` or `--help` options, or with the default `help` command.
- 
+
+<p align="center">
+ <img src="https://github.com/mattallty/Caporal.js/raw/master/assets/colors.png" wdith="600">
+</p>
+
 
 ## Typo suggestions
 
 Caporal will automaticaly make suggestions for option typos.
-If set up `--foot` you pass `--foo`, Caporal will suggest you `--foot`.
+
+<p align="center">
+ <img src="https://github.com/mattallty/Caporal.js/raw/master/assets/suggest.png" wdith="600">
+</p>
+
 
 ## Shell auto-completion
 
