@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://github.com/mattaxllty/Caporal.js/raw/master/assets/caporal.png" width="500" height="177">
+    <img src="https://github.com/mattallty/Caporal.js/raw/master/assets/caporal.png" width="500" height="177">
 </p>
 
 [![Travis](https://img.shields.io/travis/mattallty/Caporal.js.svg)](https://travis-ci.org/mattallty/Caporal.js)
@@ -272,7 +272,7 @@ prog
 By default, Caporal will output colors for help and errors. 
 
 <p align="center">
-    <img src="https://github.com/mattaxllty/Caporal.js/raw/master/assets/colors.png">
+    <img src="https://github.com/mattallty/Caporal.js/raw/master/assets/colors.png" wdith="600">
 </p>
 
 
