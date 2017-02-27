@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 "use strict";
 
-const prog = require('caporal');
+const prog = require('../..');
 
 prog
   .version('1.0.0')
@@ -53,9 +53,12 @@ prog
   })
   .option('--say-something <something>', 'Say something to the manager')
   .action(function(args, options, logger) {
-    logger.info("Command 'return' called with:");
-    logger.info("arguments: %j", args);
-    logger.info("options: %j", options);
+    return Promise.resolve("wooooo").then(function (ret) {
+      logger.info("Command 'return' called with:");
+      logger.info("arguments: %j", args);
+      logger.info("options: %j", options);
+      logger.info("promise succeed with: %s", ret);
+    });
   });
 
 prog.parse(process.argv);
