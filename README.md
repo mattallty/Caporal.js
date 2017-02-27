@@ -502,8 +502,36 @@ Add an option to the command. Can be called multiple times to add several option
 
 #### `.action(action) -> Command`
 
-Define the action, e.g a *Function*, for the current command. The *action* callback will be called with
-3 arguments: *args*, *options*, and *logger*.
+Define the action, e.g a *Function*, for the current command. 
+
+The *action* callback will be called with 3 arguments: 
+* *args* (Object): Passed arguments
+* *options* (Object): Passed options
+* *logger* (winston): Winston logger instance
+
+```javascript
+// sync action
+const prog = require('caporal');
+prog
+  .version('1.0.0')
+  .command('walk', 'Make the player walk')
+  .action((args, options, logger) => { 
+    logger.log("I'm walking !")
+  });
+```
+
+You can make your actions async by using Promises:
+
+```javascript
+// async action
+const prog = require('caporal');
+prog
+  .version('1.0.0')
+  .command('walk', 'Make the player walk')
+  .action((args, options, logger) => { 
+    return new Promise(/* ... */);
+  });
+```
 
 #### `.alias(alias) -> Command`
 
@@ -516,7 +544,7 @@ prog
   // one command
   .command('walk', 'Make the player walk')
   .alias('w')
-  .action((args, options, logger) => { logger.log("I'm walking !")}) // you must attach an action for your command
+  .action((args, options, logger) => { logger.log("I'm walking !")}); 
 
 prog.parse(process.argv);
 
