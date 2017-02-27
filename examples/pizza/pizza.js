@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 "use strict";
 
-const prog = require('caporal');
+const prog = require(__dirname + '/../../');
 
 prog
   .version('1.0.0')
