@@ -46,7 +46,7 @@ prog
   // 'app' is required, 'env' is optional
   .command('deploy', 'Deploy an application') 
   .argument('<app>', 'App to deploy', /^myapp|their-app$/)
-  .argument('[env]', 'Environment to deploy on', /^dev|staging|prod$/, 'local')
+  .argument('[env]', 'Environment to deploy on', /^dev|staging|production$/, 'local')
   // you specify options using .option()
   // if --tail is passed, its value is required
   .option('--tail <lines>', 'Tail <lines> lines of logs after deploy', prog.INT) 
