@@ -56,6 +56,8 @@ prog
     // options = {"tail" : 100}
   });
 
+prog.parse(process.argv);
+
 // ./myprog deploy myapp production --tail 100
 ```
 
@@ -84,6 +86,8 @@ prog
     // }
   });
 
+prog.parse(process.argv);
+
 // ./myprog deploy myapp production aws google azure
 ```
 
@@ -100,6 +104,8 @@ prog
   .action(function(args, options, logger) {
     logger.info("biiiip")
   });
+
+prog.parse(process.argv);
 ```
 
 ## Logging
@@ -120,6 +126,8 @@ prog
     // - logger.error()
     logger.info("Application deployed !");
   });
+
+prog.parse(process.argv);
 ```
 
 ### Logging levels
@@ -145,6 +153,7 @@ prog
     logger.info("Foo !!");
   });
 
+prog.parse(process.argv);
 ```
 
 * `-v, --verbose`: Set the logging level to 'debug' so debug() logs will be output.
@@ -185,6 +194,8 @@ prog
     // options.discount = 1.25
   });
 
+prog.parse(process.argv);
+
 // ./myprog order pizza --kind margherita --discount=1.25 --add-ingredients=pepperoni,onion
 ```
 
@@ -198,6 +209,8 @@ prog
   .action(function(args, options) {
 
   });
+
+prog.parse(process.argv);
 
 // Usage:
 // ./myprog concat -f file1.txt -f file2.txt -f file3.txt
@@ -225,6 +238,8 @@ prog
     // options = { "kind" : "MARGHERITA" }
   });
 
+prog.parse(process.argv);
+
 // ./myprog order pizza --kind margherita
 ```
 
@@ -247,6 +262,8 @@ prog
     
   });
 
+prog.parse(process.argv);
+
 // ./myprog order pizza --kind margherita
 ```
 
@@ -266,6 +283,8 @@ prog
   .action(function(args, options) {
     
   });
+
+prog.parse(process.argv);
 
 // ./myprog order pizza --kind margherita
 ```
@@ -422,6 +441,8 @@ const prog = require('caporal');
 prog
   .version(myProgVersion)
 // [...]
+
+prog.parse(process.argv);
 ```
 
 Your program will then automaticaly handle `-V` and `--version` options:
@@ -449,6 +470,8 @@ prog
   .argument('<kind>', 'Kind of pizza')
   .action((args, options, logger) => { logger.log("I'm cooking a pizza !")})
 // [...]
+
+prog.parse(process.argv);
 ```
 
 #### `.logger([logger]) -> Program | winston`
@@ -495,7 +518,8 @@ prog
   .alias('w')
   .action((args, options, logger) => { logger.log("I'm walking !")}) // you must attach an action for your command
 
- 
+prog.parse(process.argv);
+
 // ./myapp w
 // same as
 // ./myapp walk
