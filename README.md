@@ -20,12 +20,12 @@
 ## Install
 
 Simply add Caporal as a dependency:
+```bash
+$ npm install caporal --save
 
-    npm install caporal --save
-    
-    // Or if you are using yarn (https://yarnpkg.com/lang/en/)
-    yarn add caporal --save
-
+# Or if you are using yarn (https://yarnpkg.com/lang/en/)
+$ yarn add caporal
+```
 ## Glossary
 
 * **Program**: a cli app that you can build using Caporal
