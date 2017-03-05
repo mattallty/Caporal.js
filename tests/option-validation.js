@@ -222,7 +222,7 @@ describe('Passing a known short option', () => {
       .action(function() {});
 
     const error = sinon.stub(program, "fatalError");
-    program.parse(makeArgv('-t 278'));
+    program.parse(makeArgv(['-t', '278']));
     should(error.callCount).be.eql(0);
     error.restore();
     program.reset();

@@ -1932,6 +1932,12 @@ micromatch@^2.3.7:
     parse-glob "^3.0.4"
     regex-cache "^0.4.2"
 
+micromist@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/micromist/-/micromist-1.0.1.tgz#5b497dd50098250a57ba2f355e9497d8e2394877"
+  dependencies:
+    lodash.camelcase "^4.3.0"
+
 mime-db@~1.26.0:
   version "1.26.0"
   resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.26.0.tgz#eaffcd0e4fc6935cf8134da246e2e6c35305adff"
