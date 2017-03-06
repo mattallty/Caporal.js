@@ -339,7 +339,7 @@ echo "source <(myapp completion bash)" >> ~/.bashrc
 # For zsh
 source <(myapp completion zsh)
 
-# or add it to your .bashrc to make it persist
+# or add it to your .zshrc to make it persist
 echo "source <(myapp completion zsh)" >> ~/.zshrc
 ```
 
@@ -349,8 +349,8 @@ echo "source <(myapp completion zsh)" >> ~/.zshrc
 # For fish
 source <(myapp completion fish)
 
-# or add it to your .bashrc to make it persist
-echo "source <(myapp completion fish)" >> ~/.fishrc
+# or add it to your config.fish to make it persist
+echo "source <(myapp completion fish)" >> ~/.config/fish/config.fish
 ```
 
 ### Basic auto-completion
