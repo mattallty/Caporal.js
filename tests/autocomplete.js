@@ -86,8 +86,8 @@ describe('Autocomplete', () => {
       should(response).be.fulfilledWith([
         'order:Order a pizza',
         'return:Return an order'
-      ]);
-      done();
+      ]).then(_ => done()).catch(err => done(err));
+      //done();
     });
   });
 
@@ -127,8 +127,8 @@ describe('Autocomplete', () => {
       should(response).be.Promise();
       should(response).be.fulfilledWith([
         'order:Order a pizza',
-      ]);
-      done();
+      ]).then(_ => done()).catch(err => done(err));
+
     });
   });
 
@@ -143,12 +143,18 @@ describe('Autocomplete', () => {
     setImmediate(() => {
       should(this._complete.called).be.true();
       const response = this._complete.returnValues[0];
-      response.then(results => {
-        should(results).not.eql(['order:Order a pizza', 'return:Return an order']);
-        done();
-      }).catch(e => {
-        done(e);
-      });
+      should(response)
+        .be.fulfilledWith([
+          'margherita:Value for argument <kind>',
+          'hawaiian:Value for argument <kind>',
+          'fredo:Value for argument <kind>',
+          '--number:Number of pizza',
+          '--discount:Discount offer',
+          '--pay-by:Pay by option',
+          '-e:Add extra ingredients'
+        ])
+        .then(_ => done())
+        .catch(err => done(err));
     });
 
   });

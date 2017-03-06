@@ -154,6 +154,19 @@ describe("Argument validation", function() {
     should(this.action.callCount).eql(1);
   });
 
+  it(`should hanldle negative numbers in quoted arguments`, function() {
+    program
+      .command('order', 'Order something')
+      .argument('<what>', 'What to order', ["pizza", "burger", "smoothie"])
+      .argument('<how-much>', 'How much', program.INT)
+      .action(this.action);
+
+    program.parse(makeArgv(['order', "pizza", '-1']));
+    should(this.fatalError.callCount).eql(0);
+    should(this.action.callCount).eql(1);
+    should(this.action.args[0][0]).eql({ what: 'pizza', howMuch: -1 });
+  });
+
   it(`should throw WrongNumberOfArgumentError when no argument is given to completion`, function() {
     program.parse(makeArgv(['completion']));
     should(this.fatalError.callCount).eql(1);
