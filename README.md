@@ -553,7 +553,7 @@ prog.parse(process.argv);
 // ./myapp walk
 ```
 
-#### `.compete(completer) -> Command`
+#### `.complete(completer) -> Command`
 
 Define an auto-completion handler for the latest argument or option added to the command.
 
