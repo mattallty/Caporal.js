@@ -132,7 +132,7 @@ prog.parse(process.argv);
 
 ### Logging levels
 
-The default logging level is 'info'. The predifined options can be used to change the logging level:
+The default logging level is 'info'. The predefined options can be used to change the logging level:
 
 * `-v, --verbose`: Set the logging level to 'debug' so debug() logs will be output.
 * `--quiet, --silent`: Set the logging level to 'warn' so only warn() and error() logs will be output. 
@@ -174,7 +174,7 @@ You can apply coercion and casting using various *validators*:
 * `INT` (or `INTEGER`): Check option looks like an int and cast it with `parseInt()`  
 * `FLOAT`: Will Check option looks like a float and cast it with `parseFloat()`
 * `BOOL` (or `BOOLEAN`): Check for string like `0`, `1`, `true`, `false`, `on`, `off` and cast it
-* `LIST` (or `ARRAY`): Transform input to array by spliting it on comma  
+* `LIST` (or `ARRAY`): Transform input to array by splitting it on comma  
 * `REPEATABLE`: Make the option repeatable, eg `./mycli -f foo -f bar -f joe`
 
 ```javascript
@@ -296,7 +296,7 @@ This behaviour can be disabled by passing `--no-colors`.
 
 ## Auto-generated help
 
-Caporal automaticaly generates help/usage instructions for you.
+Caporal automatically generates help/usage instructions for you.
 Help can be displayed using `-h` or `--help` options, or with the default `help` command.
 
 <p align="center">
@@ -306,7 +306,7 @@ Help can be displayed using `-h` or `--help` options, or with the default `help`
 
 ## Typo suggestions
 
-Caporal will automaticaly make suggestions for option typos.
+Caporal will automatically make suggestions for option typos.
 
 <p align="center">
  <img src="https://github.com/mattallty/Caporal.js/raw/master/assets/suggest.png" wdith="600">
