@@ -9,9 +9,9 @@ program
   .version('1.0.0');
 
 
-describe('Calling {program} help', () => {
+describe('Calling {program} help', function() {
 
-  it(`should output global help for single command program`, () => {
+  it(`should output global help for single command program`, function() {
     program
       .argument('<required>', 'Required arg')
       .argument('[optional]', 'Optional arg')
@@ -25,7 +25,7 @@ describe('Calling {program} help', () => {
     program.reset();
   });
 
-  it(`should output global help for multiple commands program`, () => {
+  it(`should output global help for multiple commands program`, function() {
     program
       .description('my desc')
       .command('command1', '1st command')
@@ -47,7 +47,7 @@ describe('Calling {program} help', () => {
     program.reset();
   });
 
-  it(`should output command-specific help for multiple commands program`, () => {
+  it(`should output command-specific help for multiple commands program`, function() {
     program
       .description('my desc')
       .command('command1', '1st command')
@@ -71,7 +71,7 @@ describe('Calling {program} help', () => {
     program.reset();
   });
 
-  it(`should output command-specific help for single command program`, () => {
+  it(`should output command-specific help for single command program`, function() {
     program
       .description('my desc')
       .command('command1', '1st command')
