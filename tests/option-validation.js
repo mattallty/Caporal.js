@@ -265,6 +265,25 @@ describe('Setting up a required option (short)', () => {
   });
 });
 
+describe('Setting up a just one short option', () => {
+
+  it(`should work`, () => {
+
+    const action = sinon.spy();
+    program
+      .command('foo')
+      .option('-t <time-in-secs>')
+      .action(action);
+
+    program.parse(makeArgv(['foo', '-t', '2']));
+    should(action.called).be.ok();
+    console.dir(action.args[0]);
+    should(action.args[0][1]).eql({t:'2'});
+    program.reset();
+  });
+});
+
+
 describe('Setting up a option synopsis containing an error', () => {
 
   it(`should throw OptionSyntaxError`, () => {
