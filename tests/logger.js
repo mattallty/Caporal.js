@@ -22,7 +22,7 @@ describe('logger', () => {
     const oldWrite = process.stdout.write;
     process.stdout.write = write;
 
-    should(stripColor(logStr)).be.eql("foo\nfoo: bar");
+    should(stripColor(logStr)).be.eql("foo\nfoo: bar\n");
     should(callback.called).be.ok();
     should(oldWrite.called).be.ok();
   });
@@ -44,7 +44,7 @@ describe('logger', () => {
     const oldWrite = process.stderr.write;
     process.stderr.write = write;
 
-    should(stripColor(logStr)).be.eql("foo\nfoo: bar");
+    should(stripColor(logStr)).be.eql("foo\nfoo: bar\n");
     should(callback.called).be.ok();
     should(oldWrite.called).be.ok();
 
