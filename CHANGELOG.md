@@ -1,3 +1,13 @@
+<a name="0.4.1"></a>
+## [0.4.1](https://github.com/mattallty/Caporal.js/compare/v0.4.0...v0.4.1) (2017-03-26)
+
+
+### Bug Fixes
+
+* **help:** use console.log for help() instead of custom logger (#38) ([e00932b](https://github.com/mattallty/Caporal.js/commit/e00932b)), closes [#34](https://github.com/mattallty/Caporal.js/issues/34)
+
+
+
 <a name="0.4.0"></a>
 # [0.4.0](https://github.com/mattallty/Caporal.js/compare/v0.3.0...v0.4.0) (2017-03-26)
 
