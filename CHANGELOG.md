@@ -1,3 +1,26 @@
+<a name="0.4.0"></a>
+# [0.4.0](https://github.com/mattallty/Caporal.js/compare/v0.3.0...v0.4.0) (2017-03-26)
+
+
+### Bug Fixes
+
+* **autocomplete:** Handle error when no argument is given to autocomplete helper (#4) ([fee73ab](https://github.com/mattallty/Caporal.js/commit/fee73ab))
+* Fix fish's autorun file path (#15) ([fba79bb](https://github.com/mattallty/Caporal.js/commit/fba79bb)), closes [#15](https://github.com/mattallty/Caporal.js/issues/15)
+* Fix options parsing when only short name is defined (#32) ([4b5f754](https://github.com/mattallty/Caporal.js/commit/4b5f754)), closes [#32](https://github.com/mattallty/Caporal.js/issues/32)
+* Fix typo in README (#17) ([f786ef5](https://github.com/mattallty/Caporal.js/commit/f786ef5)), closes [#17](https://github.com/mattallty/Caporal.js/issues/17)
+* **help:** Fix help command not exiting (#37) ([3c725f6](https://github.com/mattallty/Caporal.js/commit/3c725f6)), closes [#37](https://github.com/mattallty/Caporal.js/issues/37)
+* **logger:** Fix logger new line character after metadata (#31) ([51139ad](https://github.com/mattallty/Caporal.js/commit/51139ad)), closes [#31](https://github.com/mattallty/Caporal.js/issues/31)
+* **options:** Fix handling of --no-color option (#24) ([0ac0619](https://github.com/mattallty/Caporal.js/commit/0ac0619)), closes [#24](https://github.com/mattallty/Caporal.js/issues/24)
+* **parsing:** Fixes negative numbers parsing as argument (#16) ([690b46d](https://github.com/mattallty/Caporal.js/commit/690b46d)), closes [#16](https://github.com/mattallty/Caporal.js/issues/16) [#13](https://github.com/mattallty/Caporal.js/issues/13)
+* **program:** Force exiting for help command and -h, -V, --version options (#27) ([c2e7146](https://github.com/mattallty/Caporal.js/commit/c2e7146))
+
+
+### Features
+
+* **actions:** Implement async actions ([afef8b2](https://github.com/mattallty/Caporal.js/commit/afef8b2))
+
+
+
 <a name="0.3.0"></a>
 # [0.3.0](https://github.com/mattallty/Caporal.js/compare/v0.2.0...v0.3.0) (2017-02-26)
 
