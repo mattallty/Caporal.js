@@ -19,9 +19,12 @@ describe('Calling {program} help', function() {
       .action(function() {});
 
     const help = sinon.spy(program, "help");
+    const exit = sinon.stub(process, "exit");
     program.parse(makeArgv('help'));
     should(help.callCount).be.eql(1);
+    should(exit.callCount).be.eql(1);
     help.restore();
+    exit.restore();
     program.reset();
   });
 
@@ -41,9 +44,12 @@ describe('Calling {program} help', function() {
 
 
     const help = sinon.spy(program, "help");
+    const exit = sinon.stub(process, "exit");
     program.parse(makeArgv('help'));
     should(help.callCount).be.eql(1);
+    should(exit.callCount).be.eql(1);
     help.restore();
+    exit.restore();
     program.reset();
   });
 
@@ -65,8 +71,11 @@ describe('Calling {program} help', function() {
 
 
     const help = sinon.spy(program, "help");
+    const exit = sinon.stub(process, "exit");
     program.parse(makeArgv(['help', 'command1']));
     should(help.callCount).be.eql(1);
+    should(exit.callCount).be.eql(1);
+    exit.restore();
     help.restore();
     program.reset();
   });
@@ -82,9 +91,12 @@ describe('Calling {program} help', function() {
       .action(function() {});
 
     const help = sinon.spy(program, "help");
+    const exit = sinon.stub(process, "exit");
     program.parse(makeArgv(['help', 'command1']));
     should(help.callCount).be.eql(1);
+    should(exit.callCount).be.eql(1);
     help.restore();
+    exit.restore();
     program.reset();
   });
 
