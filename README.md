@@ -425,7 +425,7 @@ prog.parse(process.argv);
 
 ## API
 
-#### `require('caporal)`
+#### `require('caporal')`
 
 Returns a `Program` instance.
 
