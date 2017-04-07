@@ -32,11 +32,14 @@ prog
 
   // --extra will be auto-magicaly autocompleted by providing the user with 3 choices
   .option('-e <ingredients>', 'Add extra ingredients', ['pepperoni', 'onion', 'cheese'])
+  .option('--add-ingredients <ingredients>', 'Add extra ingredients', prog.LIST)
   .action(function(args, options, logger) {
     logger.info("Command 'order' called with:");
     logger.info("arguments: %j", args);
     logger.info("options: %j", options);
   })
+
+
 
   // the "return" command
   .command('return', 'Return an order')
