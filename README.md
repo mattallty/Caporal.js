@@ -485,7 +485,7 @@ With the *logger* argument, it sets a new logger.
 
 Add an argument to the command. Can be called multiple times to add several arguments.
 
-* **synopsis** (*String*): something like `<my-required-arg>` or `<my-optional-arg>`
+* **synopsis** (*String*): something like `<my-required-arg>` or `[my-optional-arg]`
 * **description** (*String*): argument description
 * **validator** (*Caporal Flag | Function | Array | RegExp*): optional validator, see [Coercion and casting ](#coercion-and-casting)
 * **defaultValue** (*): optional default value
