@@ -6,9 +6,7 @@ const prog = require('../..');
 prog
   .version('1.0.0')
   // the "order" command
-  .help(`My Custom help !!`)
   .command('order', 'Order a pizza')
-  .help(`My Custom help about the order command !!`)
   .alias('give-it-to-me')
   // <kind> will be auto-magicaly autocompleted by providing the user with 3 choices
   .argument('<kind>', 'Kind of pizza', ["margherita", "hawaiian", "fredo"])

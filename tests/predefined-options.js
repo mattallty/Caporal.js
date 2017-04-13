@@ -36,7 +36,7 @@ describe('Predefined options', function() {
       .command('foo', 'My foo');
 
     const exit = sinon.stub(process, "exit");
-    const help = sinon.spy(program, "_help");
+    const help = sinon.spy(program, "help");
     program.parse(makeArgv(['foo', '-h']));
     should(help.called).be.ok();
     should(exit.callCount).eql(1);
@@ -51,7 +51,7 @@ describe('Predefined options', function() {
       .command('bar', 'My bar');
 
     const exit = sinon.stub(process, "exit");
-    const help = sinon.spy(program, "_help");
+    const help = sinon.spy(program, "help");
     program.parse(makeArgv(['foo', '-h']));
     should(help.called).be.ok();
     should(exit.callCount).eql(1);
