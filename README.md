@@ -303,6 +303,49 @@ Help can be displayed using `-h` or `--help` options, or with the default `help`
  <img src="https://github.com/mattallty/Caporal.js/raw/master/assets/colors.png" wdith="600">
 </p>
 
+## Custom help
+
+You can add some custom help to the whole program or to specific commands using `.help()`.
+
+
+### Custom help for the whole program
+
+```javascript
+#!/usr/bin/env node
+const prog = require('caporal');
+prog
+  .version('1.0.0')
+  .help('my global help') // here our custom help for the whole program
+  .command('order pizza')
+  .action(function(args, options) {
+    
+  });
+
+prog.parse(process.argv);
+```
+
+### Custom help for specific commands
+
+```javascript
+#!/usr/bin/env node
+const prog = require('caporal');
+prog
+  .version('1.0.0')
+  // first command
+  .command('order')
+  .help('my help for the order command') // here our custom help for the `order` command
+  .action(function(args, options) {
+    
+  })
+  // second command
+  .command('cancel')
+  .help('my help for the cancel command') // here our custom help for the `cancel` command
+  .action(function(args, options) {
+    
+  })
+
+prog.parse(process.argv);
+```
 
 ## Typo suggestions
 
