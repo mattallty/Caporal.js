@@ -12,7 +12,7 @@ program
 
 describe('Passing --option invalid-value', () => {
 
-  ['regex', 'function', 'INT', 'BOOL', 'FLOAT', 'LIST(int)', 'LIST(bool)', 'LIST(float)', 'LIST(repeated)'].forEach(function(checkType) {
+  ['regex', 'function', 'STRING', 'INT', 'BOOL', 'FLOAT', 'LIST(int)', 'LIST(bool)', 'LIST(float)', 'LIST(repeated)'].forEach(function(checkType) {
     it(`should throw an error for ${checkType} check`, () => {
 
       const error = sinon.stub(program, "fatalError", function(err) {
@@ -34,6 +34,10 @@ describe('Passing --option invalid-value', () => {
           return o;
         });
         program.parse(makeArgv(['-t', 'i-am-invalid']));
+
+      } else if(checkType === 'STRING') {
+        program.option('-f, --file <file>', 'Time in seconds', program.STRING);
+        program.parse(makeArgv(['-f']));
 
       } else if(checkType === 'INT') {
         program.option('-t, --time <time-in-secs>', 'Time in seconds', program.INT);
@@ -77,7 +81,7 @@ describe('Passing --option invalid-value', () => {
 
 describe('Passing --option valid-value', () => {
 
-  ['regex', 'function', 'INT', 'BOOL', 'BOOL(implicit)', 'FLOAT', 'LIST(int)', 'LIST(bool)', 'LIST(float)'].forEach(function(checkType) {
+  ['regex', 'function', 'STRING', 'INT', 'BOOL', 'BOOL(implicit)', 'FLOAT', 'LIST(int)', 'LIST(bool)', 'LIST(float)'].forEach(function(checkType) {
     it(`should succeed for ${checkType} check`, () => {
 
       const error = sinon.stub(program, "fatalError");
@@ -97,6 +101,10 @@ describe('Passing --option valid-value', () => {
           return o;
         });
         program.parse(makeArgv(['-t', '2']));
+
+      } else if(checkType === 'STRING') {
+        program.option('-f, --file <file>', 'File', program.STRING);
+        program.parse(makeArgv(['-f', 'foo']));
 
       } else if(checkType === 'INT') {
         program.option('-t, --time <time-in-secs>', 'Time in seconds', program.INT);
