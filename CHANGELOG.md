@@ -1,3 +1,19 @@
+<a name="0.5.0"></a>
+# [0.5.0](https://github.com/mattallty/Caporal.js/compare/v0.4.1...v0.5.0) (2017-04-13)
+
+
+### Bug Fixes
+
+* **validator:** fix handling of prog.LIST flag (#43) ([d1e429a](https://github.com/mattallty/Caporal.js/commit/d1e429a)), closes [#43](https://github.com/mattallty/Caporal.js/issues/43) [#39](https://github.com/mattallty/Caporal.js/issues/39)
+
+
+### Features
+
+* **help:** Added custom help feature (#47) ([3324eec](https://github.com/mattallty/Caporal.js/commit/3324eec)), closes [#14](https://github.com/mattallty/Caporal.js/issues/14)
+* **program,command:** return promise of executed command for facilitate testing (#40) ([0d1bd54](https://github.com/mattallty/Caporal.js/commit/0d1bd54))
+
+
+
 <a name="0.4.1"></a>
 ## [0.4.1](https://github.com/mattallty/Caporal.js/compare/v0.4.0...v0.4.1) (2017-03-26)
 
