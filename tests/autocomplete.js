@@ -172,11 +172,11 @@ describe('Autocomplete', () => {
       const response = this._complete.returnValues[0];
       response.then(results => {
         should(results).be.eql([
-          'store-1',
-          'store-2',
-          'store-3',
-          'store-4',
-          'store-5',
+          'store-1:Value for argument <from-store>',
+          'store-2:Value for argument <from-store>',
+          'store-3:Value for argument <from-store>',
+          'store-4:Value for argument <from-store>',
+          'store-5:Value for argument <from-store>',
           '--number:Number of pizza',
           '--discount:Discount offer',
           '--pay-by:Pay by option',
@@ -205,10 +205,10 @@ describe('Autocomplete', () => {
           "margherita:Value for argument <kind>",
           "hawaiian:Value for argument <kind>",
           "fredo:Value for argument <kind>",
-          "--number:Number of pizza",
-          "--discount:Discount offer",
-          "--pay-by:Pay by option",
-          "-e:Add extra ingredients"
+          '--number:Number of pizza',
+          '--discount:Discount offer',
+          '--pay-by:Pay by option',
+          '-e:Add extra ingredients'
         ]);
         done();
       }).catch(e => {
@@ -234,10 +234,10 @@ describe('Autocomplete', () => {
           "margherita:Value for argument <kind>",
           "hawaiian:Value for argument <kind>",
           "fredo:Value for argument <kind>",
-          "--number:Number of pizza",
-          "--discount:Discount offer",
-          "--pay-by:Pay by option",
-          "-e:Add extra ingredients"
+          '--number:Number of pizza',
+          '--discount:Discount offer',
+          '--pay-by:Pay by option',
+          '-e:Add extra ingredients'
         ]);
         done();
       }).catch(e => {
@@ -377,7 +377,13 @@ describe('Autocomplete', () => {
       should(this._complete.called).be.true();
       const response = this._complete.returnValues[0];
       response.then(results => {
-        should(results).containDeepOrdered(['#82792', '#71727', '#526Z52']);
+        should(results).eql([
+          '#82792:Value for argument <order-id>',
+          '#71727:Value for argument <order-id>',
+          '#526Z52:Value for argument <order-id>',
+          '--ask-change:Ask for other kind of pizza',
+          '--say-something:Say something to the manager'
+        ]);
         done();
       }).catch(e => {
         done(e);
@@ -421,7 +427,11 @@ describe('Autocomplete', () => {
       should(this._complete.called).be.true();
       const response = this._complete.returnValues[0];
       response.then(results => {
-        should(results).eql(["margherita", "hawaiian", "fredo"]);
+        should(results).eql([
+          "margherita:Value for option --ask-change <other-kind-pizza>",
+          "hawaiian:Value for option --ask-change <other-kind-pizza>",
+          "fredo:Value for option --ask-change <other-kind-pizza>"
+        ]);
         done();
       }).catch(e => {
         done(e);
