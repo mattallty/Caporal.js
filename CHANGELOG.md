@@ -1,3 +1,15 @@
+<a name="0.6.0"></a>
+# [0.6.0](https://github.com/mattallty/Caporal.js/compare/v0.5.0...v0.6.0) (2017-05-29)
+
+
+### Bug Fixes
+
+* **autocomplete:** fix arguments autocompletion (#53) ([e21f846](https://github.com/mattallty/Caporal.js/commit/e21f846)), closes [#53](https://github.com/mattallty/Caporal.js/issues/53)
+* **logger:** Fix logger (new line missing) (#54) ([ecd145f](https://github.com/mattallty/Caporal.js/commit/ecd145f)), closes [#54](https://github.com/mattallty/Caporal.js/issues/54)
+* **logger:** fix logger metadata handling (#55) ([d0b9953](https://github.com/mattallty/Caporal.js/commit/d0b9953)), closes [#55](https://github.com/mattallty/Caporal.js/issues/55)
+
+
+
 <a name="0.5.0"></a>
 # [0.5.0](https://github.com/mattallty/Caporal.js/compare/v0.4.1...v0.5.0) (2017-04-13)
 
