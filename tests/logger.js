@@ -65,7 +65,7 @@ describe('logger', () => {
     const oldWrite = process.stdout.write;
     process.stdout.write = write;
 
-    should(stripColor(logStr)).be.eql("foo");
+    should(stripColor(logStr)).be.eql("foo\n");
     should(callback.called).be.ok();
     should(oldWrite.called).be.ok();
 
