@@ -1,3 +1,13 @@
+<a name="0.7.0"></a>
+# [0.7.0](https://github.com/mattallty/Caporal.js/compare/v0.6.0...v0.7.0) (2017-06-30)
+
+
+### Features
+
+* **logger:** allow log level to be passed through env (#58) ([2f9e578](https://github.com/mattallty/Caporal.js/commit/2f9e578))
+
+
+
 <a name="0.6.0"></a>
 # [0.6.0](https://github.com/mattallty/Caporal.js/compare/v0.5.0...v0.6.0) (2017-05-29)
 
