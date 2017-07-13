@@ -3,6 +3,7 @@
   "version": "0.7.0",
   "description": "A full-featured framework for building command line applications (cli) with node.js",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "lint": "./node_modules/.bin/eslint lib tests",
     "test": "./node_modules/mocha/bin/mocha --require ./tests/utils/bootstrap.js --full-trace --recursive -R mocha-unfunk-reporter tests/",
