@@ -120,10 +120,10 @@ prog
   .command('deploy', 'The deploy command')
   .action((args, options, logger) => {
     // Available methods: 
-    // - logger.debug()
-    // - logger.info() or logger.log()
-    // - logger.warn()
-    // - logger.error()
+    // - logger.debug('message')
+    // - logger.info('message') or logger.log('level', 'message')
+    // - logger.warn('message')
+    // - logger.error('message')
     logger.info("Application deployed !");
   });
 
