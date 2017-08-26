@@ -373,7 +373,8 @@ For this feature to work, you will have to:
 source <(myapp completion bash)
 
 # or add it to your .bashrc to make it persist
-echo "source <(myapp completion bash)" >> ~/.bashrc 
+echo "source <(myapp completion bash)" >> ~/.bashrc \
+&& source ~/.bashrc
 ```
 
 #### If you are using zsh
@@ -383,7 +384,8 @@ echo "source <(myapp completion bash)" >> ~/.bashrc
 source <(myapp completion zsh)
 
 # or add it to your .zshrc to make it persist
-echo "source <(myapp completion zsh)" >> ~/.zshrc
+echo "source <(myapp completion zsh)" >> ~/.zshrc \
+&& source ~/.zshrc
 ```
 
 #### If you are using fish
@@ -393,7 +395,8 @@ echo "source <(myapp completion zsh)" >> ~/.zshrc
 source <(myapp completion fish)
 
 # or add it to your config.fish to make it persist
-echo "source <(myapp completion fish)" >> ~/.config/fish/config.fish
+echo "source <(myapp completion fish)" >> ~/.config/fish/config.fish \
+&& source ~/.config/fish/config.fish
 ```
 
 ### Basic auto-completion
