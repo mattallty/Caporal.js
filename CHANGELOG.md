@@ -1,3 +1,20 @@
+<a name="0.8.0"></a>
+# [0.8.0](https://github.com/mattallty/Caporal.js/compare/v0.7.0...v0.8.0) (2017-10-20)
+
+
+### Bug Fixes
+
+* make wording of error clearer (#76) ([c689df3](https://github.com/mattallty/Caporal.js/commit/c689df3))
+* **help:** Display other commands when default command is present (#64) ([8df56e8](https://github.com/mattallty/Caporal.js/commit/8df56e8))
+
+
+### Features
+
+* Add Typescript support (#63) ([e82fd42](https://github.com/mattallty/Caporal.js/commit/e82fd42))
+* Allow caporal to be used from REPL (#75) ([344cc17](https://github.com/mattallty/Caporal.js/commit/344cc17))
+
+
+
 <a name="0.7.0"></a>
 # [0.7.0](https://github.com/mattallty/Caporal.js/compare/v0.6.0...v0.7.0) (2017-06-30)
 
