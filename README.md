@@ -533,7 +533,7 @@ Add an argument to the command. Can be called multiple times to add several argu
 
 * **synopsis** (*String*): something like `<my-required-arg>` or `[my-optional-arg]`
 * **description** (*String*): argument description
-* **validator** (*Caporal Flag | Function | Array | RegExp*): optional validator, see [Coercion and casting ](#coercion-and-casting)
+* **validator** (*Caporal Flag | Function | Array | RegExp*): optional validator, see [Coercion and casting ](#coercion-and-casting-using-validators)
 * **defaultValue** (*): optional default value
 
 #### `.option(synopsis, description, [validator, [defaultValue, [required]]) -> Command`
@@ -542,7 +542,7 @@ Add an option to the command. Can be called multiple times to add several option
 
 * **synopsis** (*String*): You can pass short or long notation here, or both. See examples.
 * **description** (*String*): option description
-* **validator** (*Caporal Flag | Function | Array | RegExp*): optional validator, see [Coercion and casting ](#coercion-and-casting)
+* **validator** (*Caporal Flag | Function | Array | RegExp*): optional validator, see [Coercion and casting ](#coercion-and-casting-using-validators)
 * **defaultValue** (*): optional default value
 * **required** (*Bool*): Is the option itself required ? Default to `false`
 
