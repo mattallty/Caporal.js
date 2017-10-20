@@ -13,10 +13,10 @@ np() {
     travis status --no-interactive &&
     ./node_modules/.bin/trash node_modules &>/dev/null;
     git pull --rebase &&
+    cp package-lock.json _package-lock.json &&
     npm install &&
     npm test &&
     cp package.json _package.json &&
-    cp package-lock.json _package-lock.json &&
     preset=`./node_modules/.bin/conventional-commits-detector` &&
     echo $preset &&
     bump=`./node_modules/.bin/conventional-recommended-bump -p angular` &&
