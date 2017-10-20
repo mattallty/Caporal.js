@@ -433,13 +433,13 @@ prog
   .option('-n, --number <num>', 'Number of pizza', prog.INT, 1)
   .option('-d, --discount <amount>', 'Discount offer', prog.FLOAT)
   .option('-p, --pay-by <mean>', 'Pay by option')
-  // enable auto-completion for -p | --pay-by argument using a Promise
+  // enable auto-completion for -p | --pay-by option using a Promise
   .complete(function() {
     return Promise.resolve(['cash', 'credit-card']);
   })
 
-  // --extra will be auto-magicaly autocompleted by providing the user with 3 choices
-  .option('-e <ingredients>', 'Add extra ingredients', ['pepperoni', 'onion', 'cheese'])
+  // -e | --extra will be auto-magicaly autocompleted by providing the user with 3 choices
+  .option('-e, --extra <ingredients>', 'Add extra ingredients', ['pepperoni', 'onion', 'cheese'])
   .action(function(args, options, logger) {
     logger.info("Command 'order' called with:");
     logger.info("arguments: %j", args);
@@ -448,14 +448,14 @@ prog
 
   // the "return" command
   .command('return', 'Return an order')
-  // <kind> will be auto-magicaly autocompleted by providing the user with 3 choices
   .argument('<order-id>', 'Order id')
-  // enable auto-completion for <from-store> argument using a Promise
+  // enable auto-completion for <order-id> argument using a Promise
   .complete(function() {
     return Promise.resolve(['#82792', '#71727', '#526Z52']);
   })
   .argument('<to-store>', 'Store id')
   .option('--ask-change <other-kind-pizza>', 'Ask for other kind of pizza')
+  // enable auto-completion for --ask-change option using a Promise
   .complete(function() {
     return Promise.resolve(["margherita", "hawaiian", "fredo"]);
   })
