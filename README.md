@@ -186,7 +186,7 @@ prog
   .option('--number <num>', 'Number of pizza', prog.INT, 1)
   .option('--kind <kind>', 'Kind of pizza', /^margherita|hawaiian$/)
   .option('--discount <amount>', 'Discount offer', prog.FLOAT)
-  .option('--add-ingredients <ingredients>', prog.LIST)
+  .option('--add-ingredients <ingredients>', 'Ingredients', prog.LIST)
   .action(function(args, options) {
     // options.kind = 'margherita'
     // options.number = 1
