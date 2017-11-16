@@ -589,7 +589,7 @@ Add an option to the command. Can be called multiple times to add several option
 * **defaultValue** (*): optional default value
 * **required** (*Bool*): Is the option itself required ? Default to `false`
 
-#### `.help(text, options?) : Program`
+#### `.help(text, options?) -> Command`
 
 Add a command-level help section.
 
