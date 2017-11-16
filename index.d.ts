@@ -39,7 +39,7 @@ declare class Caporal {
 }
 
 type helpOptions = {
-    indentation?: boolean,
+    indentate?: boolean,
     name?: string
 };
 
