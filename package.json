@@ -60,6 +60,7 @@
     "cli-table2": "^0.2.0",
     "fast-levenshtein": "^2.0.6",
     "lodash.camelcase": "^4.3.0",
+    "lodash.kebabcase": "^4.1.1",
     "micromist": "^1.0.1",
     "prettyjson": "^1.2.1",
     "tabtab": "^2.2.2",
