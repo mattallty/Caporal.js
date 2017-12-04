@@ -70,5 +70,7 @@ declare interface Command {
 }
 
 type AutocompleteCallback = () => string[] | Promise<string[]>;
-
-export = new Caporal();
+declare module 'caporal' {
+    const _default: Caporal;
+    export default _default;
+}
