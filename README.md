@@ -108,6 +108,35 @@ prog
 prog.parse(process.argv);
 ```
 
+### Programmatic Caporal usage
+
+You can pass arguments and options directly to Caporal API.
+
+```javascript
+#!/usr/bin/env node
+const prog = require('caporal');
+prog
+  .version('1.0.0')
+  .command('deploy', 'Our deploy command')
+  .argument('<app>', 'App to deploy')
+  .argument('<env>', 'Environment')
+  .option('--how-much', 'How much app to deploy', prog.INT, 1)
+  .action(function(args, options, logger) {
+    logger.info(args);
+    logger.info(options);
+    // {
+    //   "app": "myapp",
+    //   "env": "production"
+    // }
+    // {
+    //   "howMuch": 2
+    // }
+  });
+prog.exec(['deploy', 'myapp', 'env'], {
+  howMuch: 2
+});
+```
+
 ## Logging
 
 Inside your action(), use the logger argument (third one) to log informations.
