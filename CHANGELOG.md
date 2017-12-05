@@ -1,3 +1,8 @@
+<a name="0.9.0"></a>
+# [0.9.0](https://github.com/mattallty/Caporal.js/compare/v0.8.0...v0.9.0) (2017-12-05)
+
+
+
 <a name="0.8.0"></a>
 # [0.8.0](https://github.com/mattallty/Caporal.js/compare/v0.7.0...v0.8.0) (2017-10-20)
 
