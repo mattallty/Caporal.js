@@ -321,7 +321,7 @@ prog.parse(process.argv);
 ## Colors
 
 By default, Caporal will output colors for help and errors. 
-This behaviour can be disabled by passing `--no-colors`.
+This behaviour can be disabled by passing `--no-color`.
 
 ## Auto-generated help
 
