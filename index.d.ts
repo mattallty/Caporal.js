@@ -71,6 +71,6 @@ declare interface Command {
 
 type AutocompleteCallback = () => string[] | Promise<string[]>;
 declare module 'caporal' {
-    const _default: Caporal;
-    export default _default;
+    const caporal: Caporal;
+    export = caporal;
 }
