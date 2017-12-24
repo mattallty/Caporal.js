@@ -36,6 +36,7 @@ declare class Caporal {
     argument(synopsis: string, description: string, validator?: ValidatorArg, defaultValue?: any): Command;
 
     parse(argv: string[]): any;
+    fatalError(error: Error): void;
 }
 
 type ActionCallback = (args: { [k: string]: any },
