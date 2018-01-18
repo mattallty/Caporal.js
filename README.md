@@ -534,7 +534,7 @@ By default the optional `options` parameter is:
 
 ```js
 {
-    indentate: true, // If `true` the text will be automatically indentated
+    indent: true, // If `true` the text will be automatically indented
     name: "MORE INFO" // The name of the section
 }
 ```
@@ -597,7 +597,7 @@ By default the optional `options` parameter is:
 
 ```js
 {
-    indentate: true, // If `true` the text will be automatically indentated
+    indent: true, // If `true` the text will be automatically indented
     name: "" // The name of the section, by default this line won't be displayed
 }
 ```
