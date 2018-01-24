@@ -37,6 +37,8 @@ declare class Caporal {
 
     parse(argv: string[]): any;
     fatalError(error: Error): void;
+
+    strict(value: boolean): Caporal;
 }
 
 type ActionCallback = (args: { [k: string]: any },
