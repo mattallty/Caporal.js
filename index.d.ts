@@ -37,8 +37,6 @@ declare class Caporal {
 
     parse(argv: string[]): any;
     fatalError(error: Error): void;
-
-    strict(value: boolean): Caporal;
 }
 
 type ActionCallback = (args: { [k: string]: any },
@@ -70,6 +68,8 @@ declare interface Command {
     alias(alias: string): Command;
 
     complete(cb: AutocompleteCallback): Command;
+
+    strict(value: boolean): Command;
 }
 
 type AutocompleteCallback = () => string[] | Promise<string[]>;
