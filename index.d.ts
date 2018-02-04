@@ -25,7 +25,7 @@ declare class Caporal {
     bin(name: string): Caporal;
     bin(): string;
 
-    help(helpText: string): Caporal;
+    help(helpText: string, helpOptions?: helpOptions): Caporal;
 
     command(synospis: string, description: string): Command;
 
@@ -37,6 +37,11 @@ declare class Caporal {
 
     parse(argv: string[]): any;
 }
+
+type helpOptions = {
+    indent?: boolean,
+    name?: string
+};
 
 type ActionCallback = (args: { [k: string]: any },
                        options: { [k: string]: any },
@@ -54,7 +59,7 @@ declare interface Logger {
 }
 
 declare interface Command {
-    help(helpText: string): Command;
+    help(helpText: string, helpOptions?: helpOptions): Command;
 
     argument(synopsis: string, description: string, validator?: ValidatorArg, defaultValue?: any): Command;
 

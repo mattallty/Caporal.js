@@ -16,7 +16,7 @@
 > A full-featured framework for building command line applications (cli) with node.js,
 > including help generation, colored output, verbosity control, custom logger, coercion
 > and casting, typos suggestions, and auto-complete for bash/zsh/fish.
- 
+
 ## Install
 
 Simply add Caporal as a dependency:
@@ -30,7 +30,7 @@ $ yarn add caporal
 
 * **Program**: a cli app that you can build using Caporal
 * **Command**: a command within your program. A program may have multiple commands.
-* **Argument**: a command may have one or more arguments passed after the command. 
+* **Argument**: a command may have one or more arguments passed after the command.
 * **Options**: a command may have one or more options passed after (or before) arguments.
 
 Angled brackets (e.g. `<item>`) indicate required input. Square brackets (e.g. `[env]`) indicate optional input.
@@ -44,12 +44,12 @@ prog
   .version('1.0.0')
   // you specify arguments using .argument()
   // 'app' is required, 'env' is optional
-  .command('deploy', 'Deploy an application') 
+  .command('deploy', 'Deploy an application')
   .argument('<app>', 'App to deploy', /^myapp|their-app$/)
   .argument('[env]', 'Environment to deploy on', /^dev|staging|production$/, 'local')
   // you specify options using .option()
   // if --tail is passed, its value is required
-  .option('--tail <lines>', 'Tail <lines> lines of logs after deploy', prog.INT) 
+  .option('--tail <lines>', 'Tail <lines> lines of logs after deploy', prog.INT)
   .action(function(args, options, logger) {
     // args and options are objects
     // args = {"app": "myapp", "env": "production"}
@@ -76,11 +76,11 @@ prog
   // and you can pass additional environments
   .argument('<app>', 'App to deploy')
   .argument('<env>', 'Environment')
-  .argument('[other-env...]', 'Other environments') 
+  .argument('[other-env...]', 'Other environments')
   .action(function(args, options, logger) {
     console.log(args);
     // {
-    //   "app": "myapp", 
+    //   "app": "myapp",
     //   "env": "production",
     //   "otherEnv": ["google", "azure"]
     // }
@@ -148,7 +148,7 @@ prog
   .version('1.0.0')
   .command('deploy', 'The deploy command')
   .action((args, options, logger) => {
-    // Available methods: 
+    // Available methods:
     // - logger.debug('message')
     // - logger.info('message') or logger.log('level', 'message')
     // - logger.warn('message')
@@ -164,7 +164,7 @@ prog.parse(process.argv);
 The default logging level is 'info'. The predefined options can be used to change the logging level:
 
 * `-v, --verbose`: Set the logging level to 'debug' so debug() logs will be output.
-* `--quiet, --silent`: Set the logging level to 'warn' so only warn() and error() logs will be output. 
+* `--quiet, --silent`: Set the logging level to 'warn' so only warn() and error() logs will be output.
 
 ### Custom logger
 
@@ -177,7 +177,7 @@ const myLogger = require('/path/to/my/logger.js');
 prog
   .version('1.0.0')
   .logger(myLogger)
-  .command('foo', 'Foo command description') 
+  .command('foo', 'Foo command description')
   .action((args, options, logger) => {
     logger.info("Foo !!");
   });
@@ -186,7 +186,7 @@ prog.parse(process.argv);
 ```
 
 * `-v, --verbose`: Set the logging level to 'debug' so debug() logs will be output.
-* `--quiet, --silent`: Set the logging level to 'warn' so only warn() and error() logs will be output. 
+* `--quiet, --silent`: Set the logging level to 'warn' so only warn() and error() logs will be output.
 
 
 ## Coercion and casting using validators
@@ -200,10 +200,10 @@ You can apply coercion and casting using various *validators*:
 
 ### Flag validator
 
-* `INT` (or `INTEGER`): Check option looks like an int and cast it with `parseInt()`  
+* `INT` (or `INTEGER`): Check option looks like an int and cast it with `parseInt()`
 * `FLOAT`: Will Check option looks like a float and cast it with `parseFloat()`
 * `BOOL` (or `BOOLEAN`): Check for string like `0`, `1`, `true`, `false`, `on`, `off` and cast it
-* `LIST` (or `ARRAY`): Transform input to array by splitting it on comma  
+* `LIST` (or `ARRAY`): Transform input to array by splitting it on comma
 * `REPEATABLE`: Make the option repeatable, eg `./mycli -f foo -f bar -f joe`
 
 ```javascript
@@ -248,7 +248,7 @@ prog.parse(process.argv);
 ### Function validator
 
 Using this method, you can check and cast user input. Make the check fail by throwing an `Error`,
-and cast input by returning a new value from your function. 
+and cast input by returning a new value from your function.
 
 
 ```javascript
@@ -285,10 +285,10 @@ will allow autocompletion of arguments and option *values*.
 const prog = require('caporal');
 prog
   .version('1.0.0')
-  .command('order pizza') 
+  .command('order pizza')
   .option('--kind <kind>', 'Kind of pizza', ["margherita", "hawaiian"])
   .action(function(args, options) {
-    
+
   });
 
 prog.parse(process.argv);
@@ -299,7 +299,7 @@ prog.parse(process.argv);
 ### RegExp validator
 
 Simply pass a RegExp object to test against it.
-**Note**: It is not possible to cast user input with this method, only checking it, 
+**Note**: It is not possible to cast user input with this method, only checking it,
 so it's basically only interesting for strings.
 
 ```javascript
@@ -310,7 +310,7 @@ prog
   .command('order pizza')
   .option('--kind <kind>', 'Kind of pizza', /^margherita|hawaiian$/)
   .action(function(args, options) {
-    
+
   });
 
 prog.parse(process.argv);
@@ -320,7 +320,7 @@ prog.parse(process.argv);
 
 ## Colors
 
-By default, Caporal will output colors for help and errors. 
+By default, Caporal will output colors for help and errors.
 This behaviour can be disabled by passing `--no-color`.
 
 ## Auto-generated help
@@ -334,8 +334,9 @@ Help can be displayed using `-h` or `--help` options, or with the default `help`
 
 ## Custom help
 
-You can add some custom help to the whole program or to specific commands using `.help()`.
+You can add some custom help to the whole program or to specific commands using `.help(text, options?)`. The text, even if multi-line, will be, optionally, automatically indented.
 
+Multiple help sections, with custom names, are supported.
 
 ### Custom help for the whole program
 
@@ -347,7 +348,7 @@ prog
   .help('my global help') // here our custom help for the whole program
   .command('order pizza')
   .action(function(args, options) {
-    
+
   });
 
 prog.parse(process.argv);
@@ -364,13 +365,13 @@ prog
   .command('order')
   .help('my help for the order command') // here our custom help for the `order` command
   .action(function(args, options) {
-    
+
   })
   // second command
   .command('cancel')
   .help('my help for the cancel command') // here our custom help for the `cancel` command
   .action(function(args, options) {
-    
+
   })
 
 prog.parse(process.argv);
@@ -431,7 +432,7 @@ echo "source <(myapp completion fish)" >> ~/.config/fish/config.fish \
 ### Basic auto-completion
 
 By default, it will autocomplete *commands* and *option names*.
-Also, *options* having an *Array validator* will be autocompleted. 
+Also, *options* having an *Array validator* will be autocompleted.
 
 ### Auto-completion setup example
 
@@ -525,6 +526,19 @@ Your program will then automaticaly handle `-V` and `--version` options:
     matt@mb:~$ ./my-program --version
     1.0.0
 
+#### `.help(text, options?) : Program`
+
+Add a program-level help section.
+
+By default the optional `options` parameter is:
+
+```js
+{
+    indent: true, // If `true` the text will be automatically indented
+    name: "MORE INFO" // The name of the section
+}
+```
+
 #### `.command(name, description) -> Command`
 
 Set up a new command with name and description. Multiple commands can be added to one program.
@@ -575,11 +589,24 @@ Add an option to the command. Can be called multiple times to add several option
 * **defaultValue** (*): optional default value
 * **required** (*Bool*): Is the option itself required ? Default to `false`
 
+#### `.help(text, options?) -> Command`
+
+Add a command-level help section.
+
+By default the optional `options` parameter is:
+
+```js
+{
+    indent: true, // If `true` the text will be automatically indented
+    name: "" // The name of the section, by default this line won't be displayed
+}
+```
+
 #### `.action(action) -> Command`
 
-Define the action, e.g a *Function*, for the current command. 
+Define the action, e.g a *Function*, for the current command.
 
-The *action* callback will be called with 3 arguments: 
+The *action* callback will be called with 3 arguments:
 * *args* (Object): Passed arguments
 * *options* (Object): Passed options
 * *logger* (winston): Winston logger instance
@@ -590,7 +617,7 @@ const prog = require('caporal');
 prog
   .version('1.0.0')
   .command('walk', 'Make the player walk')
-  .action((args, options, logger) => { 
+  .action((args, options, logger) => {
     logger.log("I'm walking !")
   });
 ```
@@ -603,7 +630,7 @@ const prog = require('caporal');
 prog
   .version('1.0.0')
   .command('walk', 'Make the player walk')
-  .action((args, options, logger) => { 
+  .action((args, options, logger) => {
     return new Promise(/* ... */);
   });
 ```
@@ -619,7 +646,7 @@ prog
   // one command
   .command('walk', 'Make the player walk')
   .alias('w')
-  .action((args, options, logger) => { logger.log("I'm walking !")}); 
+  .action((args, options, logger) => { logger.log("I'm walking !")});
 
 prog.parse(process.argv);
 
@@ -644,8 +671,8 @@ Caporal make use of the following npm packages:
 * [fast-levenshtein](https://www.npmjs.com/package/fast-levenshtein) for suggestions
 * [tabtab](https://www.npmjs.com/package/tabtab) for auto-completion
 * [minimist](https://www.npmjs.com/package/minimist) for argument parsing
-* [prettyjson](https://www.npmjs.com/package/prettyjson) to output json 
-* [winston](https://www.npmjs.com/package/winston) for logging 
+* [prettyjson](https://www.npmjs.com/package/prettyjson) to output json
+* [winston](https://www.npmjs.com/package/winston) for logging
 
 
 ## License
