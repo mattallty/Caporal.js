@@ -36,6 +36,7 @@ declare class Caporal {
     argument(synopsis: string, description: string, validator?: ValidatorArg, defaultValue?: any): Command;
 
     parse(argv: string[]): any;
+    fatalError(error: Error): void;
 }
 
 type helpOptions = {
@@ -76,6 +77,6 @@ declare interface Command {
 
 type AutocompleteCallback = () => string[] | Promise<string[]>;
 declare module 'caporal' {
-    const _default: Caporal;
-    export default _default;
+    const caporal: Caporal;
+    export = caporal;
 }
