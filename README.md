@@ -681,7 +681,7 @@ prog.parse(process.argv);
 Caporal is strongly inspired by [commander.js](https://github.com/tj/commander.js) and [Symfony Console](http://symfony.com/doc/current/components/console.html).
 Caporal makes use of the following npm packages:
 * [colorette](https://www.npmjs.com/package/colorette) for colors
-* [cli-table2](https://www.npmjs.com/package/cli-table2) for cli tables
+* [cli-table3](https://www.npmjs.com/package/cli-table3) for cli tables
 * [fast-levenshtein](https://www.npmjs.com/package/fast-levenshtein) for suggestions
 * [tabtab](https://www.npmjs.com/package/tabtab) for auto-completion
 * [minimist](https://www.npmjs.com/package/minimist) for argument parsing
