@@ -1,6 +1,6 @@
 {
   "name": "caporal",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "description": "A full-featured framework for building command line applications (cli) with node.js",
   "main": "index.js",
   "types": "index.d.ts",
@@ -57,7 +57,7 @@
   "dependencies": {
     "bluebird": "^3.4.7",
     "chalk": "^1.1.3",
-    "cli-table2": "^0.2.0",
+    "cli-table3": "^0.5.0",
     "fast-levenshtein": "^2.0.6",
     "lodash.camelcase": "^4.3.0",
     "lodash.kebabcase": "^4.1.1",
