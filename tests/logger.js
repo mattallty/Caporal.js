@@ -3,7 +3,7 @@
 /* global should, sinon */
 
 const myLogger = require('../lib/logger').createLogger();
-const stripColor = require('chalk').stripColor;
+const stripColor = require('./utils/strip-color')
 
 describe('logger', () => {
 
@@ -72,5 +72,3 @@ describe('logger', () => {
   });
 
 });
-
-
