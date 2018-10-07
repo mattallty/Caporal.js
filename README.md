@@ -21,7 +21,7 @@
 
 Simply add Caporal as a dependency:
 ```bash
-$ npm install caporal --save
+$ npm install caporal
 
 # Or if you are using yarn (https://yarnpkg.com/lang/en/)
 $ yarn add caporal
