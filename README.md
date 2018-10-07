@@ -665,8 +665,8 @@ Define an auto-completion handler for the latest argument or option added to the
 ## Credits
 
 Caporal is strongly inspired by [commander.js](https://github.com/tj/commander.js) and [Symfony Console](http://symfony.com/doc/current/components/console.html).
-Caporal make use of the following npm packages:
-* [chalk](https://www.npmjs.com/package/chalk) for colors
+Caporal makes use of the following npm packages:
+* [colorette](https://www.npmjs.com/package/colorette) for colors
 * [cli-table2](https://www.npmjs.com/package/cli-table2) for cli tables
 * [fast-levenshtein](https://www.npmjs.com/package/fast-levenshtein) for suggestions
 * [tabtab](https://www.npmjs.com/package/tabtab) for auto-completion

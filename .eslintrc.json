@@ -19,6 +19,7 @@
       "unix"
     ],
     "no-console": 0,
+    "no-control-regex": 0,
     "quotes": 0,
     "semi": [0, "never"]
   }
