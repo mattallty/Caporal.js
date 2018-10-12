@@ -3,7 +3,7 @@
 /* global Program, logger, should, makeArgv, sinon */
 
 const program = new Program();
-const stripColor = require('chalk').stripColor;
+const stripColor = require('./utils/strip-color')
 
 program
   .logger(logger)

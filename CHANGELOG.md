@@ -1,3 +1,17 @@
+<a name="0.10.0"></a>
+# [0.10.0](https://github.com/mattallty/Caporal.js/compare/v0.9.0...v0.10.0) (2018-02-25)
+
+
+### Bug Fixes
+
+* **$cli:** Multi-help sections support (#82) ([0d621d0](https://github.com/mattallty/Caporal.js/commit/0d621d0)), closes [#67](https://github.com/mattallty/Caporal.js/issues/67) [#67](https://github.com/mattallty/Caporal.js/issues/67)
+* Display thrown error message when validation fails (#98) ([e4c07a8](https://github.com/mattallty/Caporal.js/commit/e4c07a8))
+* Fix #91 typescript types ([f35a1f5](https://github.com/mattallty/Caporal.js/commit/f35a1f5)), closes [#91](https://github.com/mattallty/Caporal.js/issues/91)
+* Make usage display name if available (#97) ([3be93c5](https://github.com/mattallty/Caporal.js/commit/3be93c5))
+* Small typo/regex issues ([a900fc0](https://github.com/mattallty/Caporal.js/commit/a900fc0))
+
+
+
 <a name="0.9.0"></a>
 # [0.9.0](https://github.com/mattallty/Caporal.js/compare/v0.8.0...v0.9.0) (2017-12-05)
 
