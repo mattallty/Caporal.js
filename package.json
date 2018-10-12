@@ -62,7 +62,7 @@
     "lodash.camelcase": "^4.3.0",
     "lodash.kebabcase": "^4.1.1",
     "lodash.merge": "^4.6.0",
-    "micromist": "^1.0.1",
+    "micromist": "1.1.0",
     "prettyjson": "^1.2.1",
     "tabtab": "^2.2.2",
     "winston": "^2.3.1"
