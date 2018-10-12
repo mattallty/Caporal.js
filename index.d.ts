@@ -73,6 +73,9 @@ declare interface Command {
     alias(alias: string): Command;
 
     complete(cb: AutocompleteCallback): Command;
+
+    visible(): boolean;
+    visibile(visibility: boolean): Command;
 }
 
 type AutocompleteCallback = () => string[] | Promise<string[]>;

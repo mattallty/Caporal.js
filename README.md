@@ -661,6 +661,20 @@ Define an auto-completion handler for the latest argument or option added to the
 
 * **completer** (*Function*): The completer function has to return either an `Array` or a `Promise` which resolves to an `Array`.
 
+#### `.visible(visibility?) -> Boolean | Command`
+
+Get or set the visibility value of this command. By default it's `true`, if you set it to `false` it will be omitted from the help message.
+
+```javascript
+const prog = require('caporal');
+prog
+  .version('1.0.0')
+  // one command
+  .command('walk', 'Make the player walk')
+  .visible ( false )
+
+prog.parse(process.argv);
+```
 
 ## Credits
 
