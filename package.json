@@ -9,11 +9,11 @@
     "test": "./node_modules/mocha/bin/mocha --require ./tests/utils/bootstrap.js --full-trace --recursive -R mocha-unfunk-reporter tests/",
     "test-watch": "npm run lint && ./node_modules/mocha/bin/mocha --require ./tests/utils/bootstrap.js --full-trace --watch --recursive -R mocha-unfunk-reporter tests/",
     "coverage": "./node_modules/.bin/istanbul cover --include-all-sources true -x **/examples/**/* --print both ./node_modules/.bin/_mocha -- --require ./tests/utils/bootstrap.js -R spec --recursive tests/",
-    "commit": "npm --version",
-    "changelog": "npm --version",
-    "precommit": "npm --version",
-    "prepush": "npm --version",
-    "commitmsg": "npm --version",
+    "commit": "git-cz",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -w -r 0",
+    "precommit": "npm run lint && npm test",
+    "prepush": "npm run lint && npm test",
+    "commitmsg": "validate-commit-msg",
     "postinstall": "(test -f ./node_modules/husky/bin/install.js && node ./node_modules/husky/bin/install.js) || exit 0"
   },
   "engines": {
