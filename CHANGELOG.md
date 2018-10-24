@@ -1,3 +1,25 @@
+<a name="1.0.0"></a>
+# [1.0.0](https://github.com/mattallty/Caporal.js/compare/v0.10.0...v1.0.0) (2018-10-24)
+
+
+### Bug Fixes
+
+* A few fixes and improvements (#104) ([d712dd8](https://github.com/mattallty/Caporal.js/commit/d712dd8)), closes [#104](https://github.com/mattallty/Caporal.js/issues/104)
+* exit with status code 1 when command does not exist (#106) ([4950a75](https://github.com/mattallty/Caporal.js/commit/4950a75))
+* fix it.only(...) causing the #118 issue test case to run alone (#124) ([801f667](https://github.com/mattallty/Caporal.js/commit/801f667)), closes [#118](https://github.com/mattallty/Caporal.js/issues/118) [#124](https://github.com/mattallty/Caporal.js/issues/124)
+
+
+### Features
+
+* Implicit boolean option (#109) ([bf25c33](https://github.com/mattallty/Caporal.js/commit/bf25c33))
+
+
+### Performance Improvements
+
+* swap chalk for colorette (#117) ([d2fc842](https://github.com/mattallty/Caporal.js/commit/d2fc842))
+
+
+
 <a name="0.10.0"></a>
 # [0.10.0](https://github.com/mattallty/Caporal.js/compare/v0.9.0...v0.10.0) (2018-02-25)
 
