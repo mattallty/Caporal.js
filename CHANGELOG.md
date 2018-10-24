@@ -1,6 +1,7 @@
 <a name="1.0.0"></a>
 # [1.0.0](https://github.com/mattallty/Caporal.js/compare/v0.10.0...v1.0.0) (2018-10-24)
 
+**This is a major update which drops support for node.js < 6**
 
 ### Bug Fixes
 
