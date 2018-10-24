@@ -17,7 +17,7 @@
     "postinstall": "(test -f ./node_modules/husky/bin/install.js && node ./node_modules/husky/bin/install.js) || exit 0"
   },
   "engines": {
-    "node": ">= 4.4.5"
+    "node": ">= 6"
   },
   "homepage": "https://github.com/mattallty/Caporal.js",
   "keywords": [
@@ -56,7 +56,7 @@
   },
   "dependencies": {
     "bluebird": "^3.4.7",
-    "cli-table2": "^0.2.0",
+    "cli-table3": "^0.5.0",
     "colorette": "1.0.1",
     "fast-levenshtein": "^2.0.6",
     "lodash.camelcase": "^4.3.0",
