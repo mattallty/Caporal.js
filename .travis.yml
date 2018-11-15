@@ -5,6 +5,9 @@ node_js:
   - 8
   - 10
 
+install:
+  - npm install   
+
 script:
 - npm test
 - npm run coverage
