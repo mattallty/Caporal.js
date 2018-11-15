@@ -17,7 +17,7 @@
     "postinstall": "(test -f ./node_modules/husky/bin/install.js && node ./node_modules/husky/bin/install.js) || exit 0"
   },
   "engines": {
-    "node": ">= 6"
+    "node": ">= 8"
   },
   "homepage": "https://github.com/mattallty/Caporal.js",
   "keywords": [
