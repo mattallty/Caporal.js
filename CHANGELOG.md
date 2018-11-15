@@ -1,3 +1,13 @@
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/mattallty/Caporal.js/compare/v1.0.0...v1.1.0) (2018-11-15)
+
+
+### Bug Fixes
+
+* Fix vulnerabilities (#125) ([9577743](https://github.com/mattallty/Caporal.js/commit/9577743)), closes [#125](https://github.com/mattallty/Caporal.js/issues/125)
+
+
+
 <a name="1.0.0"></a>
 # [1.0.0](https://github.com/mattallty/Caporal.js/compare/v0.10.0...v1.0.0) (2018-10-24)
 
