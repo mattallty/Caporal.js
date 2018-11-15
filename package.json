@@ -1,6 +1,6 @@
 {
   "name": "caporal",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A full-featured framework for building command line applications (cli) with node.js",
   "main": "index.js",
   "types": "index.d.ts",
