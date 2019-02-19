@@ -52,11 +52,16 @@ type ValidatorArg = string[]|string|RegExp|ValidatorFn|Number;
 type ValidatorFn = (str: string) => any;
 
 declare interface Logger {
-    debug(str: string): void;
-    info(str: string): void;
-    log(str: string): void;
-    warn(str: string): void;
-    error(str: string): void;
+    debug(str: string|object): void;
+    debug(format: string, ...mixed: any[]): void;
+    info(str: string|object): void;
+    info(format: string, ...mixed: any[]): void;
+    log(str: string|object): void;
+    log(format: string, ...mixed: any[]): void;
+    warn(str: string|object): void;
+    warn(format: string, ...mixed: any[]): void;
+    error(str: string|object): void;
+    error(format: string, ...mixed: any[]): void;
 }
 
 declare interface Command {
