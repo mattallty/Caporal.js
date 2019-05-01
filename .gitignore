@@ -6,3 +6,4 @@ coverage
 .idea/watcherTasks.xml
 docs
 docs-src
+local_tests
