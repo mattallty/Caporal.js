@@ -146,7 +146,7 @@ prog
   .command('deploy', 'Our deploy command')
   .argument('<app>', 'App to deploy')
   .argument('<env>', 'Environment')
-  .option('--how-much', 'How much app to deploy', prog.INT, 1)
+  .option('--how-much <amount>', 'How much app to deploy', prog.INT, 1)
   .action(function(args, options, logger) {
     logger.info(args);
     logger.info(options);
