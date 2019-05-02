@@ -11,14 +11,22 @@ program
 
 
 describe('Passing --option invalid-value', () => {
+  var error;
+
+  beforeEach(() => {
+    program.action(function() {});
+    error = sinon.stub(program, "fatalError", function(err) {
+      should(err.name).eql('InvalidOptionValueError');
+    });
+  });
+
+  afterEach(() => {
+    error.restore();
+    program.reset();
+  });
 
   ['regex', 'function', 'STRING', 'INT', 'BOOL', 'FLOAT', 'LIST(int)', 'LIST(bool)', 'LIST(float)', 'LIST(repeated)'].forEach(function(checkType) {
     it(`should throw an error for ${checkType} check`, () => {
-
-      const error = sinon.stub(program, "fatalError", function(err) {
-        should(err.name).eql('InvalidOptionValueError');
-      });
-
       program.action(function() {});
 
       if (checkType === 'regex') {
@@ -71,23 +79,49 @@ describe('Passing --option invalid-value', () => {
       const count = error.callCount;
 
       should(count).be.eql(1);
-
-      program.reset();
-      error.restore();
     });
+  });
+
+  it(`should throw an error for promise check`, done => {
+    program.action(function() {});
+
+    program.option('-t, --time <time-in-secs>', 'Time in seconds, superior to zero', function(val) {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          const o = parseInt(val);
+          if (isNaN(o) || o <= 0) {
+            reject(new Error("FOOOO"));
+          }
+          resolve(o);
+        }, 10);
+      })
+    });
+    // then.catch.then to ensure the assertion is made whether the promise resolves or not (simulates `finally` behavior for node 6 & 8)
+    program.parse(makeArgv(['-t', 'i-am-invalid'])).then(() => {}).catch(() => {}).then(() => {
+      const count = error.callCount;
+
+      should(count).be.eql(1);
+      done();
+    })
   });
 });
 
 
 describe('Passing --option valid-value', () => {
+  var error;
+
+  beforeEach(() => {
+    program.action(function() {});
+    error = sinon.stub(program, "fatalError");
+  });
+
+  afterEach(() => {
+    error.restore();
+    program.reset();
+  });
 
   ['regex', 'function', 'STRING', 'INT', 'BOOL', 'BOOL(implicit)', 'FLOAT', 'LIST(int)', 'LIST(bool)', 'LIST(float)'].forEach(function(checkType) {
     it(`should succeed for ${checkType} check`, () => {
-
-      const error = sinon.stub(program, "fatalError");
-
-      program.action(function() {});
-
       if (checkType === 'regex') {
         program.option('-t, --time <time-in-secs>', 'Time in seconds', /^\d+$/);
         program.parse(makeArgv(['-t', '234']));
@@ -138,10 +172,30 @@ describe('Passing --option valid-value', () => {
       const count = error.callCount;
 
       should(count).be.eql(0);
-
-      program.reset();
-      error.restore();
     });
+  });
+
+  it(`should succeed for promise check`, done => {
+    program.action(function() {});
+
+    program.option('-t, --time <time-in-secs>', 'Time in seconds, superior to zero', function(val) {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          const o = parseInt(val);
+          if (isNaN(o) || o <= 0) {
+            reject(new Error("FOOOO"));
+          }
+          resolve(o);
+        }, 10);
+      })
+    });
+    // then.catch.then to ensure the assertion is made whether the promise resolves or not (simulates `finally` behavior for node 6 & 8)
+    program.parse(makeArgv(['-t', '2'])).then(() => {}).catch(() => {}).then(() => {
+      const count = error.callCount;
+      should(count).be.eql(0);
+
+      done();
+    })
   });
 });
 

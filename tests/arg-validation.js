@@ -76,6 +76,83 @@ describe("Argument validation", function() {
     should(this.fatalError.callCount).eql(0);
   });
 
+  it(`should throw InvalidArgumentValueError for an invalid required argument value (Function validator)`, function() {
+    program
+      .command('foo', 'Fooooo')
+      .argument('<foo>', 'My bar', arg => {
+        const options = ["bim", "bam", "boom"];
+        if (options.includes(arg)) {
+          return arg;
+        }
+        throw new Error();
+      })
+      .action(this.action);
+
+    program.parse(makeArgv(['foo', '827E92']));
+    should(this.fatalError.callCount).eql(1);
+    should(this.fatalError.calledWith(sinon.match.instanceOf(InvalidArgumentValueError))).be.ok();
+  });
+
+  it(`should not throw InvalidArgumentValueError for a valid required argument value (Function validator)`, function() {
+    program
+      .command('foo', 'Fooooo')
+      .argument('<foo>', 'My bar', arg => {
+        const options = ["bim", "bam", "boom"];
+        if (options.includes(arg)) {
+          return arg;
+        }
+        throw new Error();
+      })
+      .action(this.action);
+
+    program.parse(makeArgv(['foo', 'bam']));
+    should(this.fatalError.callCount).eql(0);
+  });
+
+  it(`should throw InvalidArgumentValueError for an invalid required argument value (Promise validator)`, function(done) {
+    program
+      .command('foo', 'Fooooo')
+      .argument('<foo>', 'My bar', arg => new Promise((resolve, reject) => {
+        const options = ["bim", "bam", "boom"];
+        setTimeout(() => {
+          if (options.includes(arg)) {
+            resolve(arg)
+          } else {
+            reject(new Error())
+          }
+        }, 10);
+      }))
+      .action(this.action);
+
+    program.parse(makeArgv(['foo', '827E92']))
+      .catch(e => {
+        should(this.fatalError.callCount).eql(1);
+        should(this.fatalError.calledWith(sinon.match.instanceOf(InvalidArgumentValueError))).be.ok();
+        done()
+      });
+  });
+
+  it(`should not throw InvalidArgumentValueError for a valid required argument value (Promise validator)`, function(done) {
+    program
+      .command('foo', 'Fooooo')
+      .argument('<foo>', 'My bar', arg => new Promise((resolve, reject) => {
+        const options = ["bim", "bam", "boom"];
+        setTimeout(() => {
+          if (options.includes(arg)) {
+            resolve(arg)
+          } else {
+            reject(new Error())
+          }
+        }, 10);
+      }))
+      .action(this.action);
+
+    program.parse(makeArgv(['foo', 'bam'])).then(arg => {
+      should(this.fatalError.callCount).eql(0);
+      done();
+    })
+  });
+
   it(`should take default value if not passed when setting up a default argument value`, function() {
     program
       .command('foo', 'Fooooo')
