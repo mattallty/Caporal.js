@@ -91,13 +91,11 @@ describe('Setting up a async action', () => {
       .command('foo', 'My foo')
       .action(stub);
 
-    program.parse(makeArgv('foo'));
-
-    setImmediate(function () {
+    program.parse(makeArgv('foo')).then(() => {}).catch(() => {}).then(() => {
       should(stub.callCount).be.eql(1);
       should(fatalError.callCount).be.eql(1);
       done()
-    });
+    })
 
   });
   it(`should fatalError() for a rejected promise (error object)`, (done) => {
@@ -115,9 +113,7 @@ describe('Setting up a async action', () => {
       .command('foo', 'My foo')
       .action(stub);
 
-    program.parse(makeArgv('foo'));
-
-    setImmediate(function () {
+    program.parse(makeArgv('foo')).then(() => {}).catch(() => {}).then(() => {
       should(stub.callCount).be.eql(1);
       should(fatalError.callCount).be.eql(1);
       done()
