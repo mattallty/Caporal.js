@@ -37,7 +37,7 @@ describe('Passing --option invalid-value', () => {
         program.option('-t, --time <time-in-secs>', 'Time in seconds, superior to zero', function(val) {
           const o = parseInt(val);
           if (isNaN(o) || o <= 0) {
-            throw new Error("FOOOO")
+            throw new Error("'time' must be a valid number")
           }
           return o;
         });
@@ -236,7 +236,7 @@ describe('Setting up an option with a default value', () => {
   });
 });
 
-describe('Setting up an option with an optionnal value', () => {
+describe('Setting up an option with an optional value', () => {
   it(`should work when no value is passed`, () => {
 
     program
@@ -339,7 +339,6 @@ describe('Setting up a just one short option', () => {
 
     program.parse(makeArgv(['foo', '-t', '2']));
     should(action.called).be.ok();
-    console.dir(action.args[0]);
     should(action.args[0][1]).eql({t:'2'});
     program.reset();
   });
