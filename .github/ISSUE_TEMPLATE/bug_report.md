@@ -14,7 +14,7 @@ A clear and concise description of what the bug is.
 Steps to reproduce the behavior:
 
 ```js
-// Javascript code to reproduce gub
+// Javascript code to reproduce bug
 ```
 
 **Expected behavior**
