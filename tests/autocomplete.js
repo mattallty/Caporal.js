@@ -132,7 +132,7 @@ describe('Autocomplete', () => {
     });
   });
 
-  it.only(`should complete argument when substring provided`, function (done) {
+  it(`should complete argument when substring provided`, function (done) {
 
     process.env.COMP_LINE = "_mocha order mar";
     process.env.COMP_POINT = process.env.COMP_LINE.length.toString();
@@ -159,7 +159,7 @@ describe('Autocomplete', () => {
 
   it(`should not complete commands if none available after string`, function (done) {
 
-    process.env.COMP_LINE = "_mocha order";
+    process.env.COMP_LINE = "_mocha order ";
     process.env.COMP_POINT = process.env.COMP_LINE.length.toString();
     process.env.COMP_CWORD = process.env.COMP_LINE.trim().split(' ').length.toString();
 
@@ -186,7 +186,7 @@ describe('Autocomplete', () => {
 
   it(`should not suggest argument(s) already provided`, function (done) {
 
-    process.env.COMP_LINE = "_mocha order margherita";
+    process.env.COMP_LINE = "_mocha order margherita ";
     process.env.COMP_POINT = process.env.COMP_LINE.length.toString();
     process.env.COMP_CWORD = process.env.COMP_LINE.trim().split(' ').length.toString();
 
@@ -216,7 +216,7 @@ describe('Autocomplete', () => {
 
   it(`should not complete current command`, function (done) {
 
-    process.env.COMP_LINE = "_mocha order";
+    process.env.COMP_LINE = "_mocha order ";
     process.env.COMP_POINT = process.env.COMP_LINE.length.toString();
     process.env.COMP_CWORD = process.env.COMP_LINE.trim().split(' ').length.toString();
 
@@ -245,7 +245,7 @@ describe('Autocomplete', () => {
 
   it(`should handle command alias`, function (done) {
 
-    process.env.COMP_LINE = "_mocha give-it-to-me";
+    process.env.COMP_LINE = "_mocha give-it-to-me ";
     process.env.COMP_POINT = process.env.COMP_LINE.length.toString();
     process.env.COMP_CWORD = process.env.COMP_LINE.trim().split(' ').length.toString();
 
@@ -392,7 +392,7 @@ describe('Autocomplete', () => {
 
   it(`should work with simple completers returning an array`, function (done) {
 
-    process.env.COMP_LINE = "_mocha return";
+    process.env.COMP_LINE = "_mocha return ";
     process.env.COMP_POINT = process.env.COMP_LINE.length.toString();
     process.env.COMP_CWORD = process.env.COMP_LINE.trim().split(' ').length.toString();
 
@@ -418,7 +418,7 @@ describe('Autocomplete', () => {
 
   it(`should handle arguments without completers`, function (done) {
 
-    process.env.COMP_LINE = "_mocha return #82792";
+    process.env.COMP_LINE = "_mocha return #82792 ";
     process.env.COMP_POINT = process.env.COMP_LINE.length.toString();
     process.env.COMP_CWORD = process.env.COMP_LINE.trim().split(' ').length.toString();
 
