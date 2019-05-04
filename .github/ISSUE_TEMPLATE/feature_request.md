@@ -21,4 +21,4 @@ Add any other context or screenshots about the feature request here.
 
 **Would you be able to work on it and provide a pull request ?**
 
- [ ] Yes
+- [ ] Yes
