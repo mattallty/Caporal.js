@@ -4,7 +4,10 @@ coverage
 docs
 docs-src
 .idea
+.vscode
+.github
 tests
+local_tests
 assets
 examples
 .editorconfig
