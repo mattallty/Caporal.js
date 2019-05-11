@@ -1,3 +1,24 @@
+<a name="1.2.0"></a>
+# [1.2.0](https://github.com/mattallty/Caporal.js/compare/v1.1.0...v1.2.0) (2019-05-11)
+
+
+### Bug Fixes
+
+* **$compile:** Extended ts type for logger (#134) ([dd0a82e](https://github.com/mattallty/Caporal.js/commit/dd0a82e)), closes [#134](https://github.com/mattallty/Caporal.js/issues/134)
+* **autocomplete:** Fixes autocompletion of arguments ([d3926dd](https://github.com/mattallty/Caporal.js/commit/d3926dd))
+* **autocomplete:** Various fixes on autocomplete ([4c62934](https://github.com/mattallty/Caporal.js/commit/4c62934))
+* update lodash merge methods and fix other vulns ([db19813](https://github.com/mattallty/Caporal.js/commit/db19813))
+* **help:** Fix help usage output ([29785c0](https://github.com/mattallty/Caporal.js/commit/29785c0))
+* **validator:** Fix validation error for LIST ([1669d5f](https://github.com/mattallty/Caporal.js/commit/1669d5f))
+* **validator:** Improve mandatory option values validation error messages (#139) ([6e73a6c](https://github.com/mattallty/Caporal.js/commit/6e73a6c)), closes [#139](https://github.com/mattallty/Caporal.js/issues/139)
+
+
+### Features
+
+* **validator:** Promise based validation of arguments and options ([6c67c95](https://github.com/mattallty/Caporal.js/commit/6c67c95))
+
+
+
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/mattallty/Caporal.js/compare/v1.0.0...v1.1.0) (2018-11-15)
 
