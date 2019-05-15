@@ -123,11 +123,17 @@ describe('Passing --option valid-value', () => {
   ['regex', 'function', 'STRING', 'INT', 'BOOL', 'BOOL(implicit)', 'FLOAT', 'LIST(int)', 'LIST(bool)', 'LIST(float)'].forEach(function(checkType) {
     it(`should succeed for ${checkType} check`, () => {
       if (checkType === 'regex') {
+        program.action(function (args, options) {
+          should(options.time).eql('234');
+        });
         program.option('-t, --time <time-in-secs>', 'Time in seconds', /^\d+$/);
         program.parse(makeArgv(['-t', '234']));
 
-      } else if(checkType === 'function') {
-        program.option('-t, --time <time-in-secs>', 'Time in seconds, superior to zero', function(val) {
+      } else if (checkType === 'function') {
+        program.action(function (args, options) {
+          should(options.time).eql(2);
+        });
+        program.option('-t, --time <time-in-secs>', 'Time in seconds, superior to zero', function (val) {
           const o = parseInt(val);
           if (isNaN(o) || o <= 0) {
             throw new Error("FOOOO")
@@ -136,35 +142,59 @@ describe('Passing --option valid-value', () => {
         });
         program.parse(makeArgv(['-t', '2']));
 
-      } else if(checkType === 'STRING') {
+      } else if (checkType === 'STRING') {
+        program.action(function (args, options) {
+          should(options.file).eql('foo')
+        });
         program.option('-f, --file <file>', 'File', program.STRING);
         program.parse(makeArgv(['-f', 'foo']));
 
-      } else if(checkType === 'INT') {
+      } else if (checkType === 'INT') {
+        program.action(function (args, options) {
+          should(options.time).eql(282);
+        });
         program.option('-t, --time <time-in-secs>', 'Time in seconds', program.INT);
         program.parse(makeArgv(['-t', '282']));
 
-      } else if(checkType === 'BOOL') {
+      } else if (checkType === 'BOOL') {
+        program.action(function (args, options) {
+          should(options.happy).eql(true);
+        });
         program.option('--happy <value>', 'Am I happy ?', program.BOOLEAN);
         program.parse(makeArgv(['--happy', 'yes']));
 
-      } else if(checkType === 'BOOL(implicit)') {
+      } else if (checkType === 'BOOL(implicit)') {
+        program.action(function (args, options) {
+          should(options.happy).eql(true);
+        });
         program.option('--happy', 'Am I happy ?', program.BOOLEAN);
         program.parse(makeArgv(['--happy']));
 
-      } else if(checkType === 'FLOAT') {
+      } else if (checkType === 'FLOAT') {
+        program.action(function (args, options) {
+          should(options.time).eql(2.8);
+        });
         program.option('-t, --time <time-in-secs>', 'Time in seconds', program.FLOAT);
         program.parse(makeArgv(['-t', '2.8']));
 
-      } else if(checkType === 'LIST(int)') {
+      } else if (checkType === 'LIST(int)') {
+        program.action(function (args, options) {
+          should(options.list).eql([1, 8]);
+        });
         program.option('-l, --list <list>', 'My list', program.LIST | program.INT);
         program.parse(makeArgv(['--list', '1,8']));
 
-      } else if(checkType === 'LIST(bool)') {
+      } else if (checkType === 'LIST(bool)') {
+        program.action(function (args, options) {
+          should(options.list).eql([true, false, true, false, true, false]);
+        });
         program.option('-l, --list <list>', 'My list', program.LIST | program.BOOL);
         program.parse(makeArgv(['--list', 'true,0,yes,no,1,false']));
 
-      } else if(checkType === 'LIST(float)') {
+      } else if (checkType === 'LIST(float)') {
+        program.action(function (args, options) {
+          should(options.list).eql([1.0, 0]);
+        });
         program.option('-l, --list <list>', 'My list', program.LIST | program.FLOAT);
         program.parse(makeArgv(['--list', '1.0,0']));
       }
@@ -176,9 +206,10 @@ describe('Passing --option valid-value', () => {
   });
 
   it(`should succeed for promise check`, done => {
-    program.action(function() {});
+    var time = 0;
+    program.action(function (args, options) { time = options.time });
 
-    program.option('-t, --time <time-in-secs>', 'Time in seconds, superior to zero', function(val) {
+    program.option('-t, --time <time-in-secs>', 'Time in seconds, superior to zero', function (val) {
       return new Promise((resolve, reject) => {
         setTimeout(() => {
           const o = parseInt(val);
@@ -190,11 +221,15 @@ describe('Passing --option valid-value', () => {
       })
     });
     // then.catch.then to ensure the assertion is made whether the promise resolves or not (simulates `finally` behavior for node 6 & 8)
-    program.parse(makeArgv(['-t', '2'])).then(() => {}).catch(() => {}).then(() => {
+    program.parse(makeArgv(['-t', '2'])).then(() => { }).catch(() => { }).then(() => {
       const count = error.callCount;
-      should(count).be.eql(0);
-
-      done();
+      try {
+        should(count).be.eql(0);
+        should(time).be.eql(2);
+        done();
+      } catch (e) {
+        done(e);
+      }
     })
   });
 });
