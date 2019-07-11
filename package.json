@@ -59,7 +59,7 @@
     "cli-table3": "^0.5.0",
     "colorette": "1.0.1",
     "fast-levenshtein": "^2.0.6",
-    "lodash": "4.17.11",
+    "lodash": "4.17.14",
     "micromist": "1.1.0",
     "prettyjson": "^1.2.1",
     "tabtab": "^2.2.2",
