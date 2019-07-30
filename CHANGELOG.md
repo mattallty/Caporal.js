@@ -1,3 +1,14 @@
+<a name="1.3.0"></a>
+# [1.3.0](https://github.com/mattallty/Caporal.js/compare/v1.2.0...v1.3.0) (2019-07-30)
+
+
+### Bug Fixes
+
+* **validator:** Fix function validators for options ([d10cd87](https://github.com/mattallty/Caporal.js/commit/d10cd87)), closes [#149](https://github.com/mattallty/Caporal.js/issues/149)
+* deps upgrade (#157) ([798b875](https://github.com/mattallty/Caporal.js/commit/798b875)), closes [#157](https://github.com/mattallty/Caporal.js/issues/157)
+
+
+
 <a name="1.2.0"></a>
 # [1.2.0](https://github.com/mattallty/Caporal.js/compare/v1.1.0...v1.2.0) (2019-05-11)
 
