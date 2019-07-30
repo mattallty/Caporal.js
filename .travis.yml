@@ -11,7 +11,7 @@ install:
 script:
 - npm test
 - npm run coverage
-- cat ./coverage/lcov.info | ./node_modules/.bin/codacy-coverage
+- if [[ "$TRAVIS_SECURE_ENV_VARS" == "true" ]]; then cat ./coverage/lcov.info | ./node_modules/.bin/codacy-coverage; fi
 
 cache:
   yarn: true
