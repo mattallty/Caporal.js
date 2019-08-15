@@ -11,10 +11,13 @@
     "coverage": "./node_modules/.bin/istanbul cover --include-all-sources true -x **/examples/**/* --print both ./node_modules/.bin/_mocha -- --require ./tests/utils/bootstrap.js -R spec --recursive tests/",
     "commit": "git-cz",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -w -r 0",
-    "precommit": "npm run lint && npm test",
-    "prepush": "npm run lint && npm test",
-    "commitmsg": "validate-commit-msg",
-    "postinstall": "(test -f ./node_modules/husky/bin/install.js && node ./node_modules/husky/bin/install.js) || exit 0"
+    "commitmsg": "validate-commit-msg"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint && npm test",
+      "pre-push": "npm run lint && npm test"
+    }
   },
   "engines": {
     "node": ">= 8"
@@ -44,7 +47,7 @@
     "conventional-recommended-bump": "^0.3.0",
     "cz-conventional-changelog": "^1.2.0",
     "eslint": "^5.7.0",
-    "husky": "^0.13.1",
+    "husky": "^3.0.3",
     "istanbul": "^0.4.5",
     "json": "^9.0.4",
     "mocha": "^5.2.0",
