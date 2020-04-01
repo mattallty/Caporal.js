@@ -1,0 +1,131 @@
+name: "Continous integration"
+
+on:
+  push:
+    branches:
+      - "**"
+  pull_request:
+    branches:
+      - "**"
+
+jobs:
+  run-tests:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        node: ["10", "12", "14"]
+        os: ["macos-latest", "ubuntu-latest", "windows-latest"]
+
+    name: "node ${{ matrix.node }} / ${{ matrix.os }}"
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Get npm cache directory
+        id: npm-cache
+        run: |
+          echo "::set-output name=dir::$(npm config get cache)"
+
+      # See https://github.com/actions/cache/blob/master/examples.md#node---npm
+      - name: Cache node modules
+        uses: actions/cache@v1
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ${{ steps.npm-cache.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Setup Node.js v${{ matrix.node }} on ${{ matrix.os }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Install dependencies
+        run: npm ci
+
+        # build before testing as some tests actually test the build
+      - name: Build
+        run: npm run build
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Run tests
+        run: npm test
+
+      - name: Jest Annotations & Coverage
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: mattallty/jest-github-action@v1.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  deploy-preview:
+    name: "Deploy preview website"
+    runs-on: ubuntu-latest
+    needs: run-tests
+    continue-on-error: true
+    if: ${{ github.event_name == 'pull_request' || github.ref != 'master' }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: amondnet/now-deployment@v2
+        id: now-deploy
+        with:
+          github-comment: false
+          zeit-token: ${{ secrets.ZEIT_TOKEN }}
+          now-args: ""
+          now-org-id: ${{ secrets.ZEIT_ORG_ID}}
+          now-project-id: ${{ secrets.ZEIT_PROJECT_ID}}
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Install dependencies
+        run: npm ci
+
+      # no need to build for this step
+      # - name: Build
+      #   run: npm run build:all
+
+      - name: Alias
+        id: caporal-preview
+        env:
+          NOW_ORG_ID: ${{ secrets.ZEIT_ORG_ID}}
+          NOW_PROJECT_ID: ${{ secrets.ZEIT_PROJECT_ID}}
+        run: |
+          clean_url=$(echo "${{ steps.now-deploy.outputs.preview-url }}" | cut -c9-)
+          clean_ref=$(basename "${{ github.ref }}")
+          clean_sha=$(echo "${{ github.sha }}" | cut -c1-7)
+          npm run now -- alias -A now.preview.json --token ${{ secrets.ZEIT_TOKEN }} set $clean_url ${clean_ref}.caporal.run
+          npm run now -- alias -A now.preview.json --token ${{ secrets.ZEIT_TOKEN }} set $clean_url ${clean_sha}.caporal.run
+          echo "::set-output name=url_ref::https://${clean_ref}.caporal.run"
+          echo "::set-output name=url_sha::https://${clean_sha}.caporal.run"
+
+      - uses: chrnorm/deployment-action@releases/v1
+        name: Create GitHub deployment for commit
+        id: commit-deployment
+        if: ${{ success() }}
+        with:
+          initial_status: success
+          token: ${{ secrets.GITHUB_TOKEN }}
+          target_url: ${{ steps.caporal-preview.outputs.url_sha }}
+          environment: Commit-preview
+
+      - uses: chrnorm/deployment-action@releases/v1
+        name: Create GitHub deployment for branch
+        id: branch-deployment
+        if: ${{ success() }}
+        with:
+          initial_status: success
+          token: ${{ secrets.GITHUB_TOKEN }}
+          target_url: ${{ steps.caporal-preview.outputs.url_ref }}
+          environment: Branch-preview
+      # - name: comment PR
+      #   uses: unsplash/comment-on-pr@master
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     msg: "Caporal website preview available at:\n- ${{ steps.caporal-preview.outputs.url_ref }}\n- ${{ steps.caporal-preview.outputs.url_sha }}"
+      #     check_for_duplicate_msg: true

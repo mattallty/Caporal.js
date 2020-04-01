@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "public": false,
+  "alias": "caporal.io",
+  "github": {
+    "enabled": false
+  }
+}

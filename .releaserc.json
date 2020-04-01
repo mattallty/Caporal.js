@@ -1,0 +1,5 @@
+{
+  "extends": "@jedmao/semantic-release-npm-github-config",
+  "dryRun": true,
+  "repositoryUrl": "git@github.com:mattallty/Caporal.js.git"
+}

@@ -1,11 +1,6 @@
 <p align="center">
-    <img src="https://github.com/mattallty/Caporal.js/raw/master/assets/caporal.png" width="500" height="177">
+    <img src="https://github.com/mattallty/Caporal.js/blob/6a8bd68b454ff6327df310d290ee453e0efc087b/assets/caporal.svg?raw=true" width="437" height="127">
 </p>
-
-[![npm](https://img.shields.io/npm/v/caporal.svg)](https://www.npmjs.com/package/caporal)
-[![npm](https://img.shields.io/npm/dm/caporal.svg)](https://www.npmjs.com/package/caporal)
-[![GitHub stars](https://img.shields.io/github/stars/mattallty/Caporal.js.svg?style=social&label=Star)](https://github.com/mattallty/Caporal.js/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/mattallty/Caporal.js.svg?style=social&label=Fork)](https://github.com/mattallty/Caporal.js/network)
 
 # Caporal
 
@@ -24,376 +19,28 @@ $ npm install caporal
 $ yarn add caporal
 ```
 
-## Glossary
+## Documentation
 
--   **Program**: a cli app that you can build using Caporal
--   **Command**: a command within your program. A program may have multiple commands.
--   **Argument**: a command may have one or more arguments passed after the command.
--   **Options**: a command may have one or more options passed after (or before) arguments.
+[**Checkout our website https://caporal.io for docs.**](https://caporal.io)
 
-Angled brackets (e.g. `<item>`) indicate required input. Square brackets (e.g. `[env]`) indicate optional input.
+## Contributors ✨
 
-## Examples
+Thanks goes to these wonderful people for contributing to this project:
 
-```javascript
-#!/usr/bin/env node
-const prog = require("caporal");
-prog.version("1.0.0")
-    // you specify arguments using .argument()
-    // 'app' is required, 'env' is optional
-    .command("deploy", "Deploy an application")
-    .argument("<app>", "App to deploy", /^myapp|their-app$/)
-    .argument(
-        "[env]",
-        "Environment to deploy on",
-        /^dev|staging|production$/,
-        "local"
-    )
-    // you specify options using .option()
-    // if --tail is passed, its value is required
-    .option(
-        "--tail <lines>",
-        "Tail <lines> lines of logs after deploy",
-        prog.INT
-    )
-    .action(function (args, options, logger) {
-        // args and options are objects
-        // args = {"app": "myapp", "env": "production"}
-        // options = {"tail" : 100}
-    });
+<!-- @include-start CONTRIBUTORS.md -->
 
-prog.parse(process.argv);
+| <a href="https://github.com/mattallty"><b>Matthias ETIENNE</b><br><img width="60" height="60" border="0" src="https://avatars2.githubusercontent.com/u/178616?v=4"></a> |          <a href="https://github.com/kinok"><b>@kinok</b><br><img width="60" height="60" border="0" src="https://avatars2.githubusercontent.com/u/3816424?v=4"></a>          | <a href="https://github.com/thecodejunkie"><b>Andreas Håkansson</b><br><img width="60" height="60" border="0" src="https://avatars0.githubusercontent.com/u/50543?v=4"></a>  | <a href="https://github.com/fabiospampinato"><b>Fabio Spampinato</b><br><img width="60" height="60" border="0" src="https://avatars1.githubusercontent.com/u/1812093?v=4"></a> |    <a href="https://github.com/Szpadel"><b>@Szpadel</b><br><img width="60" height="60" border="0" src="https://avatars3.githubusercontent.com/u/1857251?v=4"></a>    |
+| :---------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|    <a href="https://github.com/searsaw"><b>Alex Sears</b><br><img width="60" height="60" border="0" src="https://avatars3.githubusercontent.com/u/3712883?v=4"></a>     |    <a href="https://github.com/bbusschots"><b>Bart Busscots</b><br><img width="60" height="60" border="0" src="https://avatars1.githubusercontent.com/u/5204055?v=4"></a>    | <a href="https://github.com/Blackbaud-BobbyEarl"><b>Bobby Earl</b><br><img width="60" height="60" border="0" src="https://avatars3.githubusercontent.com/u/4612419?v=4"></a> |   <a href="https://github.com/bwinterton"><b>Brayden Winterton</b><br><img width="60" height="60" border="0" src="https://avatars3.githubusercontent.com/u/5790659?v=4"></a>   |  <a href="https://github.com/DanielRuf"><b>Daniel Ruf</b><br><img width="60" height="60" border="0" src="https://avatars1.githubusercontent.com/u/827205?v=4"></a>   |
+|  <a href="https://github.com/drewsonne"><b>Drew J. Sonne</b><br><img width="60" height="60" border="0" src="https://avatars3.githubusercontent.com/u/233054?v=4"></a>   |    <a href="https://github.com/fgarcia"><b>Francisco Javier</b><br><img width="60" height="60" border="0" src="https://avatars1.githubusercontent.com/u/253157?v=4"></a>     |         <a href="https://github.com/gcox"><b>George Cox</b><br><img width="60" height="60" border="0" src="https://avatars1.githubusercontent.com/u/251512?v=4"></a>         |    <a href="https://github.com/ihorskyi"><b>Ihor Halchevskyi</b><br><img width="60" height="60" border="0" src="https://avatars2.githubusercontent.com/u/6171149?v=4"></a>     |       <a href="https://github.com/ilyar"><b>Ilyar</b><br><img width="60" height="60" border="0" src="https://avatars2.githubusercontent.com/u/761285?v=4"></a>       |
+| <a href="https://github.com/jorgebucaran"><b>Jorge Bucaran</b><br><img width="60" height="60" border="0" src="https://avatars1.githubusercontent.com/u/56996?v=4"></a>  |     <a href="https://github.com/budnix"><b>Krzysztof Budnik</b><br><img width="60" height="60" border="0" src="https://avatars0.githubusercontent.com/u/571316?v=4"></a>     | <a href="https://github.com/bertho-zero"><b>Kévin Berthommier</b><br><img width="60" height="60" border="0" src="https://avatars0.githubusercontent.com/u/8525267?v=4"></a>  |     <a href="https://github.com/kobleistvan"><b>Köble István</b><br><img width="60" height="60" border="0" src="https://avatars1.githubusercontent.com/u/6638917?v=4"></a>     | <a href="https://github.com/limichange"><b>limichange</b><br><img width="60" height="60" border="0" src="https://avatars3.githubusercontent.com/u/1947344?v=4"></a>  |
+| <a href="https://github.com/khaosdoctor"><b>Lucas Santos</b><br><img width="60" height="60" border="0" src="https://avatars1.githubusercontent.com/u/3200560?v=4"></a>  |    <a href="https://github.com/lmammino"><b>Luciano Mammino</b><br><img width="60" height="60" border="0" src="https://avatars2.githubusercontent.com/u/205629?v=4"></a>     |  <a href="https://github.com/masnagam"><b>Masayuki Nagamachi</b><br><img width="60" height="60" border="0" src="https://avatars3.githubusercontent.com/u/2015132?v=4"></a>   |       <a href="https://github.com/mfilenko"><b>Max Filenko</b><br><img width="60" height="60" border="0" src="https://avatars2.githubusercontent.com/u/199476?v=4"></a>        |   <a href="https://github.com/mycaule"><b>Michel Hua</b><br><img width="60" height="60" border="0" src="https://avatars2.githubusercontent.com/u/6161385?v=4"></a>   |
+|    <a href="https://github.com/pra85"><b>Prayag Verma </b><br><img width="60" height="60" border="0" src="https://avatars2.githubusercontent.com/u/829526?v=4"></a>     | <a href="https://github.com/robertrossmann"><b>Robert Rossmann</b><br><img width="60" height="60" border="0" src="https://avatars3.githubusercontent.com/u/3058150?v=4"></a> | <a href="https://github.com/romellogoodman"><b>Romello Goodman</b><br><img width="60" height="60" border="0" src="https://avatars3.githubusercontent.com/u/6355760?v=4"></a> |       <a href="https://github.com/StinsonZhao"><b>Stinson</b><br><img width="60" height="60" border="0" src="https://avatars1.githubusercontent.com/u/6703905?v=4"></a>        | <a href="https://github.com/TiagoDanin"><b>Tiago Danin</b><br><img width="60" height="60" border="0" src="https://avatars3.githubusercontent.com/u/5731176?v=4"></a> |
+|          <a href="https://github.com/enko"><b>Tim</b><br><img width="60" height="60" border="0" src="https://avatars1.githubusercontent.com/u/19407?v=4"></a>           |      <a href="https://github.com/vlaraort"><b>Víctor Lara</b><br><img width="60" height="60" border="0" src="https://avatars3.githubusercontent.com/u/2410951?v=4"></a>      |      <a href="https://github.com/YOU54F"><b>Yousaf Nabi</b><br><img width="60" height="60" border="0" src="https://avatars3.githubusercontent.com/u/19932401?v=4"></a>       |           <a href="https://github.com/cazgp"><b>@cazgp</b><br><img width="60" height="60" border="0" src="https://avatars1.githubusercontent.com/u/658873?v=4"></a>            |  <a href="https://github.com/dwyschka"><b>@dwyschka</b><br><img width="60" height="60" border="0" src="https://avatars1.githubusercontent.com/u/25348338?v=4"></a>   |
 
-// ./myprog deploy myapp production --tail 100
-```
+<!-- @include-end -->
 
-Or else if you prefer `typescript`
-
-```javascript
-#!/usr/bin/env node
-import * as prog from "caporal";
-prog.version("1.0.0")
-    // you specify arguments using .argument()
-    // 'app' is required, 'env' is optional
-    .command("deploy", "Deploy an application")
-    .argument("<app>", "App to deploy", /^myapp|their-app$/)
-    .argument(
-        "[env]",
-        "Environment to deploy on",
-        /^dev|staging|production$/,
-        "local"
-    )
-    // you specify options using .option()
-    // if --tail is passed, its value is required
-    .option(
-        "--tail <lines>",
-        "Tail <lines> lines of logs after deploy",
-        prog.INT
-    )
-    .action(function (args, options, logger) {
-        // args and options are objects
-        // args = {"app": "myapp", "env": "production"}
-        // options = {"tail" : 100}
-    });
-
-prog.parse(process.argv);
-
-// ./myprog deploy myapp production --tail 100
-```
-
-### Variadic arguments
-
-You can use `...` to indicate variadic arguments. In that case, the resulted value will be an array.
-**Note:** Only the last argument of a command can be variadic !
-
-```javascript
-#!/usr/bin/env node
-const prog = require("caporal");
-prog.version("1.0.0")
-    .command("deploy", "Our deploy command")
-    // 'app' and 'env' are required
-    // and you can pass additional environments
-    .argument("<app>", "App to deploy")
-    .argument("<env>", "Environment")
-    .argument("[other-env...]", "Other environments")
-    .action(function (args, options, logger) {
-        console.log(args);
-        // {
-        //   "app": "myapp",
-        //   "env": "production",
-        //   "otherEnv": ["google", "azure"]
-        // }
-    });
-
-prog.parse(process.argv);
-
-// ./myprog deploy myapp production aws google azure
-```
-
-### Simple program (single command)
-
-For a very simple program with just one command, you can omit the .command() call:
-
-```javascript
-#!/usr/bin/env node
-const prog = require("caporal");
-prog.version("1.0.0")
-    .description('A simple program that says "biiiip"')
-    .action(function (args, options, logger) {
-        logger.info("biiiip");
-    });
-
-prog.parse(process.argv);
-```
-
-### Programmatic Caporal usage
-
-You can pass arguments and options directly to Caporal API.
-
-```javascript
-#!/usr/bin/env node
-const prog = require("caporal");
-prog.version("1.0.0")
-    .command("deploy", "Our deploy command")
-    .argument("<app>", "App to deploy")
-    .argument("<env>", "Environment")
-    .option("--how-much <amount>", "How much app to deploy", prog.INT, 1)
-    .action(function (args, options, logger) {
-        logger.info(args);
-        logger.info(options);
-        // {
-        //   "app": "myapp",
-        //   "env": "production"
-        // }
-        // {
-        //   "howMuch": 2
-        // }
-    });
-prog.exec(["deploy", "myapp", "env"], {
-    howMuch: 2,
-});
-```
-
-## Logging
-
-Inside your action(), use the logger argument (third one) to log informations.
-
-```javascript
-#!/usr/bin/env node
-const prog = require("caporal");
-prog.version("1.0.0")
-    .command("deploy", "The deploy command")
-    .action((args, options, logger) => {
-        // Available methods:
-        // - logger.debug('message')
-        // - logger.info('message') or logger.log('level', 'message')
-        // - logger.warn('message')
-        // - logger.error('message')
-        logger.info("Application deployed !");
-    });
-
-prog.parse(process.argv);
-```
-
-### Logging levels
-
-The default logging level is 'info'. The predefined options can be used to change the logging level:
-
--   `-v, --verbose`: Set the logging level to 'debug' so debug() logs will be output.
--   `--quiet, --silent`: Set the logging level to 'warn' so only warn() and error() logs will be output.
-
-### Custom logger
-
-Caporal uses `winston` for logging. You can provide your own winston-compatible logger using `.logger()` the following way:
-
-```javascript
-#!/usr/bin/env node
-const prog = require("caporal");
-const myLogger = require("/path/to/my/logger.js");
-prog.version("1.0.0")
-    .logger(myLogger)
-    .command("foo", "Foo command description")
-    .action((args, options, logger) => {
-        logger.info("Foo !!");
-    });
-
-prog.parse(process.argv);
-```
-
--   `-v, --verbose`: Set the logging level to 'debug' so debug() logs will be output.
--   `--quiet, --silent`: Set the logging level to 'warn' so only warn() and error() logs will be output.
-
-## Coercion and casting using validators
-
-You can apply coercion and casting using various _validators_:
-
--   [Caporal flags](#flag-validator)
--   [Functions](#function-validator)
--   [Array](#array-validator)
--   [RegExp](#regexp-validator)
-
-### Flag validator
-
--   `INT` (or `INTEGER`): Check option looks like an int and cast it with `parseInt()`
--   `FLOAT`: Will Check option looks like a float and cast it with `parseFloat()`
--   `BOOL` (or `BOOLEAN`): Check for string like `0`, `1`, `true`, `false`, `on`, `off` and cast it
--   `LIST` (or `ARRAY`): Transform input to array by splitting it on comma
--   `REPEATABLE`: Make the option repeatable, eg `./mycli -f foo -f bar -f joe`
-
-```javascript
-#!/usr/bin/env node
-const prog = require("caporal");
-prog.version("1.0.0")
-    .command("order pizza")
-    .option("--number <num>", "Number of pizza", prog.INT, 1)
-    .option("--kind <kind>", "Kind of pizza", /^margherita|hawaiian$/)
-    .option("--discount <amount>", "Discount offer", prog.FLOAT)
-    .option("--add-ingredients <ingredients>", "Ingredients", prog.LIST)
-    .action(function (args, options) {
-        // options.kind = 'margherita'
-        // options.number = 1
-        // options.addIngredients = ['pepperoni', 'onion']
-        // options.discount = 1.25
-    });
-
-prog.parse(process.argv);
-
-// ./myprog order pizza --kind margherita --discount=1.25 --add-ingredients=pepperoni,onion
-```
-
-```javascript
-#!/usr/bin/env node
-const prog = require("caporal");
-prog.version("1.0.0")
-    .command("concat") // concat files
-    .option("-f <file>", "File to concat", prog.REPEATABLE)
-    .action(function (args, options) {});
-
-prog.parse(process.argv);
-
-// Usage:
-// ./myprog concat -f file1.txt -f file2.txt -f file3.txt
-```
-
-### Function validator
-
-Using this method, you can check and cast user input. Make the check fail by throwing an `Error`,
-and cast input by returning a new value from your function.
-
-```javascript
-#!/usr/bin/env node
-const prog = require("caporal");
-prog.version("1.0.0")
-    .command("order pizza")
-    .option("--kind <kind>", "Kind of pizza", function (opt) {
-        if (["margherita", "hawaiian"].includes(opt) === false) {
-            throw new Error("You can only order margherita or hawaiian pizza!");
-        }
-        return opt.toUpperCase();
-    })
-    .action(function (args, options) {
-        // options = { "kind" : "MARGHERITA" }
-    });
-
-prog.parse(process.argv);
-
-// ./myprog order pizza --kind margherita
-```
-
-### Array validator
-
-Using an `Array`, Caporal will check that it contains the argument/option passed.
-
-**Note**: It is not possible to cast user input with this method, only checking it,
-so it's basically only interesting for strings, but a major advantage is that this method
-will allow autocompletion of arguments and option _values_.
-
-```javascript
-#!/usr/bin/env node
-const prog = require("caporal");
-prog.version("1.0.0")
-    .command("order pizza")
-    .option("--kind <kind>", "Kind of pizza", ["margherita", "hawaiian"])
-    .action(function (args, options) {});
-
-prog.parse(process.argv);
-
-// ./myprog order pizza --kind margherita
-```
-
-### RegExp validator
-
-Simply pass a RegExp object to test against it.
-**Note**: It is not possible to cast user input with this method, only checking it,
-so it's basically only interesting for strings.
-
-```javascript
-#!/usr/bin/env node
-const prog = require("caporal");
-prog.version("1.0.0")
-    .command("order pizza")
-    .option("--kind <kind>", "Kind of pizza", /^margherita|hawaiian$/)
-    .action(function (args, options) {});
-
-prog.parse(process.argv);
-
-// ./myprog order pizza --kind margherita
-```
-
-## Colors
-
-By default, Caporal will output colors for help and errors.
-This behaviour can be disabled by passing `--no-color`.
-
-## Auto-generated help
-
-Caporal automatically generates help/usage instructions for you.
-Help can be displayed using `-h` or `--help` options, or with the default `help` command.
-
-<p align="center">
- <img src="https://github.com/mattallty/Caporal.js/raw/master/assets/colors.png" wdith="600">
-</p>
-
-## Custom help
-
-You can add some custom help to the whole program or to specific commands using `.help(text, options?)`. The text, even if multi-line, will be, optionally, automatically indented.
-
-Multiple help sections, with custom names, are supported.
-
-### Custom help for the whole program
-
-```javascript
-#!/usr/bin/env node
-const prog = require("caporal");
-prog.version("1.0.0")
-    .help("my global help") // here our custom help for the whole program
-    .command("order pizza")
-    .action(function (args, options) {});
-
-prog.parse(process.argv);
-```
-
-### Custom help for specific commands
-
-```javascript
-#!/usr/bin/env node
-const prog = require("caporal");
-prog.version("1.0.0")
-    // first command
-    .command("order")
-    .help("my help for the order command") // here our custom help for the `order` command
-    .action(function (args, options) {})
-    // second command
-    .command("cancel")
-    .help("my help for the cancel command") // here our custom help for the `cancel` command
-    .action(function (args, options) {});
-
-prog.parse(process.argv);
-```
-
-## Typo suggestions
-
-Caporal will automatically make suggestions for option typos.
+<<<<<<< HEAD
 
 <p align="center">
  <img src="https://github.com/mattallty/Caporal.js/raw/master/assets/suggest.png" wdith="600">
@@ -406,8 +53,8 @@ thanks to [tabtab](https://github.com/mklabs/node-tabtab).
 
 For this feature to work, you will have to:
 
--   Put your cli app in your `$PATH` (this is the case if your app is installed globally using `npm install -g <myapp>`)
--   Setup auto-completion for your shell, like bellow.
+- Put your cli app in your `$PATH` (this is the case if your app is installed globally using `npm install -g <myapp>`)
+- Setup auto-completion for your shell, like bellow.
 
 #### If you are using bash
 
@@ -452,67 +99,68 @@ Also, _options_ having an _Array validator_ will be autocompleted.
 ```javascript
 #!/usr/bin/env node
 
-const prog = require("caporal");
+const prog = require("caporal")
 
-prog.version("1.0.0")
-    // the "order" command
-    .command("order", "Order a pizza")
-    .alias("give-it-to-me")
-    // <kind> will be auto-magicaly autocompleted by providing the user with 3 choices
-    .argument("<kind>", "Kind of pizza", ["margherita", "hawaiian", "fredo"])
-    .argument("<from-store>", "Which store to order from")
-    // enable auto-completion for <from-store> argument using a sync function returning an array
-    .complete(function () {
-        return ["store-1", "store-2", "store-3", "store-4", "store-5"];
-    })
+prog
+  .version("1.0.0")
+  // the "order" command
+  .command("order", "Order a pizza")
+  .alias("give-it-to-me")
+  // <kind> will be auto-magicaly autocompleted by providing the user with 3 choices
+  .argument("<kind>", "Kind of pizza", ["margherita", "hawaiian", "fredo"])
+  .argument("<from-store>", "Which store to order from")
+  // enable auto-completion for <from-store> argument using a sync function returning an array
+  .complete(function () {
+    return ["store-1", "store-2", "store-3", "store-4", "store-5"]
+  })
 
-    .argument("<account>", "Which account id to use")
-    // enable auto-completion for <account> argument using a Promise
-    .complete(function () {
-        return Promise.resolve(["account-1", "account-2"]);
-    })
+  .argument("<account>", "Which account id to use")
+  // enable auto-completion for <account> argument using a Promise
+  .complete(function () {
+    return Promise.resolve(["account-1", "account-2"])
+  })
 
-    .option("-n, --number <num>", "Number of pizza", prog.INT, 1)
-    .option("-d, --discount <amount>", "Discount offer", prog.FLOAT)
-    .option("-p, --pay-by <mean>", "Pay by option")
-    // enable auto-completion for -p | --pay-by option using a Promise
-    .complete(function () {
-        return Promise.resolve(["cash", "credit-card"]);
-    })
+  .option("-n, --number <num>", "Number of pizza", prog.INT, 1)
+  .option("-d, --discount <amount>", "Discount offer", prog.FLOAT)
+  .option("-p, --pay-by <mean>", "Pay by option")
+  // enable auto-completion for -p | --pay-by option using a Promise
+  .complete(function () {
+    return Promise.resolve(["cash", "credit-card"])
+  })
 
-    // -e | --extra will be auto-magicaly autocompleted by providing the user with 3 choices
-    .option("-e, --extra <ingredients>", "Add extra ingredients", [
-        "pepperoni",
-        "onion",
-        "cheese",
-    ])
-    .action(function (args, options, logger) {
-        logger.info("Command 'order' called with:");
-        logger.info("arguments: %j", args);
-        logger.info("options: %j", options);
-    })
+  // -e | --extra will be auto-magicaly autocompleted by providing the user with 3 choices
+  .option("-e, --extra <ingredients>", "Add extra ingredients", [
+    "pepperoni",
+    "onion",
+    "cheese",
+  ])
+  .action(function (args, options, logger) {
+    logger.info("Command 'order' called with:")
+    logger.info("arguments: %j", args)
+    logger.info("options: %j", options)
+  })
 
-    // the "return" command
-    .command("return", "Return an order")
-    .argument("<order-id>", "Order id")
-    // enable auto-completion for <order-id> argument using a Promise
-    .complete(function () {
-        return Promise.resolve(["#82792", "#71727", "#526Z52"]);
-    })
-    .argument("<to-store>", "Store id")
-    .option("--ask-change <other-kind-pizza>", "Ask for other kind of pizza")
-    // enable auto-completion for --ask-change option using a Promise
-    .complete(function () {
-        return Promise.resolve(["margherita", "hawaiian", "fredo"]);
-    })
-    .option("--say-something <something>", "Say something to the manager")
-    .action(function (args, options, logger) {
-        logger.info("Command 'return' called with:");
-        logger.info("arguments: %j", args);
-        logger.info("options: %j", options);
-    });
+  // the "return" command
+  .command("return", "Return an order")
+  .argument("<order-id>", "Order id")
+  // enable auto-completion for <order-id> argument using a Promise
+  .complete(function () {
+    return Promise.resolve(["#82792", "#71727", "#526Z52"])
+  })
+  .argument("<to-store>", "Store id")
+  .option("--ask-change <other-kind-pizza>", "Ask for other kind of pizza")
+  // enable auto-completion for --ask-change option using a Promise
+  .complete(function () {
+    return Promise.resolve(["margherita", "hawaiian", "fredo"])
+  })
+  .option("--say-something <something>", "Say something to the manager")
+  .action(function (args, options, logger) {
+    logger.info("Command 'return' called with:")
+    logger.info("arguments: %j", args)
+    logger.info("options: %j", options)
+  })
 
-prog.parse(process.argv);
+prog.parse(process.argv)
 ```
 
 ## API
@@ -528,12 +176,12 @@ Returns a `Program` instance.
 Set the version of your program. You may want to use your `package.json` version to fill it:
 
 ```javascript
-const myProgVersion = require("./package.json").version;
-const prog = require("caporal");
-prog.version(myProgVersion);
+const myProgVersion = require("./package.json").version
+const prog = require("caporal")
+prog.version(myProgVersion)
 // [...]
 
-prog.parse(process.argv);
+prog.parse(process.argv)
 ```
 
 Your program will then automaticaly handle `-V` and `--version` options:
@@ -560,27 +208,28 @@ Set up a new command with name and description. Multiple commands can be added t
 Returns a {Command}.
 
 ```javascript
-const prog = require("caporal");
-prog.version("1.0.0")
-    // one command
-    .command("walk", "Make the player walk")
-    .action((args, options, logger) => {
-        logger.log("I'm walking !");
-    }) // you must attach an action for your command
-    // a second command
-    .command("run", "Make the player run")
-    .action((args, options, logger) => {
-        logger.log("I'm running !");
-    })
-    // a command may have multiple words
-    .command("cook pizza", "Make the player cook a pizza")
-    .argument("<kind>", "Kind of pizza")
-    .action((args, options, logger) => {
-        logger.log("I'm cooking a pizza !");
-    });
+const prog = require("caporal")
+prog
+  .version("1.0.0")
+  // one command
+  .command("walk", "Make the player walk")
+  .action((args, options, logger) => {
+    logger.log("I'm walking !")
+  }) // you must attach an action for your command
+  // a second command
+  .command("run", "Make the player run")
+  .action((args, options, logger) => {
+    logger.log("I'm running !")
+  })
+  // a command may have multiple words
+  .command("cook pizza", "Make the player cook a pizza")
+  .argument("<kind>", "Kind of pizza")
+  .action((args, options, logger) => {
+    logger.log("I'm cooking a pizza !")
+  })
 // [...]
 
-prog.parse(process.argv);
+prog.parse(process.argv)
 ```
 
 #### `.logger([logger]) -> Program | winston`
@@ -594,20 +243,20 @@ With the _logger_ argument, it sets a new logger.
 
 Add an argument to the command. Can be called multiple times to add several arguments.
 
--   **synopsis** (_String_): something like `<my-required-arg>` or `[my-optional-arg]`
--   **description** (_String_): argument description
--   **validator** (_Caporal Flag | Function | Array | RegExp_): optional validator, see [Coercion and casting ](#coercion-and-casting-using-validators)
--   **defaultValue** (\*): optional default value
+- **synopsis** (_String_): something like `<my-required-arg>` or `[my-optional-arg]`
+- **description** (_String_): argument description
+- **validator** (_Caporal Flag | Function | Array | RegExp_): optional validator, see [Coercion and casting ](#coercion-and-casting-using-validators)
+- **defaultValue** (\*): optional default value
 
 #### `.option(synopsis, description, [validator, [defaultValue, [required]]) -> Command`
 
 Add an option to the command. Can be called multiple times to add several options.
 
--   **synopsis** (_String_): You can pass short or long notation here, or both. See examples.
--   **description** (_String_): option description
--   **validator** (_Caporal Flag | Function | Array | RegExp_): optional validator, see [Coercion and casting ](#coercion-and-casting-using-validators)
--   **defaultValue** (\*): optional default value
--   **required** (_Bool_): Is the option itself required ? Default to `false`
+- **synopsis** (_String_): You can pass short or long notation here, or both. See examples.
+- **description** (_String_): option description
+- **validator** (_Caporal Flag | Function | Array | RegExp_): optional validator, see [Coercion and casting ](#coercion-and-casting-using-validators)
+- **defaultValue** (\*): optional default value
+- **required** (_Bool_): Is the option itself required ? Default to `false`
 
 #### `.help(text, options?) -> Command`
 
@@ -628,30 +277,32 @@ Define the action, e.g a _Function_, for the current command.
 
 The _action_ callback will be called with 3 arguments:
 
--   _args_ (Object): Passed arguments
--   _options_ (Object): Passed options
--   _logger_ (winston): Winston logger instance
+- _args_ (Object): Passed arguments
+- _options_ (Object): Passed options
+- _logger_ (winston): Winston logger instance
 
 ```javascript
 // sync action
-const prog = require("caporal");
-prog.version("1.0.0")
-    .command("walk", "Make the player walk")
-    .action((args, options, logger) => {
-        logger.log("I'm walking !");
-    });
+const prog = require("caporal")
+prog
+  .version("1.0.0")
+  .command("walk", "Make the player walk")
+  .action((args, options, logger) => {
+    logger.log("I'm walking !")
+  })
 ```
 
 You can make your actions async by using Promises:
 
 ```javascript
 // async action
-const prog = require("caporal");
-prog.version("1.0.0")
-    .command("walk", "Make the player walk")
-    .action((args, options, logger) => {
-        return new Promise(/* ... */);
-    });
+const prog = require("caporal")
+prog
+  .version("1.0.0")
+  .command("walk", "Make the player walk")
+  .action((args, options, logger) => {
+    return new Promise(/* ... */)
+  })
 ```
 
 #### `.alias(alias) -> Command`
@@ -659,16 +310,17 @@ prog.version("1.0.0")
 Define an alias for the current command. A command can only have one alias.
 
 ```javascript
-const prog = require("caporal");
-prog.version("1.0.0")
-    // one command
-    .command("walk", "Make the player walk")
-    .alias("w")
-    .action((args, options, logger) => {
-        logger.log("I'm walking !");
-    });
+const prog = require("caporal")
+prog
+  .version("1.0.0")
+  // one command
+  .command("walk", "Make the player walk")
+  .alias("w")
+  .action((args, options, logger) => {
+    logger.log("I'm walking !")
+  })
 
-prog.parse(process.argv);
+prog.parse(process.argv)
 
 // ./myapp w
 // same as
@@ -679,20 +331,21 @@ prog.parse(process.argv);
 
 Define an auto-completion handler for the latest argument or option added to the command.
 
--   **completer** (_Function_): The completer function has to return either an `Array` or a `Promise` which resolves to an `Array`.
+- **completer** (_Function_): The completer function has to return either an `Array` or a `Promise` which resolves to an `Array`.
 
 #### `.visible(visibility?) -> Boolean | Command`
 
 Get or set the visibility value of this command. By default it's `true`, if you set it to `false` it will be omitted from the help message.
 
 ```javascript
-const prog = require("caporal");
-prog.version("1.0.0")
-    // one command
-    .command("walk", "Make the player walk")
-    .visible(false);
+const prog = require("caporal")
+prog
+  .version("1.0.0")
+  // one command
+  .command("walk", "Make the player walk")
+  .visible(false)
 
-prog.parse(process.argv);
+prog.parse(process.argv)
 ```
 
 ## Credits
@@ -700,20 +353,40 @@ prog.parse(process.argv);
 Caporal is strongly inspired by [commander.js](https://github.com/tj/commander.js) and [Symfony Console](http://symfony.com/doc/current/components/console.html).
 Caporal makes use of the following npm packages:
 
--   [colorette](https://www.npmjs.com/package/colorette) for colors
--   [cli-table3](https://www.npmjs.com/package/cli-table3) for cli tables
--   [fast-levenshtein](https://www.npmjs.com/package/fast-levenshtein) for suggestions
--   [tabtab](https://www.npmjs.com/package/tabtab) for auto-completion
--   [minimist](https://www.npmjs.com/package/minimist) for argument parsing
--   [prettyjson](https://www.npmjs.com/package/prettyjson) to output json
--   [winston](https://www.npmjs.com/package/winston) for logging
+- [colorette](https://www.npmjs.com/package/colorette) for colors
+- [cli-table3](https://www.npmjs.com/package/cli-table3) for cli tables
+- [fast-levenshtein](https://www.npmjs.com/package/fast-levenshtein) for suggestions
+- [tabtab](https://www.npmjs.com/package/tabtab) for auto-completion
+- [minimist](https://www.npmjs.com/package/minimist) for argument parsing
+- [prettyjson](https://www.npmjs.com/package/prettyjson) to output json
+- # [winston](https://www.npmjs.com/package/winston) for logging
 
 ## License
 
-Copyright © Matthias ETIENNE
+<!-- @include-start LICENSE -->
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+MIT License
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+> > > > > > > feat: Caporal v2
 
-The Software is provided “as is”, without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and noninfringement. In no event shall the authors or copyright holders be liable for any claim, damages or other liability, whether in an action of contract, tort or otherwise, arising from, out of or in connection with the software or the use or other dealings in the Software.
+Copyright (c) 2017-present Matthias ETIENNE
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+<!-- @include-end -->

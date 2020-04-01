@@ -1,0 +1,15 @@
+name: "Cleanup Duplicate CI workflows"
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+
+jobs:
+  cancel-runs:
+    # Prevent forks from running this to be nice
+    if: ${{ github.repository == 'mattallty/Caporal.js' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: n1hility/cancel-previous-runs@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          workflow: ci.yml
