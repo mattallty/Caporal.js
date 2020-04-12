@@ -27,7 +27,7 @@ declare class Caporal {
 
     help(helpText: string, helpOptions?: helpOptions): Caporal;
 
-    command(synospis: string, description: string): Command;
+    command(synopsis: string, description: string): Command;
 
     action(cb: ActionCallback): Caporal;
 
