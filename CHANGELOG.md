@@ -1,3 +1,18 @@
+<a name="1.4.0"></a>
+# [1.4.0](https://github.com/mattallty/Caporal.js/compare/v1.3.0...v1.4.0) (2020-05-11)
+
+
+### Bug Fixes
+
+* Fix husky postinstall script. (#159) ([9282872](https://github.com/mattallty/Caporal.js/commit/9282872)), closes [#159](https://github.com/mattallty/Caporal.js/issues/159) [#151](https://github.com/mattallty/Caporal.js/issues/151)
+
+
+### Features
+
+* Add ability to display stacktraces from unhandled exceptions (#168) ([2e1e4ec](https://github.com/mattallty/Caporal.js/commit/2e1e4ec)), closes [#168](https://github.com/mattallty/Caporal.js/issues/168) [#166](https://github.com/mattallty/Caporal.js/issues/166)
+
+
+
 <a name="1.3.0"></a>
 # [1.3.0](https://github.com/mattallty/Caporal.js/compare/v1.2.0...v1.3.0) (2019-07-30)
 
