@@ -1,5 +1,4 @@
 {
-  "dryRun": true,
   "repositoryUrl": "git@github.com:mattallty/Caporal.js.git",
   "plugins": [
     "@semantic-release/commit-analyzer",
