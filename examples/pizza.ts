@@ -1,5 +1,5 @@
 #!/usr/bin/env ts-node
-import { program } from "caporal"
+import { program } from "@caporal/core"
 
 program
   .version("1.0.0")

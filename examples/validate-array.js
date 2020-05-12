@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-const { program } = require("caporal")
+const { program } = require("@caporal/core")
 
 program
   // here we combine the 2 validators, to get back an array of strings

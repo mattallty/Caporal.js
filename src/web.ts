@@ -2,7 +2,7 @@
  * @packageDocumentation
  * @internal
  */
-///<amd-module name="caporal"/>
+///<amd-module name="@caporal/core"/>
 /// <reference lib="dom" />
 export * from "./index"
 import { program, chalk } from "./index"

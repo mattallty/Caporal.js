@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /* eslint-disable no-undef */
-const { program } = require("caporal")
+const { program } = require("@caporal/core")
 
 program
   .description("Get username from ID")

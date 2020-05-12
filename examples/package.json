@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "@types/node": "^11.9.4",
-    "caporal": "file:../"
+    "@caporal/core": "file:../"
   },
   "bin": {
     "pizza": "./pizza.js"

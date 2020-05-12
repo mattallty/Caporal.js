@@ -1,4 +1,4 @@
-import type { CreateCommandParameters, Command } from "caporal"
+import type { CreateCommandParameters, Command } from "@caporal/core"
 
 export default function ({ createCommand }: CreateCommandParameters): Command {
   return createCommand("Create a job with the specified name.")

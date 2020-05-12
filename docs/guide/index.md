@@ -16,7 +16,7 @@ For Caporal **1.x users**, be sure to checkout the [migration guide](./migration
 Simply add `caporal` as a dependency.
 
 ```bash
-$ npm install caporal
+$ npm install @caporal/core
 ```
 
 ## Glossary

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-const { program } = require("caporal")
+const { program } = require("@caporal/core")
 program
   .argument("<name>", "Name to greet")
   // we will be able to use either `-g` or `--greeting` in the command line

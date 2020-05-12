@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-const { program } = require("caporal")
+const { program } = require("@caporal/core")
 
 program
   .argument("<city>", "Vote for your favorite City", {

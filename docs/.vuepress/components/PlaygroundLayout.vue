@@ -6,7 +6,7 @@ import winstonDts from "raw-loader!../../../node_modules/winston/index.d.ts"
 import chalkDts from "raw-loader!../../../node_modules/chalk/index.d.ts"
 
 const declarations = {
-  caporal: caporalDts,
+  '@caporal/core': caporalDts,
   winston: winstonDts,
   chalk: chalkDts,
 }
@@ -212,7 +212,7 @@ export default {
   and its executable name is set to 'play'.
 */
 
-import { program } from "caporal"
+import { program } from "@caporal/core"
 
 program
   .command('order', 'Order command')
