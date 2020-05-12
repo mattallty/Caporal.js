@@ -1,7 +1,7 @@
 {
   "name": "@caporal/core",
   "private": true,
-  "version": "0.0.0-development",
+  "version": "2.0.0",
   "description": "A full-featured framework for building command line applications (cli) with node.js",
   "main": "./dist/",
   "scripts": {
