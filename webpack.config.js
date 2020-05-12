@@ -22,15 +22,15 @@ module.exports = {
     },
   },
   output: {
-    filename: "caporal.js",
-    path: path.resolve(__dirname, "docs/.vuepress/public/assets/js"),
-    library: "caporal",
+    filename: "core.js",
+    path: path.resolve(__dirname, "docs/.vuepress/public/assets/js/@caporal"),
+    library: "@caporal/core",
     libraryTarget: "umd",
     umdNamedDefine: true,
   },
   node: {
-    process: "mock",
-    global: true,
+    // process: "mock",
+    // global: true,
     path: true,
   },
   plugins: [

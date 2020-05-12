@@ -52,8 +52,11 @@ jobs:
       - name: Run tests
         run: npm test
 
+      - name: Run dist tests
+        run: npm run test:dist
+
       - name: Jest Annotations & Coverage
-        if: ${{ github.event_name == 'pull_request' && matrix.node == '12' && matrix.os == 'ubuntu-latest' }}
+        if: ${{ matrix.node == '12' && matrix.os == 'ubuntu-latest' }}
         uses: mattallty/jest-github-action@v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

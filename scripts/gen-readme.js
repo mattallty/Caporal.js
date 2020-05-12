@@ -21,7 +21,7 @@ const newReadme = replace(readme, regex, function (r1, r2, r3) {
 
 try {
   fs.writeFileSync(README_PATH, newReadme)
-  console.log("%s & %s updated.", README_PATH)
+  console.log("%s updated.", README_PATH)
   process.exit(0)
 } catch (e) {
   console.error(e)

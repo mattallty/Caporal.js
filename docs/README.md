@@ -33,20 +33,20 @@ footer: MIT Licensed | Copyright © 2017-present Matthias Etienne
 
 <!-- @include-start DEPENDENTS.md -->
 
-More than **366** packages are using Caporal for their CLI, among which:
+More than **365** packages are using Caporal for their CLI, among which:
 
 - [es-check](https://www.npmjs.com/package/es-check): Checks the EcamScript version of .js glob against a specified version of EcamScript with a shell command.
-- [typed-locale-keys](https://www.npmjs.com/package/typed-locale-keys): generates and manages locale keys.
 - [eslint-generate-todo](https://www.npmjs.com/package/eslint-generate-todo): Tool for generating eslint todo files.
 - [balanceofsatoshis](https://www.npmjs.com/package/balanceofsatoshis): Lightning balance CLI.
-- [@modyo/cli](https://www.npmjs.com/package/@modyo/cli): Modyo Command Line Interface.
-- [handel](https://www.npmjs.com/package/handel): Orchestrates your AWS deployments so you don't have to.
-- [node-appletv-x](https://www.npmjs.com/package/node-appletv-x): A Node.js library for communicating with an Apple TV.
-- [mume-cli](https://www.npmjs.com/package/mume-cli): markdown toolkit powered by mume.
-- [project-snippets](https://www.npmjs.com/package/project-snippets): Keep code snippets directly in your project repository and let anyone create files easily and quickly.
 - [icon-font-buildr](https://www.npmjs.com/package/icon-font-buildr): Build custom icon fonts, it supports remote and local icons sources.
+- [node-appletv-x](https://www.npmjs.com/package/node-appletv-x): A Node.js library for communicating with an Apple TV.
+- [handel](https://www.npmjs.com/package/handel): Orchestrates your AWS deployments so you don't have to.
+- [mume-cli](https://www.npmjs.com/package/mume-cli): markdown toolkit powered by mume.
 - [@fabiospampinato/bump](https://www.npmjs.com/package/@fabiospampinato/bump): Bump updates the project's version, updates/creates the changelog, makes the bump commit, tags the bump commit and makes the release to GitHub. Opinionated but configurable.
+- [project-snippets](https://www.npmjs.com/package/project-snippets): Keep code snippets directly in your project repository and let anyone create files easily and quickly.
+- [pacco](https://www.npmjs.com/package/pacco): A bundler for modular and extensible web projects.
 - [node-appletv](https://www.npmjs.com/package/node-appletv): A Node.js library for communicating with an Apple TV.
+- [@gltf-transform/cli](https://www.npmjs.com/package/@gltf-transform/cli): CLI interface to glTF Transform.
 
 <!-- @include-end -->
 
@@ -59,6 +59,6 @@ Thanks goes to these wonderful people for contributing to Caporal:
 | <a href="https://github.com/mattallty">Matthias Etienne<br><img class="contributor" border="0" src="https://avatars2.githubusercontent.com/u/178616?v=4"></a> | <a href="https://github.com/kinok">Michael Inthilith<br><img class="contributor" border="0" src="https://avatars2.githubusercontent.com/u/3816424?v=4"></a> | <a href="https://github.com/thecodejunkie">Andreas Håkansson<br><img class="contributor" border="0" src="https://avatars0.githubusercontent.com/u/50543?v=4"></a> | <a href="https://github.com/fabiospampinato">Fabio Spampinato<br><img class="contributor" border="0" src="https://avatars1.githubusercontent.com/u/1812093?v=4"></a> | <a href="https://github.com/Szpadel">@Szpadel<br><img class="contributor" border="0" src="https://avatars3.githubusercontent.com/u/1857251?v=4"></a> |
 | :-----------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------: |
 
-...but also <a href="https://github.com/searsaw">Alex Sears</a>, <a href="https://github.com/bbusschots">Bart Busscots</a>, <a href="https://github.com/Blackbaud-BobbyEarl">Bobby Earl</a>, <a href="https://github.com/bwinterton">Brayden Winterton</a>, <a href="https://github.com/DanielRuf">Daniel Ruf</a>, <a href="https://github.com/drewsonne">Drew J. Sonne</a>, <a href="https://github.com/fgarcia">Francisco Javier</a>, <a href="https://github.com/gcox">George Cox</a>, <a href="https://github.com/ihorskyi">Ihor Halchevskyi</a>, <a href="https://github.com/ilyar">Ilyar</a>, <a href="https://github.com/jorgebucaran">Jorge Bucaran</a>, <a href="https://github.com/budnix">Krzysztof Budnik</a>, <a href="https://github.com/bertho-zero">Kévin Berthommier</a>, <a href="https://github.com/kobleistvan">Köble István</a>, <a href="https://github.com/limichange">limichange</a>. See <a href="https://github.com/mattallty/Caporal.js/graphs/contributors">full list</a>.
+...but also <a href="https://github.com/searsaw">Alex Sears</a>, <a href="https://github.com/bbusschots">Bart Busscots</a>, <a href="https://github.com/Blackbaud-BobbyEarl">Bobby Earl</a>, <a href="https://github.com/bwinterton">Brayden Winterton</a>, <a href="https://github.com/DanielRuf">Daniel Ruf</a>, <a href="https://github.com/drewsonne">Drew J. Sonne</a>, <a href="https://github.com/fgarcia">Francisco Javier</a>, <a href="https://github.com/gcox">George Cox</a>, <a href="https://github.com/ihorskyi">Ihor Halchevskyi</a>, <a href="https://github.com/ilyar">Ilyar</a>, <a href="https://github.com/jhorbulyk">Jacob Horbulyk</a>, <a href="https://github.com/jorgebucaran">Jorge Bucaran</a>, <a href="https://github.com/budnix">Krzysztof Budnik</a>, <a href="https://github.com/bertho-zero">Kévin Berthommier</a>, <a href="https://github.com/kobleistvan">Köble István</a>. See <a href="https://github.com/mattallty/Caporal.js/graphs/contributors">full list</a>.
 
 <!-- @include-end -->

@@ -5,7 +5,7 @@
 
 import camelCase from "lodash/camelCase"
 import kebabCase from "lodash/kebabCase"
-import { FlagSyntaxError } from "../error"
+import { OptionSynopsisSyntaxError } from "../error"
 import { OptionValueType } from "../types"
 import type { OptionSynopsis, ParserTypes } from "../types"
 
@@ -129,7 +129,7 @@ export function parseOptionSynopsis(synopsis: string): OptionSynopsis {
     }, analysis)
 
   if (infos.longName === undefined && infos.shortName === undefined) {
-    throw new FlagSyntaxError(synopsis)
+    throw new OptionSynopsisSyntaxError(synopsis)
   }
 
   infos.name = infos.longName || (infos.shortName as string)

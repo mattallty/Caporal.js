@@ -63,5 +63,4 @@ async function buildContributorsTable(options) {
   const md = await buildContributorsTable()
   fs.writeFileSync(CONTRIBUTORS_PATH, md)
   console.log("%s updated", CONTRIBUTORS_PATH)
-  // console.log(md)
 })()

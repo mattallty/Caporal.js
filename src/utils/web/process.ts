@@ -11,6 +11,7 @@ export const version = process.version
 export const argv = ["node", "play.ts"]
 export const execArgv = []
 export const exitCode = 0
+export const fake = true
 export const on = () => {}
 export const once = () => {}
 export const exit = function (code = 0) {

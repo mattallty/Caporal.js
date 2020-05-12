@@ -1,25 +1,21 @@
 <script>
 import Navbar from "@theme/components/Navbar.vue"
 import "xterm/css/xterm.css"
-import caporalDts from "raw-loader!../public/assets/js/caporal.d.ts"
+import caporalDts from "raw-loader!../public/assets/js/@caporal/caporal.d.ts"
 import winstonDts from "raw-loader!../../../node_modules/winston/index.d.ts"
 import chalkDts from "raw-loader!../../../node_modules/chalk/index.d.ts"
+import { format } from "util"
 
 const declarations = {
-  '@caporal/core': caporalDts,
+  "@caporal/core": caporalDts,
   winston: winstonDts,
   chalk: chalkDts,
 }
-
-import { format } from "util"
 
 export default {
   name: "playground",
   components: {
     Navbar,
-  },
-  created() {
-    console.log("PLAYGROUND CREATED")
   },
   mounted() {
     // load dynamicaly the monaco editor
@@ -27,11 +23,7 @@ export default {
     import("vue-monaco").then((module) => {
       this.monacoComponent = module.default
     })
-
     document.querySelector("body").style.overflow = "hidden"
-    // require("caporal").program.on("help", (help) => {
-    //   alert("help called!!")
-    // })
   },
   beforeDestroy() {
     document.querySelector("body").style.overflow = "auto"
@@ -92,30 +84,44 @@ export default {
           )} program.`,
         )
         this.term.println("Type " + chalk.green("play --help") + " for more info.")
-        setImmediate(this.term.prompt)
+        setImmediate(() => {
+          this.term.prompt()
+        })
         return
       }
-
-      caporal.program.once("help", (help) => {
-        this.term.write(help)
-      })
-
-      caporal.program.once("run", () => {
-        setImmediate(this.term.prompt)
-      })
-
-      caporal.program.once("error", () => {
-        setImmediate(this.term.prompt)
-      })
 
       try {
         eval(this.transpiledJs)
       } catch (e) {
-        console.log("BOOM")
+        console.error(e)
       }
     },
     codeDidChange() {
       this.dirty = true
+    },
+    setupCappral() {
+      const writeToTerm = (...args) => {
+        this.term.write(format(...args))
+        this.term.write("\n")
+      }
+      caporal.program.logger({
+        log: writeToTerm,
+        http: writeToTerm,
+        silly: writeToTerm,
+        debug: writeToTerm,
+        info: writeToTerm,
+        warn: writeToTerm,
+        error: writeToTerm,
+      })
+      caporal.program.on("help", (help) => {
+        this.term.write(help)
+      })
+      caporal.program.on("run", () => {
+        setImmediate(this.term.prompt)
+      })
+      caporal.program.on("error", () => {
+        setImmediate(this.term.prompt)
+      })
     },
     setupTerminal() {
       Promise.all([import("xterm"), import("xterm-addon-fit")]).then(
@@ -147,26 +153,13 @@ export default {
             this.echo
               .read("~$ ")
               .then(this.executeCommand)
-              .catch((error) => alert(`Error reading: ${error}`))
+              .catch((error) => console.error(`Error reading: ${error}`, error))
           }
 
-          const writeToTerm = (...args) => {
-            this.term.write(format(...args))
-            this.term.write("\n")
-          }
+          this.setupCappral()
 
           term.println("Welcome in the Caporal Playground! Type 'play --help' for help")
           term.prompt()
-
-          caporal.program.logger({
-            log: writeToTerm,
-            http: writeToTerm,
-            silly: writeToTerm,
-            debug: writeToTerm,
-            info: writeToTerm,
-            warn: writeToTerm,
-            error: writeToTerm,
-          })
         },
       )
     },
@@ -180,17 +173,12 @@ export default {
       })
 
       monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
-        // noLib: true,
         lib: ["ES2019"],
         allowJs: true,
         esModuleInterop: false,
         allowSyntheticDefaultImports: true,
         target: monaco.languages.typescript.ScriptTarget.ES2016,
         allowNonTsExtensions: true,
-        // noLib: true,
-        // allowUmdGlobalAccess: true,
-        // module: monaco.languages.typescript.ModuleKind.CommonJS,
-        // module: monaco.languages.typescript.ModuleKind.UMD,
         module: monaco.languages.typescript.ModuleKind.CommonJS,
         moduleResolution: monaco.languages.typescript.ModuleResolutionKind.NodeJs,
       })
@@ -288,7 +276,6 @@ program
 }
 
 .monaco-editor {
-  // height: 300px !important
   min-height: 300px !important;
   padding-top: 5px;
 }

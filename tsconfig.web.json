@@ -9,7 +9,7 @@
     "declaration": true /* Generates corresponding '.d.ts' file. */,
     "emitDeclarationOnly": true /* Generates corresponding '.d.ts' file. */,
     "resolveJsonModule": false,
-    "outFile": "docs/.vuepress/public/assets/js/caporal.d.ts",
+    "outFile": "docs/.vuepress/public/assets/js/@caporal/caporal.d.ts",
     "strict": true /* Enable all strict type-checking options. */,
     "noImplicitAny": true /* Raise error on expressions and declarations with an implied 'any' type. */,
     "moduleResolution": "node" /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */,

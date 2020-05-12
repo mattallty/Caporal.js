@@ -49,8 +49,6 @@ apiSidebar.push({
   children: [{ title: "All types", path: "modules/caporal_types" }],
 })
 
-// modules/
-
 module.exports = {
   title: "Caporal",
   description: "A full-featured framework for building command line applications (CLI)",
