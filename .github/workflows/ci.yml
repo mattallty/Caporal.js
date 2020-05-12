@@ -89,7 +89,7 @@ jobs:
           NOW_PROJECT_ID: ${{ secrets.ZEIT_PROJECT_ID}}
         run: |
           clean_url=$(echo "${{ steps.now-deploy.outputs.preview-url }}" | cut -c9-)
-          clean_ref=$(basename "${{ github.ref }}")
+          clean_ref=$(basename "${{ github.head_ref }}")
           clean_sha=$(echo "${{ github.sha }}" | cut -c1-7)
           npm run now -- alias -A now.preview.json --token ${{ secrets.ZEIT_TOKEN }} set $clean_url ${clean_ref}.caporal.run
           npm run now -- alias -A now.preview.json --token ${{ secrets.ZEIT_TOKEN }} set $clean_url ${clean_sha}.caporal.run
