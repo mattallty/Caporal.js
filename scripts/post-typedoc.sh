@@ -8,17 +8,8 @@ else
 fi
 
 
-# Copy alias types
-# mv ./docs/api/modules/types.md ./docs/api/interfaces/others.md
-
-echo "---
-sidebarDepth: 2
----" | cat - ./docs/api/classes/caporal_program.program.md | tee ./docs/api/classes/caporal_program.program.md > /dev/null
-
-
-echo "---
-sidebarDepth: 2
----" | cat - ./docs/api/classes/caporal_command.command.md | tee ./docs/api/classes/caporal_command.command.md > /dev/null
+echo "---\nsidebarDepth: 2\n---\n\n" | cat - ./docs/api/classes/caporal_program.program.md | tee ./docs/api/classes/caporal_program.program.md > /dev/null
+echo "---\nsidebarDepth: 2\n---\n\n" | cat - ./docs/api/classes/caporal_command.command.md | tee ./docs/api/classes/caporal_command.command.md > /dev/null
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   sed -i '' -e '/## References/,$d' ./docs/api/modules/caporal.md
