@@ -1,9 +1,6 @@
 name: "Continous integration"
 
 on:
-  push:
-    branches:
-      - "**"
   pull_request:
     branches:
       - "**"
