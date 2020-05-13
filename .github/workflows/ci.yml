@@ -118,10 +118,11 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           target_url: ${{ steps.caporal-preview.outputs.url_ref }}
           environment: Branch-preview
-      # - name: comment PR
-      #   uses: unsplash/comment-on-pr@master
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   with:
-      #     msg: "Caporal website preview available at:\n- ${{ steps.caporal-preview.outputs.url_ref }}\n- ${{ steps.caporal-preview.outputs.url_sha }}"
-      #     check_for_duplicate_msg: true
+
+      - name: comment PR
+        uses: unsplash/comment-on-pr@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          msg: ":rocket: Caporal website preview available at: ${{ steps.caporal-preview.outputs.url_ref }}"
+          check_for_duplicate_msg: true
