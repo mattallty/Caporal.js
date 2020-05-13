@@ -3,7 +3,6 @@ import { Program } from "../../program"
 import { createCommand } from "../../command"
 import { findCommand } from "../../command/find"
 import strip from "strip-ansi"
-import { Validator } from "../.."
 
 describe("help", () => {
   let prog = new Program()
@@ -86,10 +85,10 @@ describe("help", () => {
     it("should handle type hints", async () => {
       prog
         .command("test-command", "Test command")
-        .argument("<foo>", "Desc", { validator: Validator.NUMBER })
+        .argument("<foo>", "Desc", { validator: prog.NUMBER })
         .option("-f, --file <file>", " Output file", {
           required: true,
-          validator: Validator.NUMBER,
+          validator: prog.NUMBER,
         })
       const cmd = await findCommand(prog, ["test-command"])
 

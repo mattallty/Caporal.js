@@ -2,9 +2,8 @@ jest.mock("../../error/fatal")
 jest.useFakeTimers()
 
 import { createCommand, HELP_CMD } from ".."
-import { program, Validator } from "../../index"
+import { program } from "../../index"
 import { Program } from "../../program"
-import { CaporalValidator } from "../../validator/caporal"
 import {
   fatalError,
   NoActionError,
@@ -274,7 +273,7 @@ describe("Command", () => {
         .command("order", "Order something")
         .argument("<type>", " Pizza type", { default: ["margherita", "regina"] })
         .argument("[amount]", " Amount of pizza", {
-          validator: CaporalValidator.NUMBER,
+          validator: program.NUMBER,
           default: 1,
         })
         .action(action)
@@ -291,7 +290,7 @@ describe("Command", () => {
       const cmd = prog
         .command("order", "Order something")
         .argument("<type>", " Pizza type", { validator: ["margherita", "regina"] })
-        .argument("[amount]", " Amount of pizza", { validator: CaporalValidator.NUMBER })
+        .argument("[amount]", " Amount of pizza", { validator: program.NUMBER })
         .action(action)
       await expect(cmd.run({ args: ["order", "margherita"] })).resolves.toBe("got it!")
     })
@@ -314,7 +313,7 @@ describe("Command", () => {
         .command("order", "Order something")
         .argument("<type>", " Pizza type", { validator: ["margherita", "regina"] })
         .option("-a, --amount <number>", "Amount of pizza", {
-          validator: CaporalValidator.NUMBER,
+          validator: program.NUMBER,
           default: 1,
         })
         .action(action)
@@ -342,7 +341,7 @@ describe("Command", () => {
         .command("order", "Order something")
         .argument("<type>", " Pizza type", { validator: ["margherita", "regina"] })
         .option("-a, --amount <number>", " Amount of pizza", {
-          validator: CaporalValidator.NUMBER,
+          validator: program.NUMBER,
           default: 1,
         })
         .action(action)
@@ -355,7 +354,7 @@ describe("Command", () => {
         .command("order", "Order something")
         .argument("<type>", " Pizza type", { validator: ["margherita", "regina"] })
         .option("-a, --amount <number>", "Amount of pizza", {
-          validator: CaporalValidator.NUMBER,
+          validator: program.NUMBER,
           required: true,
         })
         .action(action)
@@ -380,7 +379,7 @@ describe("Command", () => {
       const action = jest.fn().mockReturnValue("got it!")
       prog
         .command("cancel", "cancel an order id")
-        .argument("<order-id>", "Order ID", { validator: Validator.NUMBER })
+        .argument("<order-id>", "Order ID", { validator: program.NUMBER })
         .action(action)
 
       await expect(prog.run(["cancel", "not-a-number"])).rejects.toBeInstanceOf(
@@ -493,7 +492,7 @@ describe("Command", () => {
         .command("order", "Order something")
         .argument("<type>", " Pizza type", { validator: ["margherita", "regina"] })
         .option("-a, --amount <number>", " Amount of pizza", {
-          validator: CaporalValidator.NUMBER,
+          validator: program.NUMBER,
         })
         .action(action)
       await expect(prog.run(["order", "margherita"])).resolves.toBe("got it!")
@@ -515,22 +514,22 @@ describe("Command", () => {
 
   it(".getParserConfig() should return the correct parser config for args & options", () => {
     const cmd = createCommand(prog, "invite", "Invite people")
-      .argument("<guests>", "Number of guests", { validator: CaporalValidator.NUMBER })
-      .argument("<location>", "Number of guests", { validator: CaporalValidator.STRING })
+      .argument("<guests>", "Number of guests", { validator: program.NUMBER })
+      .argument("<location>", "Number of guests", { validator: program.STRING })
       .argument("<send-email>", "Send a confirmation email", {
-        validator: CaporalValidator.BOOLEAN,
+        validator: program.BOOLEAN,
       })
       .argument("<email-list>", "List of emails, comma-separated", {
-        validator: CaporalValidator.ARRAY | CaporalValidator.STRING,
+        validator: program.ARRAY | program.STRING,
       })
-      .argument("<names...>", "Guests names", { validator: CaporalValidator.STRING })
+      .argument("<names...>", "Guests names", { validator: program.STRING })
       .option("--send-sms", "Send SMS")
-      .option("--save-to", "Save to", { validator: CaporalValidator.STRING }) // TODO: wrong declaration!
+      .option("--save-to", "Save to", { validator: program.STRING }) // TODO: wrong declaration!
       .option("--rsvp <response>", "Ask for RSVP", {
-        validator: CaporalValidator.BOOLEAN,
+        validator: program.BOOLEAN,
       })
       .option("-m, --max <num>", "max invite", {
-        validator: CaporalValidator.NUMBER,
+        validator: program.NUMBER,
       })
       .option("--override <key:value...>", "override config")
     const config = cmd.getParserConfig()
@@ -546,22 +545,22 @@ describe("Command", () => {
 
   it(".synopsis should return the correct synopsis when all flags are optional", () => {
     const cmd = createCommand(prog, "invite", "Invite people")
-      .argument("<guests>", "Number of guests", { validator: CaporalValidator.NUMBER })
-      .argument("<location>", "Number of guests", { validator: CaporalValidator.STRING })
+      .argument("<guests>", "Number of guests", { validator: program.NUMBER })
+      .argument("<location>", "Number of guests", { validator: program.STRING })
       .argument("<send-email>", "Send a confirmation email", {
-        validator: CaporalValidator.BOOLEAN,
+        validator: program.BOOLEAN,
       })
       .argument("<email-list>", "List of emails, comma-separated", {
-        validator: CaporalValidator.ARRAY | CaporalValidator.STRING,
+        validator: program.ARRAY | program.STRING,
       })
-      .argument("<names...>", "Guests names", { validator: CaporalValidator.STRING })
+      .argument("<names...>", "Guests names", { validator: program.STRING })
       .option("--send-sms", "Send SMS")
-      .option("--save-to", "Save to", { validator: CaporalValidator.STRING }) // TODO: wrong declaration!
+      .option("--save-to", "Save to", { validator: program.STRING }) // TODO: wrong declaration!
       .option("--rsvp <response>", "Ask for RSVP", {
-        validator: CaporalValidator.BOOLEAN,
+        validator: program.BOOLEAN,
       })
       .option("-m, --max <num>", "max invite", {
-        validator: CaporalValidator.NUMBER,
+        validator: program.NUMBER,
       })
       .option("--override <key:value...>", "override config")
     expect(cmd.synopsis).toBe(
@@ -571,23 +570,23 @@ describe("Command", () => {
 
   it(".synopsis should return the correct synopsis when some flags are required", () => {
     const cmd = createCommand(prog, "invite", "Invite people")
-      .argument("<guests>", "Number of guests", { validator: CaporalValidator.NUMBER })
-      .argument("<location>", "Number of guests", { validator: CaporalValidator.STRING })
+      .argument("<guests>", "Number of guests", { validator: program.NUMBER })
+      .argument("<location>", "Number of guests", { validator: program.STRING })
       .argument("<send-email>", "Send a confirmation email", {
-        validator: CaporalValidator.BOOLEAN,
+        validator: program.BOOLEAN,
       })
       .argument("<email-list>", "List of emails, comma-separated", {
-        validator: CaporalValidator.ARRAY | CaporalValidator.STRING,
+        validator: program.ARRAY | program.STRING,
       })
-      .argument("<names...>", "Guests names", { validator: CaporalValidator.STRING })
+      .argument("<names...>", "Guests names", { validator: program.STRING })
       .option("--send-sms", "Send SMS")
-      .option("--save-to", "Save to", { validator: CaporalValidator.STRING }) // TODO: wrong declaration!
+      .option("--save-to", "Save to", { validator: program.STRING }) // TODO: wrong declaration!
       .option("--rsvp <response>", "Ask for RSVP", {
-        validator: CaporalValidator.BOOLEAN,
+        validator: program.BOOLEAN,
         required: true,
       })
       .option("-m, --max <num>", "max invite", {
-        validator: CaporalValidator.NUMBER,
+        validator: program.NUMBER,
       })
       .option("--override <key:value...>", "override config")
     expect(cmd.synopsis).toBe(
@@ -597,15 +596,15 @@ describe("Command", () => {
 
   it(".synopsis should return the correct synopsis when command does not have any flags", () => {
     const cmd = createCommand(prog, "invite", "Invite people")
-      .argument("<guests>", "Number of guests", { validator: CaporalValidator.NUMBER })
-      .argument("<location>", "Number of guests", { validator: CaporalValidator.STRING })
+      .argument("<guests>", "Number of guests", { validator: program.NUMBER })
+      .argument("<location>", "Number of guests", { validator: program.STRING })
       .argument("<send-email>", "Send a confirmation email", {
-        validator: CaporalValidator.BOOLEAN,
+        validator: program.BOOLEAN,
       })
       .argument("<email-list>", "List of emails, comma-separated", {
-        validator: CaporalValidator.ARRAY | CaporalValidator.STRING,
+        validator: program.ARRAY | program.STRING,
       })
-      .argument("<names...>", "Guests names", { validator: CaporalValidator.STRING })
+      .argument("<names...>", "Guests names", { validator: program.STRING })
     expect(cmd.synopsis).toBe(
       "test-prog invite <guests> <location> <send-email> <email-list> <names...>",
     )

@@ -7,6 +7,14 @@ Also, if you're using _Visual Studio Code_, it should show you the wrong
 method calls, thanks to typescript declarations (even if your app
 is written in javascript).
 
+Starting version 2, Caporal npm package will be released under the caporal organization.
+Just use the `@caporal/core` package instead of `caporal`:
+
+```diff
+- import program from "caporal"
++ import program from "@caporal/core"
+```
+
 ## Breaking changes
 
 ### `.option()` signature change

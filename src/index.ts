@@ -10,7 +10,7 @@
  *
  * ```ts
  * // The Program instance generated for you
- * import { program } from "caporal"
+ * import program from "@caporal/core"
  *
  * program
  *  .command(...)
@@ -60,10 +60,6 @@ export { Program, Command }
  * @ignore
  */
 export {
-  /**
-   * Validator flags
-   */
-  CaporalValidator as Validator,
   /**
    * @internal
    */
