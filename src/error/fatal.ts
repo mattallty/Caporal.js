@@ -22,8 +22,5 @@ export function fatalError(error: BaseError): never | undefined {
     logger.error(error.message)
   }
 
-  // if (typeof process.exit === "function") {
   process.exit(1)
-  // }
-  // process.exitCode = 1
 }

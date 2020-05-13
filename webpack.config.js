@@ -29,8 +29,6 @@ module.exports = {
     umdNamedDefine: true,
   },
   node: {
-    // process: "mock",
-    // global: true,
     path: true,
   },
   plugins: [

@@ -8,8 +8,14 @@
         }
       }
     ],
-    "@babel/preset-typescript"
+    "@babel/preset-typescript",
+    [
+      "minify",
+      {
+        "builtIns": false
+      }
+    ]
   ],
   "plugins": ["@babel/plugin-proposal-class-properties"],
-  "ignore": ["**/__tests__", "**/*.spec.{ts,js}"]
+  "ignore": ["**/__tests__", "**/__fixtures__", "**/__mocks__", "**/*.spec.{ts,js}"]
 }
