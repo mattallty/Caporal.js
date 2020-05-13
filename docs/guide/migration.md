@@ -38,6 +38,12 @@ All optional properties are now part of a third parameter object.
 ### `program.parse()` signature change
 
 `program.parse()` has been renamed to `program.run()`.
+
+```diff
+- program.parse()
++ program.run()
+```
+
 If you used to pass `process.argv` as the `argv` parameter , please
 now pass `process.argv.slice(2)`.
 

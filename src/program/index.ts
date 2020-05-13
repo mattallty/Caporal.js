@@ -68,7 +68,7 @@ export class Program extends EventEmitter {
   readonly NUMBER = CaporalValidator.NUMBER
   /**
    * String validator. Mainly used to make sure the value is a string,
-   * and prevent Caporal auto-casting of numerics values and boolean
+   * and prevent Caporal auto-casting of numerical values and boolean
    * strings like `true` or `false`.
    */
   readonly STRING = CaporalValidator.STRING

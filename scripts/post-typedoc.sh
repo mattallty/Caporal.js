@@ -8,8 +8,8 @@ else
 fi
 
 
-echo -e "---\nsidebarDepth: 2\n---\n\n" | cat - ./docs/api/classes/caporal_program.program.md | tee ./docs/api/classes/caporal_program.program.md > /dev/null
-echo -e "---\nsidebarDepth: 2\n---\n\n" | cat - ./docs/api/classes/caporal_command.command.md | tee ./docs/api/classes/caporal_command.command.md > /dev/null
+# echo -e "---\nsidebarDepth: 2\n---\n\n" | cat - ./docs/api/classes/caporal_program.program.md | tee ./docs/api/classes/caporal_program.program.md > /dev/null
+# echo -e "---\nsidebarDepth: 2\n---\n\n" | cat - ./docs/api/classes/caporal_command.command.md | tee ./docs/api/classes/caporal_command.command.md > /dev/null
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   sed -i '' -e '/## References/,$d' ./docs/api/modules/caporal.md
