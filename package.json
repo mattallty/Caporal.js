@@ -72,7 +72,6 @@
     "@typescript-eslint/eslint-plugin": "^2.24.0",
     "@typescript-eslint/parser": "^2.24.0",
     "babel-jest": "^25.1.0",
-    "babel-preset-minify": "^0.5.1",
     "cheerio": "^1.0.0-rc.3",
     "commitizen": "^4.0.3",
     "conventional-changelog-cli": "^1.2.0",

@@ -1,6 +1,6 @@
 #!/usr/bin/env ts-node
 // file: pizza-hit.ts
-import { program } from "@caporal/core"
+import program from "@caporal/core"
 
 program
   // First possible command: "order"
