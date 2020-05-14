@@ -44,8 +44,8 @@ All optional properties are now part of a third parameter object.
 + program.run()
 ```
 
-If you used to pass `process.argv` as the `argv` parameter, please
-now pass `process.argv.slice(2)`.
+If you used to pass `process.argv` as the `argv` parameter, please now pass
+`process.argv.slice(2)`.
 
 ```diff
 - program.parse(process.argv)
