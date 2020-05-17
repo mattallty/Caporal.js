@@ -7,8 +7,8 @@ import type { TemplateContext, Template } from "../types"
 import { getOptionsTable, getArgumentsTable } from "../utils"
 import sortBy from "lodash/sortBy"
 
-export const command: Template = (ctx: TemplateContext) => {
-  const { cmd, globalOptions: globalFlags, eol, eol3, colorize } = ctx
+export const command: Template = async (ctx: TemplateContext) => {
+  const { cmd, globalOptions: globalFlags, eol, eol3, colorize, tpl } = ctx
 
   const options = sortBy(cmd!.options, "name"),
     globalOptions = Array.from(globalFlags.keys())
@@ -16,6 +16,7 @@ export const command: Template = (ctx: TemplateContext) => {
   const help =
     cmd!.synopsis +
     eol3 +
+    (await tpl("custom", ctx)) +
     getArgumentsTable(cmd!.args, ctx) +
     eol +
     getOptionsTable(options, ctx) +

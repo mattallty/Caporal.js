@@ -158,7 +158,7 @@ export class Program extends EventEmitter {
    * Customize program help. Can be called multiple times to add more paragraphs and/or sections.
    *
    * @param text Help contents
-   * @param options
+   * @param options Display options
    */
   help(text: string, options: Partial<CustomizedHelpOpts> = {}): Program {
     customizeHelp(this, text, options)
@@ -439,25 +439,11 @@ export class Program extends EventEmitter {
   }
 
   /**
-   * Add a global option to the program.
-   *
-   */
-  // globalOption(descriptor: GlobalOptionDescriptor, action?: Action): Program {
-  //   const opt = createOption(
-  //     descriptor.synopsis,
-  //     descriptor.description,
-  //     descriptor.options,
-  //   )
-  //   addGlobalOption(opt, action)
-  //   return this
-  // }
-
-  /**
    * Discover commands from a specified path.
    *
    * Commands must be organized into files (one command per file) in a file tree like:
    *
-   * ```
+   * ```sh
    * └── commands
    *     ├── config
    *     │   ├── set.ts

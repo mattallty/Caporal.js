@@ -283,7 +283,7 @@ export class Command {
    * Customize command help. Can be called multiple times to add more paragraphs and/or sections.
    *
    * @param text Help contents
-   * @param options
+   * @param options Display options
    */
   help(text: string, options: Partial<CustomizedHelpOpts> = {}): Command {
     customizeHelp(this, text, options)

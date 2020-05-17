@@ -184,7 +184,7 @@ using [.discover()](../api/classes/caporal_program.program.md#discover).
 
 Commands must be organized into files (one command per file) in a file tree like:
 
-```
+```sh
 discover/commands
 ├── config
 │   ├── set.ts

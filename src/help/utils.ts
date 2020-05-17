@@ -26,9 +26,9 @@ export function buildTable(data: string[][], options = {}): string {
         paddingRight: 0,
       },
     },
-    // drawHorizontalLine: () => {
-    //   return false
-    // },
+    drawHorizontalLine: () => {
+      return false
+    },
     ...options,
   })
 }

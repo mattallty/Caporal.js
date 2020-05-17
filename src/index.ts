@@ -59,16 +59,16 @@ export { Program, Command }
 /**
  * @ignore
  */
-export {
-  /**
-   * @internal
-   */
-  CommandCreator,
-  /**
-   * @internal
-   */
-  CreateCommandParameters,
-} from "./types"
+// export {
+//   /**
+//    * @internal
+//    */
+//   CommandCreator,
+//   /**
+//    * @internal
+//    */
+//   CreateCommandParameters,
+// } from "./types"
 
 /**
  * @ignore

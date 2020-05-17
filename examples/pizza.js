@@ -4,9 +4,11 @@ const { program } = require("@caporal/core")
 program
   .version("1.0.0")
   // the "order" command
-  .help(`My Custom help !!`)
+  .help(`My Custom help !!`, { sectionName: "MY SECTION" })
   .command("order", "Order a pizza")
-  .help(`My Custom help about the order command !!`)
+  .help(`My Custom help about the order command !!\n2nd line`, {
+    sectionName: "EXAMPLES",
+  })
   .alias("give-it-to-me")
   // <kind> will be auto-magicaly autocompleted by providing the user with 3 choices
   .argument("<kind>", "Kind of pizza", ["margherita", "hawaiian", "fredo"])

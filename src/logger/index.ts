@@ -10,7 +10,6 @@ import replace from "lodash/replace"
 import { EOL } from "os"
 
 const caporalFormat = format.printf((data) => {
-  // console.dir(data)
   const { level, ...meta } = data
   let { message } = data
   let prefix = ""

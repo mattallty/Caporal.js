@@ -16,23 +16,16 @@ exports[`help getHelp() should display customized program help 1`] = `
 
     test-command                         Test command                                           
 
-
   GLOBAL OPTIONS
 
     -h, --help                           Display global help or command-related help.           
-
     -V, --version                        Display version.                                       
-
     --no-color                           Disable use of colors in output.                       
-
     -v, --verbose                        Verbose mode: will also output debug messages.         
-
     --quiet                              Quiet mode - only displays warn and error messages.    
-
     --silent                             Silent mode: does not output anything, giving no       
                                          indication of success or failure other than the exit   
                                          code.                                                  
-
 "
 `;
 
@@ -49,23 +42,16 @@ exports[`help getHelp() should display customized program help on multiple lines
 
     test-command                         Test command                                           
 
-
   GLOBAL OPTIONS
 
     -h, --help                           Display global help or command-related help.           
-
     -V, --version                        Display version.                                       
-
     --no-color                           Disable use of colors in output.                       
-
     -v, --verbose                        Verbose mode: will also output debug messages.         
-
     --quiet                              Quiet mode - only displays warn and error messages.    
-
     --silent                             Silent mode: does not output anything, giving no       
                                          indication of success or failure other than the exit   
                                          code.                                                  
-
 "
 `;
 
@@ -83,19 +69,13 @@ exports[`help getHelp() should display help for a basic program 1`] = `
   GLOBAL OPTIONS
 
     -h, --help                           Display global help or command-related help.           
-
     -V, --version                        Display version.                                       
-
     --no-color                           Disable use of colors in output.                       
-
     -v, --verbose                        Verbose mode: will also output debug messages.         
-
     --quiet                              Quiet mode - only displays warn and error messages.    
-
     --silent                             Silent mode: does not output anything, giving no       
                                          indication of success or failure other than the exit   
                                          code.                                                  
-
 "
 `;
 
@@ -112,23 +92,16 @@ exports[`help getHelp() should display help for a program having at least one co
 
     test-command                         Test command                                           
 
-
   GLOBAL OPTIONS
 
     -h, --help                           Display global help or command-related help.           
-
     -V, --version                        Display version.                                       
-
     --no-color                           Disable use of colors in output.                       
-
     -v, --verbose                        Verbose mode: will also output debug messages.         
-
     --quiet                              Quiet mode - only displays warn and error messages.    
-
     --silent                             Silent mode: does not output anything, giving no       
                                          indication of success or failure other than the exit   
                                          code.                                                  
-
 "
 `;
 
@@ -145,23 +118,16 @@ exports[`help getHelp() should display help for a program having at least one co
 
     test-command                         Test command                                           
 
-
   GLOBAL OPTIONS
 
     -h, --help                           Display global help or command-related help.           
-
     -V, --version                        Display version.                                       
-
     --no-color                           Disable use of colors in output.                       
-
     -v, --verbose                        Verbose mode: will also output debug messages.         
-
     --quiet                              Quiet mode - only displays warn and error messages.    
-
     --silent                             Silent mode: does not output anything, giving no       
                                          indication of success or failure other than the exit   
                                          code.                                                  
-
 "
 `;
 
@@ -178,23 +144,16 @@ exports[`help getHelp() should display help for a program having at least one co
 
     test-command                         Test command                                           
 
-
   GLOBAL OPTIONS
 
     -h, --help                           Display global help or command-related help.           
-
     -V, --version                        Display version.                                       
-
     --no-color                           Disable use of colors in output.                       
-
     -v, --verbose                        Verbose mode: will also output debug messages.         
-
     --quiet                              Quiet mode - only displays warn and error messages.    
-
     --silent                             Silent mode: does not output anything, giving no       
                                          indication of success or failure other than the exit   
                                          code.                                                  
-
 "
 `;
 
@@ -210,31 +169,22 @@ exports[`help getHelp() should display help for a program-command 1`] = `
   ARGUMENTS
 
     <foo>                                Mandarory foo arg                                      
-
     [other]                              Other args                                             
-
 
   OPTIONS
 
     -f, --file <file>                    Output file                                            
 
-
   GLOBAL OPTIONS
 
     -h, --help                           Display global help or command-related help.           
-
     -V, --version                        Display version.                                       
-
     --no-color                           Disable use of colors in output.                       
-
     -v, --verbose                        Verbose mode: will also output debug messages.         
-
     --quiet                              Quiet mode - only displays warn and error messages.    
-
     --silent                             Silent mode: does not output anything, giving no       
                                          indication of success or failure other than the exit   
                                          code.                                                  
-
 "
 `;
 
@@ -251,23 +201,16 @@ exports[`help getHelp() should display program description 1`] = `
 
     test-command                         Test command                                           
 
-
   GLOBAL OPTIONS
 
     -h, --help                           Display global help or command-related help.           
-
     -V, --version                        Display version.                                       
-
     --no-color                           Disable use of colors in output.                       
-
     -v, --verbose                        Verbose mode: will also output debug messages.         
-
     --quiet                              Quiet mode - only displays warn and error messages.    
-
     --silent                             Silent mode: does not output anything, giving no       
                                          indication of success or failure other than the exit   
                                          code.                                                  
-
 "
 `;
 
@@ -286,23 +229,16 @@ exports[`help getHelp() should handle required options 1`] = `
     -f, --file <file>                    Output file                                            
     required                                                                                    
 
-
   GLOBAL OPTIONS
 
     -h, --help                           Display global help or command-related help.           
-
     -V, --version                        Display version.                                       
-
     --no-color                           Disable use of colors in output.                       
-
     -v, --verbose                        Verbose mode: will also output debug messages.         
-
     --quiet                              Quiet mode - only displays warn and error messages.    
-
     --silent                             Silent mode: does not output anything, giving no       
                                          indication of success or failure other than the exit   
                                          code.                                                  
-
 "
 `;
 
@@ -320,29 +256,21 @@ exports[`help getHelp() should handle type hints 1`] = `
     <foo>                                Desc                                                   
                                          number                                                 
 
-
   OPTIONS
 
     -f, --file <file>                    Output file                                            
     required                             number                                                 
 
-
   GLOBAL OPTIONS
 
     -h, --help                           Display global help or command-related help.           
-
     -V, --version                        Display version.                                       
-
     --no-color                           Disable use of colors in output.                       
-
     -v, --verbose                        Verbose mode: will also output debug messages.         
-
     --quiet                              Quiet mode - only displays warn and error messages.    
-
     --silent                             Silent mode: does not output anything, giving no       
                                          indication of success or failure other than the exit   
                                          code.                                                  
-
 "
 `;
 
@@ -359,23 +287,16 @@ exports[`help getHelp() should work with a program without a specified name 1`] 
 
     test-command                         Test command                                           
 
-
   GLOBAL OPTIONS
 
     -h, --help                           Display global help or command-related help.           
-
     -V, --version                        Display version.                                       
-
     --no-color                           Disable use of colors in output.                       
-
     -v, --verbose                        Verbose mode: will also output debug messages.         
-
     --quiet                              Quiet mode - only displays warn and error messages.    
-
     --silent                             Silent mode: does not output anything, giving no       
                                          indication of success or failure other than the exit   
                                          code.                                                  
-
 "
 `;
 
@@ -392,23 +313,16 @@ exports[`help getHelp() should work with a program without a version 1`] = `
 
     test-command                         Test command                                           
 
-
   GLOBAL OPTIONS
 
     -h, --help                           Display global help or command-related help.           
-
     -V, --version                        Display version.                                       
-
     --no-color                           Disable use of colors in output.                       
-
     -v, --verbose                        Verbose mode: will also output debug messages.         
-
     --quiet                              Quiet mode - only displays warn and error messages.    
-
     --silent                             Silent mode: does not output anything, giving no       
                                          indication of success or failure other than the exit   
                                          code.                                                  
-
 "
 `;
 

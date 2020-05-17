@@ -13,10 +13,10 @@ For Caporal **1.x users**, be sure to checkout the [migration guide](./migration
 
 ## Install
 
-Simply add `caporal` as a dependency.
+Simply add `@caporal/core` as a dependency.
 
 ```bash
-$ npm install @caporal/core
+npm install @caporal/core
 ```
 
 ## Glossary
@@ -37,16 +37,20 @@ Let's build the simplest program with Caporal: _Hello world_.
 
 <<< @/examples/hello-world.js
 
-This program contains only one **action**. An action is a function executed when the program, or one of its commands, is run.
+This program contains only one **action**. An action is a function executed when the
+program, or one of its commands, is run.
 
 ### Arguments
 
-Let's get things more personal. by adding an **argument** `name` and making our program displaying `Hello, ${name}!` when run.
+Let's get things more personal. by adding an **argument** `name` and making our program
+displaying `Hello, ${name}!` when run.
 
 <<< @/examples/hello.js
 
 ::: tip Angled brackets vs square brackets
-angled brackets (e.g. `<item>`) indicate **required** input while square brackets (e.g. `[env]`) indicate **optional** input. In the above example the `<name>` argument is mandatory.
+angled brackets (e.g. `<item>`) indicate **required** input while square brackets
+(e.g. `[env]`) indicate **optional** input. In the above example the `<name>` argument
+is mandatory.
 :::
 
 Of course you can add **multiple arguments** just by chaining them:
@@ -57,24 +61,26 @@ Of course you can add **multiple arguments** just by chaining them:
 
 Let's add a way to modify the greeting by adding a `--greeting` option to our program.
 
-<<< @/examples/hello-with-option.js{5,6,7}
+<<< @/examples/hello-with-option.js
 
-Note that our `--greeting` option has a default value of `"Hello"`. We specified what we called a long option,
-prefixed with a double dash. We can also specify an alternative short notation like this:
+Note that our `--greeting` option has a default value of `Hello`. We specified what we
+called a long option, prefixed with a double dash. We can also specify an alternative
+short notation like this:
 
-<<< @/examples/hello-with-option-alt.js{6}
+<<< @/examples/hello-with-option-alt.js
 
 [Learn more about Options](/guide/options).
 
 ### Commands
 
-So far, our program only manage one possible action. Let's build something a little more complex to illustrate **commands**.
+So far, our program only manage one possible action. Let's build something a little more
+complex to illustrate **commands**.
 
-<<< @/examples/pizza-hit.ts{6,17}
+<<< @/examples/pizza-hit.ts
 
 Now our program contains 2 commands: `order` and `cancel`, which can be called this way:
 
-```sh
+```bash
 # order a margherita with pepperoni on top
 ./pizza-hit.js order margherita -e pepperoni
 
@@ -82,7 +88,10 @@ Now our program contains 2 commands: `order` and `cancel`, which can be called t
 ./pizza-hit.js cancel 12345
 ```
 
-Note that in the previous _Hello world_ examples, even if there was no explicit _Command_ specified, Caporal still created a unnamed _Command_ under the hood (called a _program-command_), directly attached to the program. [Learn more about Commands](/guide/commands).
+Note that in the previous _Hello world_ examples, even if there was no explicit _Command_
+specified, Caporal still created a unnamed _Command_ under the hood (called a
+_program-command_), directly attached to the program.
+[Learn more about Commands](/guide/commands).
 
 ### Help generation
 
@@ -105,7 +114,9 @@ Publishing your CLI is easy with npm. Simply specify the `bin` property inside y
 }
 ```
 
-- When installing your package globally, as in `npm install -g my-package`, npm will install `src/pizza-hit.js` as a global executable named `pizza-hit`.
-- When installing your package locally, as in `npm install my-package`, npm will install `src/pizza-hit.js` as an executable named `pizza-hit` inside `node_modules/.bin`.
+- When installing your package globally, as in `npm install -g my-package`, npm will
+  install `src/pizza-hit.js` as a global executable named `pizza-hit`.
+- When installing your package locally, as in `npm install my-package`, npm will install
+  `src/pizza-hit.js` as an executable named `pizza-hit` inside `node_modules/.bin`.
 
 Learn more about publishing your executable in the [npm documentation](https://docs.npmjs.com/files/package.json#bin).

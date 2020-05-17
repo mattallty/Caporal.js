@@ -29,8 +29,9 @@ export function customizeHelp(
   options: Partial<CustomizedHelpOpts>,
 ): void {
   const opts: CustomizedHelpOpts = {
+    sectionName: "",
+    colorize: true,
     ...options,
-    ...{ sectionName: "", colorize: true },
   }
   const data = customHelpMap.get(obj) || []
   data.push({ text, options: opts })
@@ -83,8 +84,8 @@ export function getContext(program: Program, command?: Command): TemplateContext
     globalOptions: getGlobalOptions(),
     table: buildTable,
     spaces,
-    indent(str: string) {
-      return spaces + replace(str.trim(), /\n/g, "\n" + spaces)
+    indent(str: string, sp = spaces) {
+      return sp + replace(str.trim(), /(\r\n|\r|\n)/g, "\n" + sp)
     },
     eol: "\n",
     eol2: "\n\n",
