@@ -1,46 +1,28 @@
 const path = require("path")
-const webpack = require("webpack")
+var nodeExternals = require("webpack-node-externals")
 
 module.exports = {
   mode: "production",
+  target: "node",
   devtool: "source-map",
   context: path.resolve(__dirname, "src"),
-  entry: "./web.ts",
+  entry: "./index.ts",
   module: {
     rules: [
       {
         test: /\.tsx?$/,
-        use: "ts-loader",
+        use: "babel-loader",
         exclude: /node_modules/,
       },
     ],
   },
+  externals: [nodeExternals()],
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
-    alias: {
-      fs: "memfs",
-    },
   },
   output: {
-    filename: "core.js",
-    path: path.resolve(__dirname, "docs/.vuepress/public/assets/js/@caporal"),
-    library: "@caporal/core",
-    libraryTarget: "umd",
-    umdNamedDefine: true,
+    filename: "index.js",
+    libraryTarget: "commonjs2",
+    path: path.resolve(__dirname, "dist"),
   },
-  node: {
-    path: true,
-  },
-  plugins: [
-    new webpack.DefinePlugin({
-      "process.version": JSON.stringify(process.version),
-    }),
-    new webpack.NormalModuleReplacementPlugin(
-      /src\/autocomplete\/index\.ts/,
-      path.resolve(__dirname, "src/utils/web/autocomplete.ts"),
-    ),
-    new webpack.ProvidePlugin({
-      process: path.resolve(__dirname, "src/utils/web/process"),
-    }),
-  ],
 }

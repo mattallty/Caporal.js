@@ -16,7 +16,7 @@ export const on = () => {}
 export const once = () => {}
 export const exit = function (code = 0) {
   if (code > 0) {
-    return console.error(
+    return console.debug(
       `[playground process exiting with code ${code} - usually a fatal error]`,
     )
   }
