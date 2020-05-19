@@ -38,11 +38,18 @@
  * ```
  *
  * @packageDocumentation
- * @module caporal
+ * @module @caporal/core
  */
 import { Program } from "./program"
-import chalk from "chalk"
-import { Command } from "./command"
+
+/**
+ * @ignore
+ */
+export { default as chalk } from "chalk"
+/**
+ * @ignore
+ */
+export { parseArgv, parseLine } from "./parser"
 
 /**
  * @ignore
@@ -54,23 +61,7 @@ export const program = new Program()
  */
 export default program
 
-export { Program, Command }
-
 /**
  * @ignore
  */
-// export {
-//   /**
-//    * @internal
-//    */
-//   CommandCreator,
-//   /**
-//    * @internal
-//    */
-//   CreateCommandParameters,
-// } from "./types"
-
-/**
- * @ignore
- */
-export { chalk }
+export { Program }
