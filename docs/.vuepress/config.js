@@ -27,6 +27,7 @@ apiSidebar = apiSidebar.map((section) => {
       section.children,
       (c) =>
         c.startsWith("modules/") &&
+        !c.startsWith("modules/parser") &&
         !c.startsWith("modules/caporal_types") &&
         !c.startsWith("modules/caporal_help") &&
         !c.startsWith("modules/caporal_command") &&

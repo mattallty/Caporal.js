@@ -1,26 +1,7 @@
 /**
- * This is the command line parser internaly used by Caporal.
- *
- * ::: tip No need to use this!
- * Usually, **you won't need to use the parser** directly, but if you
- * just want to parse some args without all capabilities brought
- * by Caporal, feel free to play with it.
- * :::
- *
- * ## Usage
- *
- * ```ts
- * import { parseArgv } from "caporal/parser"
- *
- * const {args, options} = parseArgv({
- *  // ... options
- * })
- * ```
- *
  * @packageDocumentation
- * @module caporal/parser
+ * @module parser
  */
-
 import invert from "lodash/invert"
 import findIndex from "lodash/findIndex"
 import type {

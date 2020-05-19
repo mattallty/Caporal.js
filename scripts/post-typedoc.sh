@@ -8,11 +8,28 @@ else
 fi
 
 
-# echo -e "---\nsidebarDepth: 2\n---\n\n" | cat - ./docs/api/classes/caporal_program.program.md | tee ./docs/api/classes/caporal_program.program.md > /dev/null
-# echo -e "---\nsidebarDepth: 2\n---\n\n" | cat - ./docs/api/classes/caporal_command.command.md | tee ./docs/api/classes/caporal_command.command.md > /dev/null
+ex ./docs/api/classes/caporal_program.program.md  <<EOF
+1 insert
+---
+sidebarDepth: 2
+---
+
+.
+xit
+EOF
+
+ex ./docs/api/classes/caporal_command.command.md  <<EOF
+1 insert
+---
+sidebarDepth: 2
+---
+
+.
+xit
+EOF
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  sed -i '' -e '/## References/,$d' ./docs/api/modules/caporal.md
+  sed -i '' -e '/## References/,$d' ./docs/api/modules/_caporal_core.md
 else
-  sed -i -e '/## References/,$d' ./docs/api/modules/caporal.md
+  sed -i -e '/## References/,$d' ./docs/api/modules/_caporal_core.md
 fi  

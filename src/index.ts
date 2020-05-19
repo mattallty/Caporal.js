@@ -19,6 +19,29 @@
  * ```
  *
  *
+ * ## parseArgv()
+ *
+ *  This is the command line parser internaly used by Caporal.
+ *
+ * ::: tip Advanced usage
+ * Usually, **you won't need to use the parser** directly, but if you
+ * just want to parse some args without all capabilities brought
+ * by Caporal, feel free to play with it.
+ * :::
+ *
+ * **Usage**
+ *
+ * ```ts
+ * import { parseArgv } from "@caporal/core"
+ *
+ * const {args, options} = parseArgv({
+ *  // ... options
+ * })
+ * ```
+ *
+ * Checkout `parseArgv()` [documentation here](/api/modules/parser.md).
+ *
+ *
  * ## chalk
  *
  * `chalk` npm module re-export
@@ -36,6 +59,7 @@
  *  })
  * [...]
  * ```
+ *
  *
  * @packageDocumentation
  * @module @caporal/core
