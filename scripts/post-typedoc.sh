@@ -30,6 +30,10 @@ EOF
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   sed -i '' -e '/## References/,$d' ./docs/api/modules/_caporal_core.md
+  sed -i '' -e '/^# Caporal/d' ./docs/api/README.md
 else
   sed -i -e '/## References/,$d' ./docs/api/modules/_caporal_core.md
+  sed -i -e '/^# Caporal/d' ./docs/api/README.md
 fi  
+
+# Caporal -
