@@ -17,6 +17,8 @@ const showInterfaces = [
   "interfaces/caporal_types.createoptionprogramopts",
   "interfaces/caporal_types.createoptioncommandopts",
   "interfaces/caporal_types.parseroptions",
+  "interfaces/caporal_types.parsedargumentsobject",
+  "interfaces/caporal_types.parsedoptions",
 ]
 
 apiSidebar = filter(apiSidebar, (section) => section.title !== "Enums")
