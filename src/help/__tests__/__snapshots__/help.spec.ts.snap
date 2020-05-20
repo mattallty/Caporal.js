@@ -1,0 +1,334 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`help getHelp() should display customized program help 1`] = `
+"
+  test-prog 0.0.0-development — Description test
+
+  USAGE 
+  
+    ▸ test-prog <command> [ARGUMENTS...] [OPTIONS...]
+
+
+  My custom help
+
+
+  COMMANDS — Type 'test-prog help <command>' to get some help about a command
+
+    test-command                         Test command                                           
+
+  GLOBAL OPTIONS
+
+    -h, --help                           Display global help or command-related help.           
+    -V, --version                        Display version.                                       
+    --no-color                           Disable use of colors in output.                       
+    -v, --verbose                        Verbose mode: will also output debug messages.         
+    --quiet                              Quiet mode - only displays warn and error messages.    
+    --silent                             Silent mode: does not output anything, giving no       
+                                         indication of success or failure other than the exit   
+                                         code.                                                  
+"
+`;
+
+exports[`help getHelp() should display customized program help on multiple lines 1`] = `
+"
+  test-prog 0.0.0-development — Description test
+
+  USAGE 
+  
+    ▸ test-prog <command> [ARGUMENTS...] [OPTIONS...]
+
+
+  COMMANDS — Type 'test-prog help <command>' to get some help about a command
+
+    test-command                         Test command                                           
+
+  GLOBAL OPTIONS
+
+    -h, --help                           Display global help or command-related help.           
+    -V, --version                        Display version.                                       
+    --no-color                           Disable use of colors in output.                       
+    -v, --verbose                        Verbose mode: will also output debug messages.         
+    --quiet                              Quiet mode - only displays warn and error messages.    
+    --silent                             Silent mode: does not output anything, giving no       
+                                         indication of success or failure other than the exit   
+                                         code.                                                  
+"
+`;
+
+exports[`help getHelp() should display help for a basic program 1`] = `
+"
+  test-prog 0.0.0-development
+
+  USAGE 
+  
+    ▸ test-prog
+
+
+
+
+  GLOBAL OPTIONS
+
+    -h, --help                           Display global help or command-related help.           
+    -V, --version                        Display version.                                       
+    --no-color                           Disable use of colors in output.                       
+    -v, --verbose                        Verbose mode: will also output debug messages.         
+    --quiet                              Quiet mode - only displays warn and error messages.    
+    --silent                             Silent mode: does not output anything, giving no       
+                                         indication of success or failure other than the exit   
+                                         code.                                                  
+"
+`;
+
+exports[`help getHelp() should display help for a program having at least one command (with args & options) 1`] = `
+"
+  test-prog 0.0.0-development
+
+  USAGE 
+  
+    ▸ test-prog <command> [ARGUMENTS...] [OPTIONS...]
+
+
+  COMMANDS — Type 'test-prog help <command>' to get some help about a command
+
+    test-command                         Test command                                           
+
+  GLOBAL OPTIONS
+
+    -h, --help                           Display global help or command-related help.           
+    -V, --version                        Display version.                                       
+    --no-color                           Disable use of colors in output.                       
+    -v, --verbose                        Verbose mode: will also output debug messages.         
+    --quiet                              Quiet mode - only displays warn and error messages.    
+    --silent                             Silent mode: does not output anything, giving no       
+                                         indication of success or failure other than the exit   
+                                         code.                                                  
+"
+`;
+
+exports[`help getHelp() should display help for a program having at least one command (with args only) 1`] = `
+"
+  test-prog 0.0.0-development
+
+  USAGE 
+  
+    ▸ test-prog <command> [ARGUMENTS...] [OPTIONS...]
+
+
+  COMMANDS — Type 'test-prog help <command>' to get some help about a command
+
+    test-command                         Test command                                           
+
+  GLOBAL OPTIONS
+
+    -h, --help                           Display global help or command-related help.           
+    -V, --version                        Display version.                                       
+    --no-color                           Disable use of colors in output.                       
+    -v, --verbose                        Verbose mode: will also output debug messages.         
+    --quiet                              Quiet mode - only displays warn and error messages.    
+    --silent                             Silent mode: does not output anything, giving no       
+                                         indication of success or failure other than the exit   
+                                         code.                                                  
+"
+`;
+
+exports[`help getHelp() should display help for a program having at least one command (with options only) 1`] = `
+"
+  test-prog 0.0.0-development
+
+  USAGE 
+  
+    ▸ test-prog <command> [ARGUMENTS...] [OPTIONS...]
+
+
+  COMMANDS — Type 'test-prog help <command>' to get some help about a command
+
+    test-command                         Test command                                           
+
+  GLOBAL OPTIONS
+
+    -h, --help                           Display global help or command-related help.           
+    -V, --version                        Display version.                                       
+    --no-color                           Disable use of colors in output.                       
+    -v, --verbose                        Verbose mode: will also output debug messages.         
+    --quiet                              Quiet mode - only displays warn and error messages.    
+    --silent                             Silent mode: does not output anything, giving no       
+                                         indication of success or failure other than the exit   
+                                         code.                                                  
+"
+`;
+
+exports[`help getHelp() should display help for a program-command 1`] = `
+"
+  test-prog 0.0.0-development
+
+  USAGE 
+  
+    ▸ test-prog <foo> [other] [OPTIONS...]
+
+
+  ARGUMENTS
+
+    <foo>                                Mandarory foo arg                                      
+    [other]                              Other args                                             
+
+  OPTIONS
+
+    -f, --file <file>                    Output file                                            
+
+  GLOBAL OPTIONS
+
+    -h, --help                           Display global help or command-related help.           
+    -V, --version                        Display version.                                       
+    --no-color                           Disable use of colors in output.                       
+    -v, --verbose                        Verbose mode: will also output debug messages.         
+    --quiet                              Quiet mode - only displays warn and error messages.    
+    --silent                             Silent mode: does not output anything, giving no       
+                                         indication of success or failure other than the exit   
+                                         code.                                                  
+"
+`;
+
+exports[`help getHelp() should display program description 1`] = `
+"
+  test-prog 0.0.0-development — Description test
+
+  USAGE 
+  
+    ▸ test-prog <command> [ARGUMENTS...] [OPTIONS...]
+
+
+  COMMANDS — Type 'test-prog help <command>' to get some help about a command
+
+    test-command                         Test command                                           
+
+  GLOBAL OPTIONS
+
+    -h, --help                           Display global help or command-related help.           
+    -V, --version                        Display version.                                       
+    --no-color                           Disable use of colors in output.                       
+    -v, --verbose                        Verbose mode: will also output debug messages.         
+    --quiet                              Quiet mode - only displays warn and error messages.    
+    --silent                             Silent mode: does not output anything, giving no       
+                                         indication of success or failure other than the exit   
+                                         code.                                                  
+"
+`;
+
+exports[`help getHelp() should handle required options 1`] = `
+"
+  test-prog 0.0.0-development
+
+  USAGE — test-command
+  
+    ▸ test-prog test-command  <OPTIONS...>
+
+
+
+  OPTIONS
+
+    -f, --file <file>                    Output file                                            
+    required                                                                                    
+
+  GLOBAL OPTIONS
+
+    -h, --help                           Display global help or command-related help.           
+    -V, --version                        Display version.                                       
+    --no-color                           Disable use of colors in output.                       
+    -v, --verbose                        Verbose mode: will also output debug messages.         
+    --quiet                              Quiet mode - only displays warn and error messages.    
+    --silent                             Silent mode: does not output anything, giving no       
+                                         indication of success or failure other than the exit   
+                                         code.                                                  
+"
+`;
+
+exports[`help getHelp() should handle type hints 1`] = `
+"
+  test-prog 0.0.0-development
+
+  USAGE — test-command
+  
+    ▸ test-prog test-command <foo> <OPTIONS...>
+
+
+  ARGUMENTS
+
+    <foo>                                Desc                                                   
+                                         number                                                 
+
+  OPTIONS
+
+    -f, --file <file>                    Output file                                            
+    required                             number                                                 
+
+  GLOBAL OPTIONS
+
+    -h, --help                           Display global help or command-related help.           
+    -V, --version                        Display version.                                       
+    --no-color                           Disable use of colors in output.                       
+    -v, --verbose                        Verbose mode: will also output debug messages.         
+    --quiet                              Quiet mode - only displays warn and error messages.    
+    --silent                             Silent mode: does not output anything, giving no       
+                                         indication of success or failure other than the exit   
+                                         code.                                                  
+"
+`;
+
+exports[`help getHelp() should work with a program without a specified name 1`] = `
+"
+  test-prog 0.0.0-development
+
+  USAGE 
+  
+    ▸ test-prog <command> [ARGUMENTS...] [OPTIONS...]
+
+
+  COMMANDS — Type 'test-prog help <command>' to get some help about a command
+
+    test-command                         Test command                                           
+
+  GLOBAL OPTIONS
+
+    -h, --help                           Display global help or command-related help.           
+    -V, --version                        Display version.                                       
+    --no-color                           Disable use of colors in output.                       
+    -v, --verbose                        Verbose mode: will also output debug messages.         
+    --quiet                              Quiet mode - only displays warn and error messages.    
+    --silent                             Silent mode: does not output anything, giving no       
+                                         indication of success or failure other than the exit   
+                                         code.                                                  
+"
+`;
+
+exports[`help getHelp() should work with a program without a version 1`] = `
+"
+  test-prog 
+
+  USAGE 
+  
+    ▸ test-prog <command> [ARGUMENTS...] [OPTIONS...]
+
+
+  COMMANDS — Type 'test-prog help <command>' to get some help about a command
+
+    test-command                         Test command                                           
+
+  GLOBAL OPTIONS
+
+    -h, --help                           Display global help or command-related help.           
+    -V, --version                        Display version.                                       
+    --no-color                           Disable use of colors in output.                       
+    -v, --verbose                        Verbose mode: will also output debug messages.         
+    --quiet                              Quiet mode - only displays warn and error messages.    
+    --silent                             Silent mode: does not output anything, giving no       
+                                         indication of success or failure other than the exit   
+                                         code.                                                  
+"
+`;
+
+exports[`help tpl() should compile template with given context 1`] = `
+"
+  test-prog 0.0.0-development
+
+"
+`;
