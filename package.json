@@ -134,6 +134,9 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "husky": {
     "hooks": {
       "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
