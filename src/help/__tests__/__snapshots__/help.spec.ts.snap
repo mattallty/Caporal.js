@@ -2,7 +2,7 @@
 
 exports[`help getHelp() should display customized program help 1`] = `
 "
-  test-prog 2.0.0-beta.2 — Description test
+  test-prog 2.0.0-beta.3 — Description test
 
   USAGE 
   
@@ -31,7 +31,7 @@ exports[`help getHelp() should display customized program help 1`] = `
 
 exports[`help getHelp() should display customized program help on multiple lines 1`] = `
 "
-  test-prog 2.0.0-beta.2 — Description test
+  test-prog 2.0.0-beta.3 — Description test
 
   USAGE 
   
@@ -57,7 +57,7 @@ exports[`help getHelp() should display customized program help on multiple lines
 
 exports[`help getHelp() should display help for a basic program 1`] = `
 "
-  test-prog 2.0.0-beta.2
+  test-prog 2.0.0-beta.3
 
   USAGE 
   
@@ -81,7 +81,7 @@ exports[`help getHelp() should display help for a basic program 1`] = `
 
 exports[`help getHelp() should display help for a program having at least one command (with args & options) 1`] = `
 "
-  test-prog 2.0.0-beta.2
+  test-prog 2.0.0-beta.3
 
   USAGE 
   
@@ -107,7 +107,7 @@ exports[`help getHelp() should display help for a program having at least one co
 
 exports[`help getHelp() should display help for a program having at least one command (with args only) 1`] = `
 "
-  test-prog 2.0.0-beta.2
+  test-prog 2.0.0-beta.3
 
   USAGE 
   
@@ -133,7 +133,7 @@ exports[`help getHelp() should display help for a program having at least one co
 
 exports[`help getHelp() should display help for a program having at least one command (with options only) 1`] = `
 "
-  test-prog 2.0.0-beta.2
+  test-prog 2.0.0-beta.3
 
   USAGE 
   
@@ -159,7 +159,7 @@ exports[`help getHelp() should display help for a program having at least one co
 
 exports[`help getHelp() should display help for a program-command 1`] = `
 "
-  test-prog 2.0.0-beta.2
+  test-prog 2.0.0-beta.3
 
   USAGE 
   
@@ -190,7 +190,7 @@ exports[`help getHelp() should display help for a program-command 1`] = `
 
 exports[`help getHelp() should display program description 1`] = `
 "
-  test-prog 2.0.0-beta.2 — Description test
+  test-prog 2.0.0-beta.3 — Description test
 
   USAGE 
   
@@ -216,7 +216,7 @@ exports[`help getHelp() should display program description 1`] = `
 
 exports[`help getHelp() should handle required options 1`] = `
 "
-  test-prog 2.0.0-beta.2
+  test-prog 2.0.0-beta.3
 
   USAGE — test-command
   
@@ -244,7 +244,7 @@ exports[`help getHelp() should handle required options 1`] = `
 
 exports[`help getHelp() should handle type hints 1`] = `
 "
-  test-prog 2.0.0-beta.2
+  test-prog 2.0.0-beta.3
 
   USAGE — test-command
   
@@ -276,7 +276,7 @@ exports[`help getHelp() should handle type hints 1`] = `
 
 exports[`help getHelp() should work with a program without a specified name 1`] = `
 "
-  test-prog 2.0.0-beta.2
+  test-prog 2.0.0-beta.3
 
   USAGE 
   
@@ -328,7 +328,7 @@ exports[`help getHelp() should work with a program without a version 1`] = `
 
 exports[`help tpl() should compile template with given context 1`] = `
 "
-  test-prog 2.0.0-beta.2
+  test-prog 2.0.0-beta.3
 
 "
 `;
