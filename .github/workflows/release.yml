@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
       - name: Setup Node.js
         uses: actions/setup-node@v1
         with:
@@ -50,7 +50,52 @@ jobs:
         run: npm run test:dist
 
       - name: Release
+        id: release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npx semantic-release
+
+      - name: Deploy website
+        if: ${{ steps.release.outputs.released != "0" }}
+        uses: amondnet/now-deployment@v2
+        id: now-deploy
+        with:
+          github-comment: false
+          zeit-token: ${{ secrets.ZEIT_TOKEN }}
+          now-args: "-A now.json"
+          now-org-id: ${{ secrets.ZEIT_ORG_ID}}
+          now-project-id: ${{ secrets.ZEIT_PROJECT_ID}}
+
+      - name: Alias
+        if: ${{ steps.release.outputs.released != "0" }}
+        id: caporal-preview
+        env:
+          NOW_ORG_ID: ${{ secrets.ZEIT_ORG_ID}}
+          NOW_PROJECT_ID: ${{ secrets.ZEIT_PROJECT_ID}}
+        run: |
+          clean_url=$(echo "${{ steps.now-deploy.outputs.preview-url }}" | cut -c9-)
+          clean_ref=$(basename "${{ github.head_ref }}")
+          npm run now -- alias -A now.json --token ${{ secrets.ZEIT_TOKEN }} set $clean_url ${clean_ref}.caporal.io
+          echo "::set-output name=url_ref::https://${clean_ref}.caporal.io"
+
+       - uses: chrnorm/deployment-action@releases/v1
+        name: Create GitHub deployment for branch
+        id: branch-deployment
+        if: ${{ success() && steps.release.outputs.released != "0" && steps.caporal-preview.outputs.url_ref != "https://master.caporal.io" }}
+        with:
+          initial_status: success
+          token: ${{ secrets.GITHUB_TOKEN }}
+          target_url: ${{ steps.caporal-preview.outputs.url_ref }}
+          environment: Production
+
+      - name: comment PR
+        uses: unsplash/comment-on-pr@master
+        if: ${{ steps.release.outputs.released != "0" }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          msg: |
+            :rocket: Caporal website updated: ${{ steps.caporal-preview.outputs.url_ref }}
+            You can also checkout the [coverage report here](${{ steps.caporal-preview.outputs.url_ref }}/coverage/lcov-report/).
+          check_for_duplicate_msg: true

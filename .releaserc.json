@@ -24,6 +24,13 @@
       }
     ],
     [
+      "@semantic-release/exec",
+      {
+        "success": "echo \"::set-output name=released::${nextRelease.version}\"",
+        "fail": "echo \"::set-output name=released::0\""
+      }
+    ],
+    [
       "@semantic-release/changelog",
       {
         "changelogTitle": "# Changelog\n\nAll notable changes to this project will be documented in this file. See\n[Conventional Commits](https://conventionalcommits.org) for commit guidelines."

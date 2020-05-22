@@ -73,7 +73,7 @@ jobs:
         with:
           github-comment: false
           zeit-token: ${{ secrets.ZEIT_TOKEN }}
-          now-args: ""
+          now-args: "-A now.preview.json"
           now-org-id: ${{ secrets.ZEIT_ORG_ID}}
           now-project-id: ${{ secrets.ZEIT_PROJECT_ID}}
 
@@ -123,5 +123,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          msg: ":rocket: Caporal website preview available at: ${{ steps.caporal-preview.outputs.url_ref }}"
+          msg: |
+            :rocket: Caporal website preview available at: ${{ steps.caporal-preview.outputs.url_ref }}
+            You can also checkout the [coverage report here](${{ steps.caporal-preview.outputs.url_ref }}/coverage/lcov-report/).
           check_for_duplicate_msg: true
