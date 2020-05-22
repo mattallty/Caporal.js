@@ -49,15 +49,15 @@ jobs:
       - name: Dist Test
         run: npm run test:dist
 
-      - name: Release
-        id: release
+      - name: Semantic Release
+        uses: cycjimmy/semantic-release-action@v2
+        id: semantic
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npx semantic-release
 
       - name: Deploy website
-        if: ${{ steps.release.outputs.released != '0' }}
+        if: ${{ steps.semantic.outputs.new_release_published == 'true' }}
         uses: amondnet/now-deployment@v2
         id: now-deploy
         with:
@@ -68,7 +68,7 @@ jobs:
           now-project-id: ${{ secrets.ZEIT_PROJECT_ID}}
 
       - name: Alias
-        if: ${{ steps.release.outputs.released != '0' }}
+        if: ${{ steps.semantic.outputs.new_release_published == 'true' }}
         id: caporal-preview
         env:
           NOW_ORG_ID: ${{ secrets.ZEIT_ORG_ID}}
@@ -82,7 +82,7 @@ jobs:
       - uses: chrnorm/deployment-action@releases/v1
         name: Create GitHub deployment for branch
         id: branch-deployment
-        if: ${{ success() && steps.release.outputs.released != '0' && steps.caporal-preview.outputs.url_ref != 'https://master.caporal.io' }}
+        if: ${{ steps.semantic.outputs.new_release_published == 'true' && steps.caporal-preview.outputs.url_ref != 'https://master.caporal.io' }}
         with:
           initial_status: success
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -91,7 +91,7 @@ jobs:
 
       - name: comment PR
         uses: unsplash/comment-on-pr@master
-        if: ${{ steps.release.outputs.released != '0' }}
+        if: ${{ steps.semantic.outputs.new_release_published == 'true' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
