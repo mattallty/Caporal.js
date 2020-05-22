@@ -57,7 +57,7 @@ jobs:
         run: npx semantic-release
 
       - name: Deploy website
-        if: ${{ steps.release.outputs.released != "0" }}
+        if: ${{ steps.release.outputs.released != '0' }}
         uses: amondnet/now-deployment@v2
         id: now-deploy
         with:
