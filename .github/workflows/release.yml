@@ -64,7 +64,7 @@ jobs:
         with:
           github-comment: false
           zeit-token: ${{ secrets.ZEIT_TOKEN }}
-          now-args: "-A now.json"
+          now-args: "-A now.json --prod"
           now-org-id: ${{ secrets.ZEIT_ORG_ID}}
           now-project-id: ${{ secrets.ZEIT_PROJECT_ID}}
 
@@ -76,14 +76,17 @@ jobs:
           NOW_PROJECT_ID: ${{ secrets.ZEIT_PROJECT_ID}}
         run: |
           clean_url=$(echo "${{ steps.now-deploy.outputs.preview-url }}" | cut -c9-)
-          clean_ref=$(basename "${{ github.head_ref }}")
+          clean_ref=$(basename "${{ github.ref }}")
+          if [ "$clean_ref" == "master" ]; then
+            clean_ref="www"
+          fi
           npm run now -- alias -A now.json --token ${{ secrets.ZEIT_TOKEN }} set $clean_url ${clean_ref}.caporal.io
           echo "::set-output name=url_ref::https://${clean_ref}.caporal.io"
 
       - uses: chrnorm/deployment-action@releases/v1
         name: Create GitHub deployment for branch
         id: branch-deployment
-        if: ${{ steps.semantic.outputs.new_release_published == 'true' && steps.caporal-preview.outputs.url_ref != 'https://master.caporal.io' }}
+        if: ${{ steps.semantic.outputs.new_release_published == 'true' }}
         with:
           initial_status: success
           token: ${{ secrets.GITHUB_TOKEN }}
