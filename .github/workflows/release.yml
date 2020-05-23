@@ -76,6 +76,7 @@ jobs:
           NOW_PROJECT_ID: ${{ secrets.ZEIT_PROJECT_ID}}
         run: |
           clean_url=$(echo "${{ steps.now-deploy.outputs.preview-url }}" | cut -c9-)
+          echo -n "Ref: ${{ github.ref }}"
           clean_ref=$(basename "${{ github.ref }}")
           if [ "$clean_ref" == "master" ]; then
             clean_ref="www"
