@@ -68,6 +68,9 @@ jobs:
           now-org-id: ${{ secrets.ZEIT_ORG_ID}}
           now-project-id: ${{ secrets.ZEIT_PROJECT_ID}}
 
+      - name: Inject slug/short variables
+        uses: rlespinasse/github-slug-action@v2.x
+
       - name: Alias
         if: ${{ steps.semantic.outputs.new_release_published == 'true' }}
         id: caporal-preview
@@ -76,9 +79,9 @@ jobs:
           NOW_PROJECT_ID: ${{ secrets.ZEIT_PROJECT_ID}}
         run: |
           clean_url=$(echo "${{ steps.now-deploy.outputs.preview-url }}" | cut -c9-)
-          echo -n "Ref: ${{ github.ref }}"
-          clean_ref=$(basename "${{ github.ref }}")
+          clean_ref="${{ env.GITHUB_REF_SLUG_URL }}"
           if [ "$clean_ref" == "master" ]; then
+            npm run now -- alias -A now.json --token ${{ secrets.ZEIT_TOKEN }} set $clean_url caporal.io
             clean_ref="www"
           fi
           npm run now -- alias -A now.json --token ${{ secrets.ZEIT_TOKEN }} set $clean_url ${clean_ref}.caporal.io
