@@ -96,14 +96,3 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           target_url: ${{ steps.caporal-preview.outputs.url_ref }}
           environment: Production
-
-      - name: comment PR
-        uses: unsplash/comment-on-pr@master
-        if: ${{ steps.semantic.outputs.new_release_published == 'true' }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          msg: |
-            :rocket: Caporal website updated: ${{ steps.caporal-preview.outputs.url_ref }}
-            You can also checkout the [coverage report here](${{ steps.caporal-preview.outputs.url_ref }}/coverage/lcov-report/).
-          check_for_duplicate_msg: true
