@@ -1,7 +1,6 @@
 {
   "version": 2,
   "public": false,
-  "alias": "caporal.run",
   "github": {
     "enabled": false
   }
