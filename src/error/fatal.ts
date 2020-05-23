@@ -9,7 +9,7 @@ import type { BaseError } from "./base"
 /**
  * @param err - Error object
  */
-export function fatalError(error: BaseError): never | undefined {
+export function fatalError(error: BaseError): void {
   if (logger.level == "debug") {
     logger.log({
       level: "error",
@@ -21,6 +21,5 @@ export function fatalError(error: BaseError): never | undefined {
   } else {
     logger.error(error.message)
   }
-
-  process.exit(1)
+  process.exitCode = 1
 }

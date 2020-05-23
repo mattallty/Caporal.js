@@ -1,10 +1,8 @@
 import { fatalError } from "../fatal"
-import * as mockProcess from "jest-mock-process"
 import { BaseError } from "../base"
 import { logger } from "../../logger"
 
 describe("fatalError()", () => {
-  const exit = mockProcess.mockProcessExit()
   const loggerLogSpy = jest.spyOn(logger, "log")
   const loggerErrSpy = jest.spyOn(logger, "error")
 
@@ -15,7 +13,7 @@ describe("fatalError()", () => {
   it("should always call process.exit(1)", () => {
     const err = new BaseError("my error")
     fatalError(err)
-    expect(exit).toHaveBeenCalledWith(1)
+    expect(process.exitCode).toEqual(1)
   })
 
   it("should always logger.error in normal situation", () => {
