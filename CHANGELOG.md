@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.10](https://github.com/mattallty/Caporal.js/compare/v2.0.0-beta.9...v2.0.0-beta.10) (2020-05-23)
+
+
+### Bug Fixes
+
+* use process.exitCode instead of process.exit(1) 19f862c
+
 # [2.0.0-beta.9](https://github.com/mattallty/Caporal.js/compare/v2.0.0-beta.8...v2.0.0-beta.9) (2020-05-23)
 
 # [2.0.0-beta.8](https://github.com/mattallty/Caporal.js/compare/v2.0.0-beta.7...v2.0.0-beta.8) (2020-05-23)
