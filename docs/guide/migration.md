@@ -17,11 +17,11 @@ Just use the `@caporal/core` package instead of `caporal`:
 
 If using require, please use one of the following ways:
 
-````js
-const { program } = require("@caporal/core");
+```js
+const { program } = require("@caporal/core")
 
 // OR
-const program = require("@caporal/core").default;
+const program = require("@caporal/core").default
 ```
 
 ## Breaking changes
@@ -33,7 +33,7 @@ All optional properties are now part of a third parameter object.
 ```diff
 - .option(synopsis, description, [validator, [defaultValue, [required]])
 + .option(synopsis, description, { validator, default, required })
-````
+```
 
 ### `.argument()` signature change
 
