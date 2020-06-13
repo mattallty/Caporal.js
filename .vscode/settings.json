@@ -1,0 +1,32 @@
+{
+  // Force vscode to use prettier version of node_modules
+  "prettier.prettierPath": "./node_modules/prettier",
+  "tslint.enable": false,
+  "javascript.validate.enable": false,
+  "eslint.enable": true,
+  "eslint.format.enable": true,
+  "eslint.alwaysShowStatus": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "eslint.validate": ["javascript", "typescript"],
+  "editor.formatOnSave": true,
+  "[javascript]": {
+    "editor.formatOnSave": true
+  },
+  "[typescript]": {
+    "editor.formatOnSave": true
+  },
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "spellright.language": [
+    "en"
+  ],
+  "spellright.documentTypes": [
+    "latex",
+    "plaintext"
+  ],
+  "spellright.recheckOnSave": false,
+  "jest.pathToJest": "npm test --",
+  "jest.restartJestOnSnapshotUpdate": true,
+  "jest.enableInlineErrorMessages": true
+}

@@ -1,0 +1,15 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "node": 10
+        }
+      }
+    ],
+    "@babel/preset-typescript"
+  ],
+  "plugins": ["@babel/plugin-proposal-class-properties"],
+  "ignore": ["**/__tests__", "**/__fixtures__", "**/__mocks__", "**/*.spec.{ts,js}"]
+}

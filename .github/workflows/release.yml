@@ -1,0 +1,98 @@
+name: Release
+on:
+  push:
+    branches:
+      - master
+      - beta
+      - alpha
+      - next
+      - next-major
+      - 1.x
+      - 1.4.x
+      - 2.x
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Get npm cache directory
+        id: npm-cache
+        run: |
+          echo "::set-output name=dir::$(npm config get cache)"
+
+      # See https://github.com/actions/cache/blob/master/examples.md#node---npm
+      - name: Cache node modules
+        uses: actions/cache@v1
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ${{ steps.npm-cache.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Test
+        run: npm run test
+
+      - name: Dist Test
+        run: npm run test:dist
+
+      - name: Semantic Release
+        uses: cycjimmy/semantic-release-action@v2
+        id: semantic
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Deploy website
+        if: ${{ steps.semantic.outputs.new_release_published == 'true' }}
+        uses: amondnet/now-deployment@v2
+        id: now-deploy
+        with:
+          github-comment: false
+          zeit-token: ${{ secrets.ZEIT_TOKEN }}
+          now-args: "-A now.json --prod"
+          now-org-id: ${{ secrets.ZEIT_ORG_ID}}
+          now-project-id: ${{ secrets.ZEIT_PROJECT_ID}}
+
+      - name: Inject slug/short variables
+        uses: rlespinasse/github-slug-action@v2.x
+
+      - name: Alias
+        if: ${{ steps.semantic.outputs.new_release_published == 'true' }}
+        id: caporal-preview
+        env:
+          NOW_ORG_ID: ${{ secrets.ZEIT_ORG_ID}}
+          NOW_PROJECT_ID: ${{ secrets.ZEIT_PROJECT_ID}}
+        run: |
+          clean_url=$(echo "${{ steps.now-deploy.outputs.preview-url }}" | cut -c9-)
+          clean_ref="${{ env.GITHUB_REF_SLUG_URL }}"
+          if [ "$clean_ref" == "master" ]; then
+            npm run now -- alias -A now.json --token ${{ secrets.ZEIT_TOKEN }} set $clean_url caporal.io
+            clean_ref="www"
+          fi
+          npm run now -- alias -A now.json --token ${{ secrets.ZEIT_TOKEN }} set $clean_url ${clean_ref}.caporal.io
+          echo "::set-output name=url_ref::https://${clean_ref}.caporal.io"
+
+      - uses: chrnorm/deployment-action@releases/v1
+        name: Create GitHub deployment for branch
+        id: branch-deployment
+        if: ${{ steps.semantic.outputs.new_release_published == 'true' }}
+        with:
+          initial_status: success
+          token: ${{ secrets.GITHUB_TOKEN }}
+          target_url: ${{ steps.caporal-preview.outputs.url_ref }}
+          environment: Production
