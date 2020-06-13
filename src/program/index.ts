@@ -60,6 +60,7 @@ export class Program extends EventEmitter {
   private _progCommand?: Command
   private _bin: string
   private _discoveryPath?: string
+  private _discoveredCommands?: Command[]
 
   /**
    * Number validator. Check that the value looks like a numeric one
@@ -371,7 +372,7 @@ export class Program extends EventEmitter {
    */
   async getAllCommands(): Promise<Command[]> {
     const discoveredCommands = await this.scanCommands()
-    return this.commands.concat(discoveredCommands)
+    return [...this.commands, ...discoveredCommands]
   }
 
   /**
@@ -501,9 +502,11 @@ export class Program extends EventEmitter {
     if (this._discoveryPath === undefined) {
       return []
     }
-    const commands = await scanCommands(this, this._discoveryPath)
-    this.commands.push(...commands)
-    return commands
+    if (this._discoveredCommands) {
+      return this._discoveredCommands
+    }
+    this._discoveredCommands = await scanCommands(this, this._discoveryPath)
+    return this._discoveredCommands
   }
 
   /* istanbul ignore next */

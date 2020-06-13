@@ -20,7 +20,7 @@ export async function scanCommands(
   const data = zipObject(files, imp)
   return map(data, (cmdBuilder, filename) => {
     const { dir, name } = path.parse(filename)
-    const cmd = dir.split("/").concat(name).join(" ")
+    const cmd = dir ? [...dir.split("/"), name].join(" ") : name
     const options = {
       createCommand: createCommand.bind(null, program, cmd),
       program,

@@ -65,6 +65,8 @@
  * @module @caporal/core
  */
 import { Program } from "./program"
+export { Command } from "./command"
+export * from "./types"
 
 /**
  * @ignore
