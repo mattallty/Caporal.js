@@ -1,3 +1,66 @@
+# Changelog
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [2.0.0](https://github.com/mattallty/Caporal.js/compare/v1.4.0...v2.0.0) (2020-06-13)
+
+
+### Bug Fixes
+
+* use process.exitCode instead of process.exit(1) 19f862c
+
+
+### Features
+
+* Caporal v2 ([#179](https://github.com/mattallty/Caporal.js/issues/179)) 5e3eb2f
+
+
+### BREAKING CHANGES
+
+* Caporal v2 is not backward compatible with 1.x.
+v2 is a full rewrite with Typescript which brings a lot of features and fixes to v1.
+
+# [2.0.0-beta.12](https://github.com/mattallty/Caporal.js/compare/v2.0.0-beta.11...v2.0.0-beta.12) (2020-05-23)
+
+# [2.0.0-beta.11](https://github.com/mattallty/Caporal.js/compare/v2.0.0-beta.10...v2.0.0-beta.11) (2020-05-23)
+
+# [2.0.0-beta.10](https://github.com/mattallty/Caporal.js/compare/v2.0.0-beta.9...v2.0.0-beta.10) (2020-05-23)
+
+
+### Bug Fixes
+
+* use process.exitCode instead of process.exit(1) 19f862c
+
+# [2.0.0-beta.9](https://github.com/mattallty/Caporal.js/compare/v2.0.0-beta.8...v2.0.0-beta.9) (2020-05-23)
+
+# [2.0.0-beta.8](https://github.com/mattallty/Caporal.js/compare/v2.0.0-beta.7...v2.0.0-beta.8) (2020-05-23)
+
+# [2.0.0-beta.7](https://github.com/mattallty/Caporal.js/compare/v2.0.0-beta.6...v2.0.0-beta.7) (2020-05-23)
+
+# [2.0.0-beta.6](https://github.com/mattallty/Caporal.js/compare/v2.0.0-beta.5...v2.0.0-beta.6) (2020-05-22)
+
+# [2.0.0-beta.5](https://github.com/mattallty/Caporal.js/compare/v2.0.0-beta.4...v2.0.0-beta.5) (2020-05-22)
+
+# [2.0.0-beta.4](https://github.com/mattallty/Caporal.js/compare/v2.0.0-beta.3...v2.0.0-beta.4) (2020-05-22)
+
+# [2.0.0-beta.3](https://github.com/mattallty/Caporal.js/compare/v2.0.0-beta.2...v2.0.0-beta.3) (2020-05-22)
+
+# [2.0.0-beta.2](https://github.com/mattallty/Caporal.js/compare/v2.0.0-beta.1...v2.0.0-beta.2) (2020-05-21)
+
+# [2.0.0-beta.1](https://github.com/mattallty/Caporal.js/compare/v1.4.0...v2.0.0-beta.1) (2020-05-20)
+
+
+### Features
+
+* Caporal v2 ([#179](https://github.com/mattallty/Caporal.js/issues/179)) 5e3eb2f
+
+
+### BREAKING CHANGES
+
+* Caporal v2 is not backward compatible with 1.x.
+v2 is a full rewrite with Typescript which brings a lot of features and fixes to v1.
+
 <a name="1.4.0"></a>
 # [1.4.0](https://github.com/mattallty/Caporal.js/compare/v1.3.0...v1.4.0) (2020-05-11)
 
@@ -231,6 +294,3 @@
 ### Bug Fixes
 
 * fix eslint errors ([84177db](https://github.com/mattallty/Caporal.js/commit/84177db))
-
-
-
