@@ -136,6 +136,19 @@ describe("Parser", () => {
           verbose: false,
         })
       })
+
+      it("should handle negative option correcly in rawOptions", async () => {
+        const line = "--no-verbose"
+        const result = parseLine(line, {
+          boolean: ["verbose"],
+        })
+        expect(result.options).toEqual({
+          verbose: false,
+        })
+        expect(result.rawOptions).toEqual({
+          "--no-verbose": true,
+        })
+      })
     })
 
     it("should handle 'string' option", () => {

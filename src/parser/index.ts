@@ -316,7 +316,8 @@ class OptionParser {
         : [prop]
       ).concat(val)
     } else {
-      this.rawOptions[name] = this.options[cleanName] = no ? !val : val
+      this.options[cleanName] = no ? !val : val
+      this.rawOptions[name] = val
     }
     if (alias) {
       this.options[alias] = this.options[cleanName]
