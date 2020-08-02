@@ -10,7 +10,7 @@ import sortBy from "lodash/sortBy"
 export const command: Template = async (ctx: TemplateContext) => {
   const { cmd, globalOptions: globalFlags, eol, eol3, colorize, tpl } = ctx
 
-  const options = sortBy(cmd!.options, "name"),
+  const options = sortBy(cmd!.options, "required"),
     globalOptions = Array.from(globalFlags.keys())
 
   const help =
