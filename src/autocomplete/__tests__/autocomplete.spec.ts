@@ -34,6 +34,10 @@ describe("autocomplete", () => {
       const argv = ""
       await expect(complete(program, makeFakeEnv(argv))).resolves.toEqual([
         {
+          name: "help",
+          description: expect.any(String),
+        },
+        {
           name: "order",
           description: expect.any(String),
         },
