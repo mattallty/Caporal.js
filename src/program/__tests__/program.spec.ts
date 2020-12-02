@@ -307,4 +307,10 @@ describe("Program", () => {
     await expect(prog.run(["test", "my-arg"])).resolves.toBe(true)
     expect(logger.log).toHaveBeenCalledWith("foo")
   })
+
+  test("program should not fail when trying to run completion command", async () => {
+    const action = jest.fn().mockReturnValue("ok")
+    prog.command("test", "test command").action(action)
+    await expect(prog.run(["completion", "--", ""])).resolves.toBeDefined()
+  })
 })
