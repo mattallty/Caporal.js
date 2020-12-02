@@ -31,7 +31,7 @@ function makeFakeEnv(
 describe("autocomplete", () => {
   describe("complete()", () => {
     it("should auto-complete command list", async () => {
-      const argv = ""
+      const argv = " |"
       await expect(complete(program, makeFakeEnv(argv))).resolves.toEqual([
         {
           name: "help",
