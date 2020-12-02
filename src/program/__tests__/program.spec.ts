@@ -311,6 +311,6 @@ describe("Program", () => {
   test("program should not fail when trying to run completion command", async () => {
     const action = jest.fn().mockReturnValue("ok")
     prog.command("test", "test command").action(action)
-    await expect(prog.run(["completion", "--", ""])).resolves.toBeDefined()
+    await expect(prog.run(["completion", "--", ""])).resolves.not.toThrowError()
   })
 })
