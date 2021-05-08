@@ -123,7 +123,7 @@
     "@types/wrap-ansi": "^3.0.0",
     "chalk": "3.0.0",
     "glob": "^7.1.6",
-    "lodash": "4.17.15",
+    "lodash": "4.17.21",
     "table": "5.4.6",
     "tabtab": "^3.0.2",
     "winston": "3.2.1",
