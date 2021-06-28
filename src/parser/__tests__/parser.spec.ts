@@ -156,6 +156,22 @@ describe("Parser", () => {
       })
     })
 
+    it("should parse option with value having \"=\" (equals) character, using equals notation", () => {
+      const line = "--opt=field=val"
+      const result = parseLine(line)
+      expect(result.options).toEqual({
+        opt: 'field=val'
+      })
+    })
+
+    it("should parse option with value having \"=\" (equals) character, using space notation", () => {
+      const line = "--opt field=val"
+      const result = parseLine(line)
+      expect(result.options).toEqual({
+        opt: 'field=val'
+      })
+    })
+
     describe("should handle aliases", () => {
       test("with simple options", () => {
         const line = "--my-opt true --int 23456 --float=3.14159265 --on=on -t=my-type"
