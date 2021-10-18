@@ -11,7 +11,7 @@ jobs:
 
     strategy:
       matrix:
-        node: ["10", "12", "14"]
+        node: ["10", "12", "14", "16"]
         os: ["macos-latest", "ubuntu-latest", "windows-latest"]
 
     name: "node ${{ matrix.node }} / ${{ matrix.os }}"
