@@ -1,6 +1,7 @@
 npm-debug.log
 node_modules
 coverage
+examples/package-lock.json
 .idea/workspace.xml
 .idea/tasks.xml
 .idea/watcherTasks.xml
