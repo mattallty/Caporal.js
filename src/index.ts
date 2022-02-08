@@ -10,7 +10,7 @@
  *
  * ```ts
  * // The Program instance generated for you
- * import program from "@caporal/core"
+ * import { program } from "@caporal/core"
  *
  * program
  *  .command(...)

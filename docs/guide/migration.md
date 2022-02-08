@@ -12,7 +12,7 @@ Just use the `@caporal/core` package instead of `caporal`:
 
 ```diff
 - import program from "caporal"
-+ import program from "@caporal/core"
++ import { program } from "@caporal/core"
 ```
 
 If using require, please use one of the following ways:
