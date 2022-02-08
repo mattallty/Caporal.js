@@ -108,7 +108,7 @@
     "vue-monaco": "^1.2.0",
     "vuepress": "^1.5.0",
     "watch": "^1.0.2",
-    "webpack": "^4.43.0",
+    "webpack": "^5.0.0-beta.18",
     "webpack-cli": "^3.3.11",
     "webpack-node-externals": "^1.7.2",
     "xterm": "^4.5.0",

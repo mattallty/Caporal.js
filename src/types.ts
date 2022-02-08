@@ -58,17 +58,16 @@ export enum CaporalValidator {
 
 type FunctionValidatorArgument = ParsedArgument | ParsedOption
 
-// export type FunctionValidator<T = FunctionValidatorArgument> = (
-//   value: T,
-// ) => FunctionValidatorArgument | Promise<FunctionValidatorArgument>
-
-export interface FunctionValidator<T = FunctionValidatorArgument> {
+export interface FunctionValidator<T> {
   (value: T): Promisable<T>
 }
 
-// export type FunctionValidator<T = FunctionValidatorArgument> = (value: T) => Promisable<T>
-
-export type Validator = RegExp | FunctionValidator | CaporalValidator | ParserTypes[]
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type Validator<T extends FunctionValidatorArgument = any> =
+  | RegExp
+  | FunctionValidator<T>
+  | CaporalValidator
+  | ParserTypes[]
 
 /**
  * @internal

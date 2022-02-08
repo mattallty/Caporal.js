@@ -5,7 +5,7 @@ import { FunctionValidator } from "../../types"
 describe("validate()", () => {
   const arg = createArgument("<fake>", "Fake arg")
   it("should handle function validators", () => {
-    const validator: FunctionValidator = function (value) {
+    const validator: FunctionValidator<string> = function (value) {
       if (value !== "hey" && value !== "ho") {
         throw Error("my error")
       }

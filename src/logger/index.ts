@@ -22,9 +22,15 @@ const caporalFormat = format.printf((data) => {
   }
 
   if (level === "error") {
-    const spaces = " ".repeat(meta.paddingLeft || 7)
     prefix = EOL
-    message = `${replace(message, new RegExp(EOL, "g"), EOL + spaces)}${EOL}`
+  }
+
+  const spaces = " ".repeat(meta.paddingLeft || level.length + 2)
+  message = `${replace(message, new RegExp(EOL, "g"), EOL + spaces)}`
+
+  if (level === "error") {
+    prefix = EOL
+    message += EOL
   }
 
   return `${prefix}${levelStr}: ${message}`

@@ -96,7 +96,8 @@ export function removeCommandFromArgs(
   args: ParsedArguments,
 ): ParsedArguments {
   const words = cmd.name.split(" ").length
-  return args.slice(words)
+  const result = args.slice(words)
+  return result
 }
 
 function validateArg(arg: Argument, value: ParsedArgument): ReturnType<typeof validate> {

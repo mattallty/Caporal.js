@@ -20,6 +20,9 @@ module.exports = {
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
   },
+  optimization: {
+    minimize: false,
+  },
   output: {
     filename: "index.js",
     libraryTarget: "commonjs2",

@@ -5,7 +5,7 @@ import { ValidationError } from "../../error"
 import { FunctionValidator } from "../../types"
 
 describe("validateWithFunction()", () => {
-  const validator: FunctionValidator = function (value) {
+  const validator: FunctionValidator<string> = function (value) {
     if (value !== "hey" && value !== "ho") {
       throw Error("my error")
     }

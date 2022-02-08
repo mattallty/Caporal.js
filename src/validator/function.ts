@@ -7,7 +7,8 @@ import type { ParserTypes, FunctionValidator, Argument, Option } from "../types"
 import { ValidationError } from "../error"
 
 export async function validateWithFunction(
-  validator: FunctionValidator,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  validator: FunctionValidator<any>,
   value: ParserTypes | ParserTypes[],
   context: Argument | Option,
 ): Promise<ParserTypes | ParserTypes[]> {

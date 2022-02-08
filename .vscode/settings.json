@@ -28,5 +28,6 @@
   "spellright.recheckOnSave": false,
   "jest.pathToJest": "npm test --",
   "jest.restartJestOnSnapshotUpdate": true,
-  "jest.enableInlineErrorMessages": true
+  "jest.enableInlineErrorMessages": true,
+  "deno.enable": false
 }

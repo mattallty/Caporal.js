@@ -24,8 +24,8 @@ describe("logger", () => {
 
   test("logger should handle metadata", () => {
     logger.info("foo", { blabla: "joe" })
-    expect(stripAnsi((logStdoutSpy.mock.calls[0][0] as unknown) as string)).toBe(
-      `info: foo${EOL}info: { blabla: 'joe' }${EOL}`,
+    expect(stripAnsi((logStdoutSpy.mock.calls[0][0] as unknown) as string)).toMatch(
+      /info: foo\s+info: { blabla: 'joe' }/,
     )
   })
 

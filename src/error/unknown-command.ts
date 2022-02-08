@@ -15,10 +15,10 @@ import wrap from "wrap-ansi"
  * @todo Rewrite
  */
 export class UnknownOrUnspecifiedCommandError extends BaseError {
-  constructor(program: Program, command?: string) {
-    const possibilities = filter(
-      flatMap(program.getCommands(), (c) => [c.name, ...c.getAliases()]),
-    )
+  constructor(program: Program, possibilities: string[], command?: string) {
+    // const possibilities = filter(
+    //   flatMap(program.getCommands(), (c) => [c.name, ...c.getAliases()]),
+    // )
     let msg = ""
     if (command) {
       msg = `Unknown command ${chalk.bold(command)}.`
@@ -36,7 +36,8 @@ export class UnknownOrUnspecifiedCommandError extends BaseError {
         "." +
         `\n\nFor more help, type ${chalk.whiteBright(program.getBin() + " --help")}`
     }
-
-    super(msg, { command })
+    // use `commandString` to indicate that this is NOT
+    // a command object, but rather a user provided string
+    super(msg, { commandString: command })
   }
 }

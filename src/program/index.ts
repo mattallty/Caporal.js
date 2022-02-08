@@ -37,6 +37,7 @@ import {
 } from "../types"
 import { CaporalValidator } from "../types"
 import { detectVersion } from "../utils/version"
+import flatMap from "lodash/flatMap"
 
 const LOG_LEVEL_ENV_VAR = "CAPORAL_LOG_LEVEL"
 // const SUPPORTED_SHELL = ["bash", "zsh", "fish"]
@@ -53,6 +54,8 @@ export class Program extends EventEmitter {
   private _name?: string
   private _description?: string
   private _programmaticMode = false
+
+  private parserData?: ParserResult
   /**
    * @internal
    */
@@ -283,6 +286,13 @@ export class Program extends EventEmitter {
    */
   getBin(): string {
     return this._bin
+  }
+
+  /**
+   * Return the parser data. Will be undefined if called before the program has been run()
+   */
+  getParserData(): ParserResult | undefined {
+    return this.parserData
   }
 
   /**
@@ -562,16 +572,12 @@ export class Program extends EventEmitter {
     const cmd = await this.findCommand(argv)
 
     // parse command line args
-    const result = parseArgv(cmd?.getParserConfig(), argv)
+    const result = (this.parserData = parseArgv(cmd?.getParserConfig(), argv))
 
     /* 
       Run command with parsed args.
-      We are forced to catch a potential error to prevent the rejected
-      promise to propagate un in the stack. 
     */
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    return this._run(result, cmd) /*
-    .catch((e) => e) */
+    return this._run(result, cmd)
   }
 
   /**
@@ -612,12 +618,16 @@ export class Program extends EventEmitter {
         this.emit("run")
         return -1
       }
+
+      const allCommands = await this.getAllCommands()
+      const possibilities = flatMap(allCommands, (c) => [c.name, ...c.getAliases()])
+
       // todo: use case: "git unknown-command some args" will display "unknown command 'git'"
       // but should display "unknown command 'git unknown-command'"
-      throw new UnknownOrUnspecifiedCommandError(this, result.rawArgv[0])
+      throw new UnknownOrUnspecifiedCommandError(this, possibilities, result.rawArgv[0])
     }
     const ret = await cmd.run(result)
-    this.emit("run", ret)
+    this.emit("run", ret, cmd)
     return ret
   }
 

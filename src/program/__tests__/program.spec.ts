@@ -12,8 +12,10 @@ import {
 import { Logger } from "../../types"
 import { logger } from "../../logger"
 import { resetGlobalOptions } from "../../option"
+import stripAnsi from "strip-ansi"
 
 const fataErrorMock = (fatalError as unknown) as jest.Mock
+const EOL = require("os").EOL
 
 let prog = program
 const consoleLogSpy = jest.spyOn(console, "log")
@@ -130,6 +132,21 @@ describe("Program", () => {
   test("should be able to call discovered commands", async () => {
     prog.discover(__dirname + "/../../command/__fixtures__")
     await expect(prog.run(["example-cmd"])).resolves.toBe("hey")
+  })
+
+  test("should be able to call program with discovered commands without any arg", async () => {
+    prog.discover(__dirname + "/../../command/__fixtures__")
+    expect.assertions(2)
+    try {
+      await prog.run([])
+    } catch (e) {
+      // eslint-disable-next-line jest/no-try-expect
+      expect(e).toBeInstanceOf(UnknownOrUnspecifiedCommandError)
+      // eslint-disable-next-line jest/no-try-expect
+      expect(stripAnsi(e.message)).toMatch(
+        /Unspecified command. Available commands are:\s+help, example-cmd.\s+For more help, type test-prog --help/,
+      )
+    }
   })
 
   test("should be able to call .argument() multiple times", async () => {

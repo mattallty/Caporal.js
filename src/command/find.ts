@@ -6,6 +6,7 @@ import type { Program } from "../program"
 import type { Command } from "."
 import { importCommand } from "./import"
 import { createCommand } from "."
+import { getLogger } from "../logger"
 import path from "path"
 
 export async function findCommand(
@@ -21,7 +22,7 @@ export async function findCommand(
   for (i = 0; i < argv.length; i++) {
     const cmd = argv.slice(0, i + 1).join(" ")
     // break as soon as possible
-    if (argv[i].startsWith("-")) {
+    if (argv[i].startsWith("-") || argv[i] === "." || argv[i] === "..") {
       break
     }
     const potentialCmd =
@@ -42,9 +43,11 @@ async function discoverCommand(
   if (program.discoveryPath === undefined) {
     return
   }
+
   const filename = cmd.split(" ").join("/")
+  const fullPath = path.join(program.discoveryPath, filename)
+
   try {
-    const fullPath = path.join(program.discoveryPath, filename)
     const cmdBuilder = await importCommand(fullPath)
     const options = {
       createCommand: createCommand.bind(null, program, cmd),
@@ -52,5 +55,7 @@ async function discoverCommand(
     }
     return cmdBuilder(options)
     // eslint-disable-next-line no-empty
-  } catch (e) {}
+  } catch (e) {
+    getLogger().error("Cannot import command from %s", fullPath)
+  }
 }

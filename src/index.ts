@@ -66,6 +66,7 @@
  */
 import { Program } from "./program"
 export { Command } from "./command"
+export { getLogger } from "./logger"
 export * from "./types"
 
 /**

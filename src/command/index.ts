@@ -42,7 +42,7 @@ export const HELP_CMD = "help"
  *
  */
 export class Command {
-  private program: Program
+  readonly program: Program
   private _action?: Action
   private _lastAddedArgOrOpt?: Argument | Option
   private _aliases: string[] = []
@@ -439,7 +439,9 @@ export class Command {
       })
     } catch (err) {
       const ctor = Object.getPrototypeOf(err).constructor.name
-      throw err instanceof BaseError && ctor !== "Error" ? err : new ActionError(err)
+      throw err instanceof BaseError && ctor !== "Error"
+        ? err
+        : new ActionError(err, this)
     }
   }
 }
