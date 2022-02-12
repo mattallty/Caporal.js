@@ -132,7 +132,7 @@ placeholder. let's take some examples:
 #### `.help(contents: string, opts)`
 
 `.help()` lets you customize the command help.
-Learn more in the [help section](/guide/help) of this guide.
+Learn more in the [help section](/guide/help.html) of this guide.
 
 ### Hiding from help
 
