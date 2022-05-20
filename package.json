@@ -18,7 +18,7 @@
     "build:typedocs:watch": "chokidar 'src/**/*' -c 'typedoc src --hideBreadcrumbs --hideIndexes'",
     "build:typedocs": "typedoc src --hideBreadcrumbs --hideIndexes",
     "build:docs": "npm run build:typedocs && vuepress build docs",
-    "build:types": "tsc --declaration --emitDeclarationOnly --outFile dist/index.d.ts",
+    "build:types": "tsc --project tsconfig.build.json --declaration --emitDeclarationOnly --outFile dist/index.d.ts",
     "build:docs:watch": "npm run dev:vuepress",
     "build:webtypes": "tsc --project tsconfig.web.json",
     "build:js": "webpack",
