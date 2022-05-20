@@ -396,7 +396,7 @@ describe("Command", () => {
       await expect(prog.run(["margherita", "unknown-arg"])).rejects.toBeInstanceOf(
         ValidationSummaryError,
       )
-      jest.runAllImmediates()
+      jest.runAllTimers()
       expect(action).not.toHaveBeenCalled()
       expect(fatalErrorMock).not.toHaveBeenCalled()
     })
@@ -411,7 +411,7 @@ describe("Command", () => {
       await expect(
         prog.run(["order", "margherita", "unknown-arg"]),
       ).rejects.toBeInstanceOf(ValidationSummaryError)
-      jest.runAllImmediates()
+      jest.runAllTimers()
       expect(action).not.toHaveBeenCalled()
       expect(fatalErrorMock).not.toHaveBeenCalled()
     })
@@ -427,7 +427,7 @@ describe("Command", () => {
         prog.run(["order", "margherita", "my-addon", "unknown-arg"]),
       ).rejects.toBeInstanceOf(ValidationSummaryError)
 
-      jest.runAllImmediates()
+      jest.runAllTimers()
       expect(action).not.toHaveBeenCalled()
     })
 

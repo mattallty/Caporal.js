@@ -59,7 +59,7 @@ export async function validateOptions(
           throw new UnknownOptionError(name, cmd)
         }
       } catch (e) {
-        errors.push(e)
+        errors.push(e as BaseError)
       }
       return acc
     },

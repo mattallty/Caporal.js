@@ -441,7 +441,7 @@ export class Command {
       const ctor = Object.getPrototypeOf(err).constructor.name
       throw err instanceof BaseError && ctor !== "Error"
         ? err
-        : new ActionError(err, this)
+        : new ActionError(err as Error, this)
     }
   }
 }

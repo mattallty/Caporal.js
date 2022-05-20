@@ -254,15 +254,18 @@ export type ParserTypes = string | number | boolean
 
 /**
  * Available options for the Caporal internal parser.
- * Arguments must be referenced by their position (0-based) and options by their name (short or long)
+ * Arguments must be referenced by their position (0-based) and options by their
+ * name (short or long)
  * in {@link ParserOptions.boolean boolean}, {@link ParserOptions.string string}
  * and {@link ParserOptions.variadic variadic} parser options.
  *
  */
 export interface ParserOptions {
   /**
-   * List of {@link Argument Arguments} and {@link Options Options} to be casted as *booleans*.
-   * Arguments must be referenced by their position (0-based) and options by their name (short or long).
+   * List of {@link Argument Arguments} and {@link Options Options} to be casted
+   * as *booleans*.
+   * Arguments must be referenced by their position (0-based) and options by their
+   * name (short or long).
    *
    * **Example**
    *
@@ -279,8 +282,10 @@ export interface ParserOptions {
    */
   boolean: (string | number)[]
   /**
-   * List of {@link Argument Arguments} and {@link Options Options} to be casted as *strings*.
-   * Arguments must be referenced by their position (0-based) and options by their name (short or long).
+   * List of {@link Argument Arguments} and {@link Options Options} to be casted
+   * as *strings*.
+   * Arguments must be referenced by their position (0-based) and options by their
+   * name (short or long).
    *
    * **Example**
    *
@@ -300,7 +305,8 @@ export interface ParserOptions {
    * List of variadic {@link Argument Arguments} and {@link Options Options}, meaning
    * that there value is an `Array`.
    *
-   * Arguments must be referenced by their position (0-based) and options by their name (short or long).
+   * Arguments must be referenced by their position (0-based) and options by their
+   * name (short or long).
    *
    * **Example**
    *
@@ -387,7 +393,8 @@ export interface ProgramConfig {
    */
   strictArgsCount: boolean
   /**
-   * Strict checking of options provided. If enabled, any unknown option will trigger an error.
+   * Strict checking of options provided. If enabled, any unknown option will trigger
+   * an error.
    * Default to `true`.
    */
   strictOptions: boolean
@@ -404,11 +411,13 @@ export interface ProgramConfig {
 }
 export interface CommandConfig {
   /**
-   * Strict checking of arguments count. If enabled, any additional argument willl trigger an error.
+   * Strict checking of arguments count. If enabled, any additional argument willl
+   * trigger an error.
    */
   strictArgsCount?: boolean
   /**
-   * Strict checking of options provided. If enabled, any unknown option will trigger an error.
+   * Strict checking of options provided. If enabled, any unknown option will trigger
+   * an error.
    */
   strictOptions?: boolean
   /**

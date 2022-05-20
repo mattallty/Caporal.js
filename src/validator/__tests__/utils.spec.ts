@@ -19,13 +19,13 @@ describe("validator / utils", () => {
     })
 
     it("should throw for an invalid caporal validator", () => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       expect(() => checkValidator(1000)).toThrowError(InvalidValidatorError)
     })
 
     it("should throw for an invalid user defined validator", () => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       expect(() => checkValidator("wrong")).toThrowError(InvalidValidatorError)
     })
@@ -57,7 +57,7 @@ describe("validator / utils", () => {
     })
 
     it("should throw for an invalid user defined validator", () => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       expect(() => checkValidator("wrong")).toThrowError(InvalidValidatorError)
     })

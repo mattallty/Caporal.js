@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/ban-ts-ignore */
-/* eslint-disable @typescript-eslint/camelcase */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /**
  * @packageDocumentation
  * @internal

@@ -7,8 +7,6 @@ import { BaseError } from "./base"
 import { getSuggestions, boldDiffString } from "../utils/suggest"
 import chalk from "chalk"
 import type { Program } from "../program"
-import flatMap from "lodash/flatMap"
-import filter from "lodash/filter"
 import wrap from "wrap-ansi"
 
 /**

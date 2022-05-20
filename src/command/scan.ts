@@ -15,7 +15,7 @@ export async function scanCommands(
   program: Program,
   dirPath: string,
 ): Promise<Command[]> {
-  const files = await readdir(dirPath)
+  const files = readdir(dirPath)
   const imp = await Promise.all(files.map((f) => importCommand(path.join(dirPath, f))))
   const data = zipObject(files, imp)
   return map(data, (cmdBuilder, filename) => {

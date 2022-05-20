@@ -12,13 +12,12 @@ import {
 import { Logger } from "../../types"
 import { logger } from "../../logger"
 import { resetGlobalOptions } from "../../option"
-import stripAnsi from "strip-ansi"
+import stripAnsi = require("strip-ansi")
 
-const fataErrorMock = (fatalError as unknown) as jest.Mock
-const EOL = require("os").EOL
+const fataErrorMock = fatalError as unknown as jest.Mock
 
 let prog = program
-const consoleLogSpy = jest.spyOn(console, "log")
+// const consoleLogSpy = jest.spyOn(console, "log")
 const loggerWarnSpy = jest.spyOn(logger, "warn")
 
 describe("Program", () => {
@@ -27,7 +26,7 @@ describe("Program", () => {
     prog.name("test-prog")
     prog.bin("test-prog")
     fataErrorMock.mockClear()
-    consoleLogSpy.mockClear()
+    // consoleLogSpy.mockClear()
     loggerWarnSpy.mockClear()
     resetGlobalOptions()
   })
@@ -137,13 +136,13 @@ describe("Program", () => {
   test("should be able to call program with discovered commands without any arg", async () => {
     prog.discover(__dirname + "/../../command/__fixtures__")
     expect.assertions(2)
+
     try {
       await prog.run([])
     } catch (e) {
-      // eslint-disable-next-line jest/no-try-expect
-      expect(e).toBeInstanceOf(UnknownOrUnspecifiedCommandError)
-      // eslint-disable-next-line jest/no-try-expect
-      expect(stripAnsi(e.message)).toMatch(
+      const err = e as UnknownOrUnspecifiedCommandError
+      expect(err).toBeInstanceOf(UnknownOrUnspecifiedCommandError)
+      expect(stripAnsi(err.message)).toMatch(
         /Unspecified command. Available commands are:\s+help, example-cmd.\s+For more help, type test-prog --help/,
       )
     }
@@ -317,7 +316,7 @@ describe("Program", () => {
     })
     const logger = { log: jest.fn() }
     prog
-      .logger((logger as unknown) as Logger)
+      .logger(logger as unknown as Logger)
       .command("test", "test command")
       .argument("<first-arg>", "First argument")
       .action(action)

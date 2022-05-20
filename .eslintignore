@@ -1,3 +1,7 @@
 node_modules
 dist
 coverage
+jest.config.js
+test-utils/jest-setup.ts
+webpack.config.js
+webpack.web.js

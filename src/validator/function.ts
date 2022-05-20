@@ -14,9 +14,9 @@ export async function validateWithFunction(
 ): Promise<ParserTypes | ParserTypes[]> {
   if (Array.isArray(value)) {
     return Promise.all(
-      value.map((v) => {
-        return validateWithFunction(validator, v, context) as Promise<ParserTypes>
-      }),
+      value.map(
+        (v) => validateWithFunction(validator, v, context) as Promise<ParserTypes>,
+      ),
     )
   }
   try {
@@ -25,7 +25,7 @@ export async function validateWithFunction(
     throw new ValidationError({
       validator,
       value,
-      error,
+      error: error as Error,
       context,
     })
   }

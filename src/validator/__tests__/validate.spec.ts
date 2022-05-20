@@ -5,7 +5,7 @@ import { FunctionValidator } from "../../types"
 describe("validate()", () => {
   const arg = createArgument("<fake>", "Fake arg")
   it("should handle function validators", () => {
-    const validator: FunctionValidator<string> = function (value) {
+    const validator: FunctionValidator<string> = (value) => {
       if (value !== "hey" && value !== "ho") {
         throw Error("my error")
       }
@@ -13,10 +13,8 @@ describe("validate()", () => {
     }
     return expect(validate("hey", validator, arg)).resolves.toEqual("hey")
   })
-  it("should handle regexp validators", () => {
-    return expect(validate("TEST", /[A-Z]+/, arg)).toEqual("TEST")
-  })
-  it("should handle unknown validators", () => {
-    return expect(validate("TEST", 1000, arg)).toEqual("TEST")
-  })
+  it("should handle regexp validators", () =>
+    expect(validate("TEST", /[A-Z]+/, arg)).toEqual("TEST"))
+  it("should handle unknown validators", () =>
+    expect(validate("TEST", 1000, arg)).toEqual("TEST"))
 })

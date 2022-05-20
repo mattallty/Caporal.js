@@ -19,13 +19,11 @@ export function validateWithRegExp(
   context: Argument | Option,
 ): ParserTypes | ParserTypes[] {
   if (Array.isArray(value)) {
-    return value.map((v) => {
-      return validateWithRegExp(validator, v, context) as ParserTypes
-    })
+    return value.map((v) => validateWithRegExp(validator, v, context) as ParserTypes)
   }
-  if (!validator.test(value + "")) {
+  if (!validator.test(`${value}`)) {
     throw new ValidationError({
-      validator: validator,
+      validator,
       value,
       context,
     })

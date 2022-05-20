@@ -9,7 +9,7 @@ let prog = program
 
 describe("option / global", () => {
   const logSpy = jest.spyOn(console, "log")
-  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   const logStdoutSpy = jest.spyOn(console._stdout, "write") // winston use this
   const loggerInfoSpy = jest.spyOn(logger, "info")

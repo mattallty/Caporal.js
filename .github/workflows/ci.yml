@@ -11,7 +11,7 @@ jobs:
 
     strategy:
       matrix:
-        node: ["10", "12", "14"]
+        node: ["12", "14", "16"]
         os: ["macos-latest", "ubuntu-latest", "windows-latest"]
 
     name: "node ${{ matrix.node }} / ${{ matrix.os }}"
@@ -68,35 +68,56 @@ jobs:
     if: ${{ github.event_name == 'pull_request' || github.ref != 'master' }}
     steps:
       - uses: actions/checkout@v2
-      - uses: amondnet/now-deployment@v2
+      - name: Compute vars
+        id: compute-vars
+        run: |
+          clean_ref=$(basename "${{ github.head_ref }}")
+          clean_sha=$(echo "${{ github.sha }}" | cut -c1-7)
+          echo "::set-output name=site_url_with_ref::${clean_ref}.caporal.run"
+          echo "::set-output name=site_url_with_sha::${clean_sha}.caporal.run"
+      - name: Vercel Action
+        uses: amondnet/vercel-action@v20.0.1
         id: now-deploy
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           github-comment: false
-          zeit-token: ${{ secrets.ZEIT_TOKEN }}
-          now-args: "-A now.preview.json"
-          now-org-id: ${{ secrets.ZEIT_ORG_ID}}
-          now-project-id: ${{ secrets.ZEIT_PROJECT_ID}}
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.ZEIT_ORG_ID}}
+          vercel-project-id: ${{ secrets.ZEIT_PROJECT_ID}}
+          working-directory: example/static
+          alias-domains: |
+            ${{ steps.compute-vars.outputs.site_url_with_ref }}
+            ${{ steps.compute-vars.outputs.site_url_with_sha }}
+
+      # - uses: amondnet/now-deployment@v2
+      #   id: now-deploy
+      #   with:
+      #     github-comment: false
+      #     zeit-token: ${{ secrets.ZEIT_TOKEN }}
+      #     now-args: "-A now.preview.json"
+      #     now-org-id: ${{ secrets.ZEIT_ORG_ID}}
+      #     now-project-id: ${{ secrets.ZEIT_PROJECT_ID}}
 
       - uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: 16
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Alias
-        id: caporal-preview
-        env:
-          NOW_ORG_ID: ${{ secrets.ZEIT_ORG_ID}}
-          NOW_PROJECT_ID: ${{ secrets.ZEIT_PROJECT_ID}}
-        run: |
-          clean_url=$(echo "${{ steps.now-deploy.outputs.preview-url }}" | cut -c9-)
-          clean_ref=$(basename "${{ github.head_ref }}")
-          clean_sha=$(echo "${{ github.sha }}" | cut -c1-7)
-          npm run now -- alias -A now.preview.json --token ${{ secrets.ZEIT_TOKEN }} set $clean_url ${clean_ref}.caporal.run
-          npm run now -- alias -A now.preview.json --token ${{ secrets.ZEIT_TOKEN }} set $clean_url ${clean_sha}.caporal.run
-          echo "::set-output name=url_ref::https://${clean_ref}.caporal.run"
-          echo "::set-output name=url_sha::https://${clean_sha}.caporal.run"
+      # - name: Alias
+      #   id: caporal-preview
+      #   env:
+      #     NOW_ORG_ID: ${{ secrets.ZEIT_ORG_ID}}
+      #     NOW_PROJECT_ID: ${{ secrets.ZEIT_PROJECT_ID}}
+      #   run: |
+      #     clean_url=$(echo "${{ steps.now-deploy.outputs.preview-url }}" | cut -c9-)
+      #     clean_ref=$(basename "${{ github.head_ref }}")
+      #     clean_sha=$(echo "${{ github.sha }}" | cut -c1-7)
+      #     npm run now -- alias -A now.preview.json --token ${{ secrets.ZEIT_TOKEN }} set $clean_url ${clean_ref}.caporal.run
+      #     npm run now -- alias -A now.preview.json --token ${{ secrets.ZEIT_TOKEN }} set $clean_url ${clean_sha}.caporal.run
+      #     echo "::set-output name=url_ref::https://${clean_ref}.caporal.run"
+      #     echo "::set-output name=url_sha::https://${clean_sha}.caporal.run"
 
       - uses: chrnorm/deployment-action@releases/v1
         name: Create GitHub deployment for commit
@@ -105,7 +126,7 @@ jobs:
         with:
           initial_status: success
           token: ${{ secrets.GITHUB_TOKEN }}
-          target_url: ${{ steps.caporal-preview.outputs.url_sha }}
+          target_url: https://${{ steps.compute-vars.outputs.site_url_with_sha }}
           environment: Commit-preview
 
       - uses: chrnorm/deployment-action@releases/v1
@@ -115,7 +136,7 @@ jobs:
         with:
           initial_status: success
           token: ${{ secrets.GITHUB_TOKEN }}
-          target_url: ${{ steps.caporal-preview.outputs.url_ref }}
+          target_url: https://${{ steps.compute-vars.outputs.site_url_with_ref }}
           environment: Branch-preview
 
       - name: comment PR
@@ -124,6 +145,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           msg: |
-            :rocket: Caporal website preview available at: ${{ steps.caporal-preview.outputs.url_ref }}
-            You can also checkout the [coverage report here](${{ steps.caporal-preview.outputs.url_ref }}/coverage/lcov-report/).
+            :rocket: Caporal website preview available at: https://${{ steps.compute-vars.outputs.site_url_with_ref }}
+            You can also checkout the [coverage report here](https://${{ steps.compute-vars.outputs.site_url_with_ref }}/coverage/lcov-report/).
           check_for_duplicate_msg: true

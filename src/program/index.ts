@@ -614,6 +614,7 @@ export class Program extends EventEmitter {
       // Process any global options
       const processedResult = { ...result, errors: [], args: {} }
       const shouldStop = await processGlobalOptions(processedResult, this)
+      
       if (shouldStop) {
         this.emit("run")
         return -1
