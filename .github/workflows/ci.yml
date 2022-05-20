@@ -16,30 +16,15 @@ jobs:
 
     name: "node ${{ matrix.node }} / ${{ matrix.os }}"
     steps:
-      - uses: actions/checkout@v2
-      - name: Get npm cache directory
-        id: npm-cache
-        run: |
-          echo "::set-output name=dir::$(npm config get cache)"
-
-      # See https://github.com/actions/cache/blob/master/examples.md#node---npm
-      - name: Cache node modules
-        uses: actions/cache@v1
-        env:
-          cache-name: cache-node-modules
-        with:
-          path: ${{ steps.npm-cache.outputs.dir }}
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
+      - uses: actions/checkout@v3
       - name: Setup Node.js v${{ matrix.node }} on ${{ matrix.os }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
+          cache: "npm"
 
       - name: Install dependencies
-        run: npm ci --prefer-offline
+        run: npm ci
 
         # build before testing as some tests actually test the build
       - name: Build
