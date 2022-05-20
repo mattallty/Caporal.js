@@ -54,11 +54,11 @@ jobs:
       - name: Run dist tests
         run: npm run test:dist
 
-      - name: Jest Annotations & Coverage
-        if: ${{ matrix.node == '12' && matrix.os == 'ubuntu-latest' }}
-        uses: mattallty/jest-github-action@v1.0.2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #      - name: Jest Annotations & Coverage
+  #        if: ${{ matrix.node == '12' && matrix.os == 'ubuntu-latest' }}
+  #        uses: mattallty/jest-github-action@v1.0.2
+  #        env:
+  #          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   deploy-preview:
     name: "Deploy preview website"
