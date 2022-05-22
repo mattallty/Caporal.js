@@ -121,7 +121,7 @@
     "@types/table": "5.0.0",
     "@types/tabtab": "^3.0.1",
     "@types/wrap-ansi": "^3.0.0",
-    "chalk": "3.0.0",
+    "chalk": "^4.0.0",
     "glob": "^7.1.6",
     "lodash": "4.17.21",
     "table": "5.4.6",
