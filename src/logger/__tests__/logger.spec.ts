@@ -4,12 +4,12 @@ import { Program } from "../../program"
 import { logger } from ".."
 import c from "chalk"
 import stripAnsi from "strip-ansi"
+import { EOL } from "os"
 
 let prog = program
-const EOL = require("os").EOL
 
 describe("logger", () => {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   const logStdoutSpy = jest.spyOn(console._stdout, "write") // winston use this
 
@@ -24,7 +24,7 @@ describe("logger", () => {
 
   test("logger should handle metadata", () => {
     logger.info("foo", { blabla: "joe" })
-    expect(stripAnsi((logStdoutSpy.mock.calls[0][0] as unknown) as string)).toMatch(
+    expect(stripAnsi(logStdoutSpy.mock.calls[0][0] as unknown as string)).toMatch(
       /info: foo\s+info: { blabla: 'joe' }/,
     )
   })

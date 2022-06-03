@@ -430,7 +430,7 @@ export interface CommandConfig {
   visible: boolean
 }
 
-export interface Configurator<T extends {}> {
+export interface Configurator<T extends Record<string, unknown>> {
   get<K extends keyof T>(key: K): T[K]
   getAll(): T
   set(props: Partial<T>): T
