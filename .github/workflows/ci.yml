@@ -70,9 +70,10 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           github-comment: false
-          vercel-token: ${{ secrets.ZEIT_TOKEN }}
-          vercel-org-id: ${{ secrets.ZEIT_ORG_ID}}
-          vercel-project-id: ${{ secrets.ZEIT_PROJECT_ID}}
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-project-name: caporal-js
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID}}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID}}
           alias-domains: |
             ${{ steps.compute-vars.outputs.site_url_with_ref }}
             ${{ steps.compute-vars.outputs.site_url_with_sha }}
