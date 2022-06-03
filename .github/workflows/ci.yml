@@ -59,15 +59,29 @@ jobs:
           clean_sha=$(echo "${{ github.sha }}" | cut -c1-7)
           echo "::set-output name=site_url_with_ref::${clean_ref}.caporal.run"
           echo "::set-output name=site_url_with_sha::${clean_sha}.caporal.run"
+
+      # - name: Vercel Action
+      #   uses: amondnet/vercel-action@v20.0.1
+      #   id: now-deploy
+      #   with:
+      #     github-token: ${{ secrets.GITHUB_TOKEN }}
+      #     github-comment: false
+      #     vercel-token: ${{ secrets.VERCEL_TOKEN }}
+      #     vercel-org-id: ${{ secrets.ZEIT_ORG_ID}}
+      #     vercel-project-id: ${{ secrets.ZEIT_PROJECT_ID}}
+      #     working-directory: example/static
+      #     alias-domains: |
+      #       ${{ steps.compute-vars.outputs.site_url_with_ref }}
+      #       ${{ steps.compute-vars.outputs.site_url_with_sha }}
+
       - name: Vercel Action
-        uses: amondnet/vercel-action@v20.0.1
+        uses: amondnet/now-deployment@v2
         id: now-deploy
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
           github-comment: false
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.ZEIT_ORG_ID}}
-          vercel-project-id: ${{ secrets.ZEIT_PROJECT_ID}}
+          zeit-token: ${{ secrets.ZEIT_TOKEN }}
+          now-org-id: ${{ secrets.ZEIT_ORG_ID}}
+          now-project-id: ${{ secrets.ZEIT_PROJECT_ID}}
           working-directory: example/static
           alias-domains: |
             ${{ steps.compute-vars.outputs.site_url_with_ref }}
