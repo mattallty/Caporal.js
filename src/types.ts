@@ -430,7 +430,8 @@ export interface CommandConfig {
   visible: boolean
 }
 
-export interface Configurator<T extends Record<string, unknown>> {
+// eslint-disable-next-line @typescript-eslint/ban-types
+export interface Configurator<T extends {}> {
   get<K extends keyof T>(key: K): T[K]
   getAll(): T
   set(props: Partial<T>): T
