@@ -62,7 +62,7 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node }}
+          node-version: 16
 
       - name: Vercel Action
         uses: amondnet/vercel-action@v20.0.1
@@ -73,7 +73,6 @@ jobs:
           vercel-token: ${{ secrets.ZEIT_TOKEN }}
           vercel-org-id: ${{ secrets.ZEIT_ORG_ID}}
           vercel-project-id: ${{ secrets.ZEIT_PROJECT_ID}}
-          working-directory: example/static
           alias-domains: |
             ${{ steps.compute-vars.outputs.site_url_with_ref }}
             ${{ steps.compute-vars.outputs.site_url_with_sha }}
