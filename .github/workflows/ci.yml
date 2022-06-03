@@ -66,7 +66,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           github-comment: false
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-token: ${{ secrets.ZEIT_TOKEN }}
           vercel-org-id: ${{ secrets.ZEIT_ORG_ID}}
           vercel-project-id: ${{ secrets.ZEIT_PROJECT_ID}}
           working-directory: example/static
