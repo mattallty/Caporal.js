@@ -62,7 +62,7 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: ${{ matrix.node }}
 
       - name: Vercel Action
         uses: amondnet/vercel-action@v20.0.1
