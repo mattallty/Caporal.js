@@ -7,7 +7,6 @@ import { BaseError } from "./base"
 import { getSuggestions, boldDiffString } from "../utils/suggest"
 import chalk from "chalk"
 import type { Program } from "../program"
-import wrap from "wrap-ansi"
 
 /**
  * @todo Rewrite
@@ -30,7 +29,7 @@ export class UnknownOrUnspecifiedCommandError extends BaseError {
     } else {
       msg =
         "Unspecified command. Available commands are:\n" +
-        wrap(possibilities.map((p) => chalk.whiteBright(p)).join(", "), 60) +
+        possibilities.map((p) => chalk.whiteBright(p)).join(", ") +
         "." +
         `\n\nFor more help, type ${chalk.whiteBright(program.getBin() + " --help")}`
     }
