@@ -51,7 +51,7 @@ jobs:
     continue-on-error: true
     if: ${{ github.event_name == 'pull_request' || github.ref != 'master' }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Compute vars
         id: compute-vars
         run: |
@@ -59,6 +59,10 @@ jobs:
           clean_sha=$(echo "${{ github.sha }}" | cut -c1-7)
           echo "::set-output name=site_url_with_ref::${clean_ref}.caporal.run"
           echo "::set-output name=site_url_with_sha::${clean_sha}.caporal.run"
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
 
       - name: Vercel Action
         uses: amondnet/vercel-action@v20.0.1
@@ -95,10 +99,6 @@ jobs:
       #     now-args: "-A now.preview.json"
       #     now-org-id: ${{ secrets.ZEIT_ORG_ID}}
       #     now-project-id: ${{ secrets.ZEIT_PROJECT_ID}}
-
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 16
 
       - name: Install dependencies
         run: npm ci
