@@ -121,14 +121,12 @@
     "@types/node": "17.0.21",
     "@types/table": "6.0.0",
     "@types/tabtab": "^3.0.2",
-    "@types/wrap-ansi": "^8.0.1",
     "fast-glob": "3.2.11",
     "glob": "8.0.3",
     "lodash": "4.17.21",
     "table": "6.8.0",
     "tabtab": "3.0.2",
-    "winston": "3.6.0",
-    "wrap-ansi": "8.0.1"
+    "winston": "3.6.0"
   },
   "config": {
     "commitizen": {
