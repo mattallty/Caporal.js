@@ -116,17 +116,17 @@
   },
   "dependencies": {
     "@types/glob": "^7.1.1",
-    "@types/lodash": "4.14.149",
+    "@types/lodash": "^4.14.149",
     "@types/node": "13.9.3",
-    "@types/table": "5.0.0",
+    "@types/table": "^5.0.0",
     "@types/tabtab": "^3.0.1",
     "@types/wrap-ansi": "^3.0.0",
-    "chalk": "3.0.0",
+    "chalk": "^3.0.0",
     "glob": "^7.1.6",
-    "lodash": "4.17.21",
-    "table": "5.4.6",
+    "lodash": "^4.17.21",
+    "table": "^5.4.6",
     "tabtab": "^3.0.2",
-    "winston": "3.2.1",
+    "winston": "^3.2.1",
     "wrap-ansi": "^6.2.0"
   },
   "config": {
