@@ -16,7 +16,7 @@
     "build:web": "webpack --config webpack.web.js",
     "refresh-markdown": "./scripts/gen-contributors.js && ./scripts/gen-dependents.js && ./scripts/gen-readme.js",
     "build:typedocs:watch": "chokidar 'src/**/*' -c 'typedoc src --hideBreadcrumbs --hideIndexes'",
-    "build:typedocs": "typedoc src --hideBreadcrumbs --hideIndexes",
+    "build:typedocs": "typedoc ./src/index.ts --hideBreadcrumbs",
     "build:docs": "npm run build:typedocs && vuepress build docs",
     "build:types": "tsc --project tsconfig.build.json --declaration --emitDeclarationOnly --outFile dist/index.d.ts",
     "build:docs:watch": "npm run dev:vuepress",
@@ -38,7 +38,7 @@
     "dist/**/*.{ts,js}"
   ],
   "engines": {
-    "node": ">= 10"
+    "node": ">= 14"
   },
   "homepage": "https://github.com/mattallty/Caporal.js",
   "keywords": [
@@ -96,6 +96,7 @@
     "node-fetch": "^3.2.3",
     "now": "^18.0.0",
     "npm-run-all": "^4.1.5",
+    "path-browserify": "1.0.1",
     "prettier": "^2.5.1",
     "raw-loader": "^4.0.2",
     "rimraf": "^3.0.2",

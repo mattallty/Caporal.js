@@ -20,6 +20,14 @@ module.exports = {
     alias: {
       fs: "memfs",
     },
+    fallback: {
+      path: require.resolve("path-browserify"),
+      http: false,
+      https: false,
+      os: false,
+      zlib: false,
+      stream: false,
+    },
   },
   // externals test
   // this would allow a much lighter build for the web
@@ -40,9 +48,9 @@ module.exports = {
     libraryTarget: "umd",
     umdNamedDefine: true,
   },
-  node: {
-    path: true,
-  },
+  // node: {
+  //   path: true,
+  // },
   plugins: [
     new webpack.DefinePlugin({
       "process.version": JSON.stringify(process.version),

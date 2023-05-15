@@ -7,7 +7,7 @@
 export * from "./index"
 import { program, chalk } from "./index"
 
-require("expose-loader?process!./utils/web/process")
+require("expose-loader?exposes=process!./utils/web/process")
 
 // specific error handling for web
 window.addEventListener("unhandledrejection", function (err: PromiseRejectionEvent) {
