@@ -12,3 +12,4 @@ More than **360** packages are using Caporal for their CLI, among which:
 - [node-appletv](https://www.npmjs.com/package/node-appletv): A Node.js library for communicating with an Apple TV.
 - [citc-cli](https://www.npmjs.com/package/citc-cli): Develop React projects with ease.
 - [@nodebrick/nodebrick-cli](https://www.npmjs.com/package/@nodebrick/nodebrick-cli): Nodebrick Command-Line Interface (CLI).
+- [@gltf-transform/cli](https://www.npmjs.com/package/@gltf-transform/cli): Inspect, edit, and optimize 3D models in glTF 2.0 format.
