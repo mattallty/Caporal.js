@@ -7,48 +7,52 @@ on:
       - alpha
       - next
       - next-major
-      - 1.x
-      - 1.4.x
-      - 2.x
 jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
         with:
-          node-version: 12
+          version: 8
+          run_install: false
 
-      - name: Get npm cache directory
-        id: npm-cache
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: "pnpm"
+
+      # See: https://github.com/pnpm/action-setup#use-cache-to-reduce-installation-time
+      - name: Get pnpm store directory
+        shell: bash
+        id: pnpm-store-path
         run: |
-          echo "::set-output name=dir::$(npm config get cache)"
+          echo "PNPM_STORE_PATH=$(pnpm store path --silent)" >> "$GITHUB_OUTPUT"
 
-      # See https://github.com/actions/cache/blob/master/examples.md#node---npm
-      - name: Cache node modules
-        uses: actions/cache@v1
-        env:
-          cache-name: cache-node-modules
+      # See: https://github.com/pnpm/action-setup#use-cache-to-reduce-installation-time
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
         with:
-          path: ${{ steps.npm-cache.outputs.dir }}
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          path: ${{ steps.pnpm-store-path.outputs.PNPM_STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
-            ${{ runner.os }}-node-
+            ${{ runner.os }}-pnpm-store-
 
-      - name: Install dependencies
-        run: npm ci
+      - run: pnpm install
 
+      # build before testing as some tests actually test the build
       - name: Build
-        run: npm run build
+        run: pnpm build
 
-      - name: Test
-        run: npm run test
+      - name: Lint
+        run: pnpm lint
 
-      - name: Dist Test
-        run: npm run test:dist
+      - name: Run tests
+        run: pnpm test
+
+      - name: Run dist tests
+        run: pnpm test:dist
 
       - name: Semantic Release
         uses: cycjimmy/semantic-release-action@v2
@@ -56,3 +60,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        with:
+          dry_run: true
