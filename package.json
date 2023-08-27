@@ -42,7 +42,7 @@
     "dist/**/*.{ts,js}"
   ],
   "engines": {
-    "node": ">= 10"
+    "node": ">= 16"
   },
   "homepage": "https://github.com/mattallty/Caporal.js",
   "keywords": [
