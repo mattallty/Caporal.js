@@ -39,7 +39,7 @@
     "semantic-release": "semantic-release"
   },
   "files": [
-    "dist/**/*.{ts,js}"
+    "dist/**/*.{ts,js,mts,mjs,map}"
   ],
   "engines": {
     "node": ">= 16"
