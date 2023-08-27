@@ -45,10 +45,7 @@ jobs:
 
       - run: pnpm install
 
-      - name: Install dependencies
-        run: pnpm ci
-
-        # build before testing as some tests actually test the build
+      # build before testing as some tests actually test the build
       - name: Build
         run: pnpm build
 
