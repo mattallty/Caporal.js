@@ -173,7 +173,7 @@ exports[`help > getHelp() > should display help for a program-command 1`] = `
 
   OPTIONS
 
-    -f, --file <file>                     Output fil                                            
+    -f, --file <file>                    Output file                                            
 
   GLOBAL OPTIONS
 
@@ -226,7 +226,7 @@ exports[`help > getHelp() > should handle required options 1`] = `
 
   OPTIONS
 
-    -f, --file <file>                     Output fil                                            
+    -f, --file <file>                    Output file                                            
     required                                                                                    
 
   GLOBAL OPTIONS
@@ -258,7 +258,7 @@ exports[`help > getHelp() > should handle type hints 1`] = `
 
   OPTIONS
 
-    -f, --file <file>                     Output fil                                            
+    -f, --file <file>                    Output file                                            
     required                             number                                                 
 
   GLOBAL OPTIONS

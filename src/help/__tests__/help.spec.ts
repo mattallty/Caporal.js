@@ -44,7 +44,7 @@ describe("help", () => {
       prog
         .argument("<foo>", "Mandarory foo arg")
         .argument("[other]", "Other args")
-        .option("-f, --file <file>", " Output file")
+        .option("-f, --file <file>", "Output file")
 
       return expect(strip(await getHelp(prog))).toMatchSnapshot()
     })
@@ -54,7 +54,7 @@ describe("help", () => {
         .command("test-command", "Test command")
         .argument("<foo>", "Mandarory foo arg")
         .argument("[other]", "Other args")
-        .option("-f, --file <file>", " Output file")
+        .option("-f, --file <file>", "Output file")
       return expect(strip(await getHelp(prog))).toMatchSnapshot()
     })
 
@@ -69,14 +69,14 @@ describe("help", () => {
     it("should display help for a program having at least one command (with options only)", async () => {
       prog
         .command("test-command", "Test command")
-        .option("-f, --file <file>", " Output file")
+        .option("-f, --file <file>", "Output file")
       return expect(strip(await getHelp(prog))).toMatchSnapshot()
     })
 
     it("should handle required options", async () => {
       prog
         .command("test-command", "Test command")
-        .option("-f, --file <file>", " Output file", { required: true })
+        .option("-f, --file <file>", "Output file", { required: true })
       const cmd = await findCommand(prog, ["test-command"])
 
       expect(strip(await getHelp(prog, cmd))).toContain("required")
@@ -87,7 +87,7 @@ describe("help", () => {
       prog
         .command("test-command", "Test command")
         .argument("<foo>", "Desc", { validator: prog.NUMBER })
-        .option("-f, --file <file>", " Output file", {
+        .option("-f, --file <file>", "Output file", {
           required: true,
           validator: prog.NUMBER,
         })
@@ -101,7 +101,7 @@ describe("help", () => {
       prog.bin("test-prog")
       prog
         .command("test-command", "Test command")
-        .option("-f, --file <file>", " Output file")
+        .option("-f, --file <file>", "Output file")
       return expect(strip(await getHelp(prog))).toMatchSnapshot()
     })
 
@@ -111,7 +111,7 @@ describe("help", () => {
       prog.version("")
       prog
         .command("test-command", "Test command")
-        .option("-f, --file <file>", " Output file")
+        .option("-f, --file <file>", "Output file")
       expect(strip(await getHelp(prog))).toMatchSnapshot()
     })
 
@@ -119,7 +119,7 @@ describe("help", () => {
       prog.description("Description test")
       prog
         .command("test-command", "Test command")
-        .option("-f, --file <file>", " Output file")
+        .option("-f, --file <file>", "Output file")
       expect(strip(await getHelp(prog))).toMatchSnapshot()
     })
 
@@ -128,7 +128,7 @@ describe("help", () => {
       prog
         .help("My custom help")
         .command("test-command", "Test command")
-        .option("-f, --file <file>", " Output file")
+        .option("-f, --file <file>", "Output file")
       expect(strip(await getHelp(prog))).toMatchSnapshot()
     })
 
@@ -136,7 +136,7 @@ describe("help", () => {
       prog.description("Description test")
       prog
         .command("test-command", "Test command")
-        .option("-f, --file <file>", " Output file")
+        .option("-f, --file <file>", "Output file")
         .help("My custom help\nAnother line\nOne last line")
       expect(strip(await getHelp(prog))).toMatchSnapshot()
     })
