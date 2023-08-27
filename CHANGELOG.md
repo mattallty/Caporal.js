@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.5](https://github.com/mattallty/Caporal.js/compare/v2.0.4...v2.0.5) (2023-08-27)
+
+
+### Bug Fixes
+
+* **ci:** remove push event from ci.yml (duplicate) 436de49
+
 ## [2.0.4](https://github.com/mattallty/Caporal.js/compare/v2.0.3...v2.0.4) (2023-08-27)
 
 
