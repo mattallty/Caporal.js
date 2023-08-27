@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.3](https://github.com/mattallty/Caporal.js/compare/v2.0.2...v2.0.3) (2023-08-27)
+
+
+### Bug Fixes
+
+* ci 3c7dad9
+* **dependencies:** unpin dependencies 6e902f6, closes #210
+* Fix all the things! c78ff14
+* **guide:** Fix typo (greating => greeting) 9541e22
+* help snapshots 67c0599
+* update pnpm-lock.yaml 48347e4
+
 ## [2.0.2](https://github.com/mattallty/Caporal.js/compare/v2.0.1...v2.0.2) (2020-06-13)
 
 
