@@ -1,22 +1,6 @@
 name: CI
 
 on:
-  push:
-    branches:
-      - master
-      - beta
-      - alpha
-      - next
-      - next-major
-    tags-ignore:
-      - "*"
-    # do not trigger CI on tags, it will be handled by the release workflow
-    paths:
-      - "src/**"
-      - "dist-tests/**"
-      - package.json
-      - pnpm-lock.yaml
-
   pull_request:
     branches:
       - master
