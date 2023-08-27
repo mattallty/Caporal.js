@@ -18,7 +18,7 @@
     "postbuild:ci": "npm run test:ci && cp -r coverage docs/.vuepress/dist/",
     "build:all": "run-p -n build:types build:js build:docs",
     "prebuild:web": "npm run build:webtypes",
-    "build:web": "webpack --config webpack.web.js",
+    "build:web": "tsup --config tsup.web.ts -d docs/.vuepress/public/assets/js/@caporal",
     "refresh-markdown": "./scripts/gen-contributors.js && ./scripts/gen-dependents.js && ./scripts/gen-readme.js",
     "build:typedocs:watch": "nodemon --watch src --exec 'typedoc src --hideBreadcrumbs --hideIndexes'",
     "build:typedocs": "typedoc src --hideBreadcrumbs --hideIndexes",
