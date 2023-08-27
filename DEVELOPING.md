@@ -4,7 +4,7 @@
 
 ```bash
 # Run all tests
-npm run test
+pnpm test
 ```
 
 ```bash

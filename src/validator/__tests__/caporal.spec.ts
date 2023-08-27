@@ -2,6 +2,7 @@ import { createArgument } from "../../argument"
 import { createOption } from "../../option"
 import { ValidationError } from "../../error"
 import { validateWithCaporal, CaporalValidator } from "../caporal"
+import { expect, it, describe } from "vitest"
 
 describe("validateWithCaporal()", () => {
   const arg = createArgument("<fake>", "Fake arg")

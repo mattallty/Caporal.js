@@ -4,7 +4,12 @@
  */
 
 import reduce from "lodash/reduce"
-import { TooManyArgumentsError, MissingArgumentError, BaseError } from "../error"
+import {
+  TooManyArgumentsError,
+  MissingArgumentError,
+  BaseError,
+  CommonError,
+} from "../error"
 import type {
   Argument,
   ArgumentsRange,
@@ -108,7 +113,7 @@ type ArgsValidatorAccumulator = Record<string, Promisable<VariadicArgument>>
 
 interface ArgsValidationResult {
   args: ParsedArgumentsObject
-  errors: BaseError[]
+  errors: CommonError[]
 }
 
 /**
@@ -135,7 +140,7 @@ export async function validateArgs(
 
   // transfrom args array to object, and set defaults for arguments not passed
   const argsObj = getArgsObjectFromArray(cmd, formatedArgs)
-  const errors: BaseError[] = []
+  const errors: CommonError[] = []
 
   const validations = reduce(
     argsObj,

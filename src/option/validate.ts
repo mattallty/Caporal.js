@@ -5,7 +5,7 @@
 
 import reduce from "lodash/reduce"
 import { findOption } from "./find"
-import { MissingFlagError, UnknownOptionError, BaseError } from "../error"
+import { MissingFlagError, UnknownOptionError, CommonError } from "../error"
 import { findGlobalOption } from "."
 import { validate } from "../validator/validate"
 
@@ -16,13 +16,13 @@ function validateOption(opt: Option, value: ParsedOption): ReturnType<typeof val
   return opt.validator ? validate(value, opt.validator, opt) : value
 }
 
-export function checkRequiredOpts(cmd: Command, opts: ParsedOptions): BaseError[] {
+export function checkRequiredOpts(cmd: Command, opts: ParsedOptions) {
   return cmd.options.reduce((acc, opt) => {
     if (opts[opt.name] === undefined && opt.required) {
       acc.push(new MissingFlagError(opt, cmd))
     }
     return acc
-  }, [] as BaseError[])
+  }, [] as CommonError[])
 }
 
 function applyDefaults(cmd: Command, opts: ParsedOptions): ParsedOptions {
@@ -38,7 +38,7 @@ type OptionsPromises = Record<string, Promisable<ParsedOption>>
 
 interface OptionsValidationResult {
   options: ParsedOptions
-  errors: BaseError[]
+  errors: CommonError[]
 }
 
 export async function validateOptions(
@@ -46,7 +46,7 @@ export async function validateOptions(
   options: ParsedOptions,
 ): Promise<OptionsValidationResult> {
   options = applyDefaults(cmd, options)
-  const errors: BaseError[] = []
+  const errors: CommonError[] = []
   const validations = reduce(
     options,
     (...args) => {

@@ -1,17 +1,21 @@
-jest.mock("../../error/fatal")
-jest.useFakeTimers()
+import { expect, it, describe, beforeEach, vi } from "vitest"
+
+const mocks = vi.hoisted(() => {
+  return {
+    fatalError: vi.fn(),
+  }
+})
+
+vi.mock("../../error/fatal", () => ({
+  fatalError: mocks.fatalError,
+}))
+
+vi.useFakeTimers()
 
 import { createCommand, HELP_CMD } from ".."
 import { program } from "../../index"
 import { Program } from "../../program"
-import {
-  fatalError,
-  NoActionError,
-  ActionError,
-  ValidationSummaryError,
-} from "../../error"
-
-const fatalErrorMock = fatalError as jest.MockedFunction<typeof fatalError>
+import { NoActionError, ActionError, ValidationSummaryError } from "../../error"
 
 let prog = program
 
@@ -20,7 +24,7 @@ describe("Command", () => {
     prog = new Program()
     prog.name("test-prog")
     prog.bin("test-prog")
-    fatalErrorMock.mockClear()
+    mocks.fatalError.mockClear()
   })
   it("createCommand() should create a basic command", () => {
     const cmd = createCommand(prog, "order", "Order something")
@@ -47,7 +51,7 @@ describe("Command", () => {
   })
 
   it(".action() should set the command action", async () => {
-    const action = jest.fn()
+    const action = vi.fn()
     const cmd = createCommand(prog, "order", "Order something").action(action)
     await cmd.run({
       args: [],
@@ -93,7 +97,7 @@ describe("Command", () => {
   })
 
   it(".default() should set the command as the program default command", () => {
-    const action = jest.fn()
+    const action = vi.fn()
     const cmd = createCommand(prog, "order", "Order something").action(action)
     cmd.default()
     expect(prog.defaultCommand).toEqual(cmd)
@@ -115,7 +119,7 @@ describe("Command", () => {
   })
 
   it(".run() should throw an ValidationSummaryError when invalid exact arg count is provided", async () => {
-    const action = jest.fn()
+    const action = vi.fn()
     const cmd = prog
       .command("order", "Order something")
       .argument("<location>", "Location")
@@ -128,7 +132,7 @@ describe("Command", () => {
   })
 
   it(".run() should throw an ValidationSummaryError when invalid arg count (range) is provided", async () => {
-    const action = jest.fn()
+    const action = vi.fn()
     const cmd = prog
       .command("order", "Order something")
       .argument("<location>", "Location")
@@ -142,7 +146,7 @@ describe("Command", () => {
   })
 
   it(".run() should throw an ValidationSummaryError when invalid arg count is provided, even for variadic args", async () => {
-    const action = jest.fn()
+    const action = vi.fn()
     const cmd = prog
       .command("order", "Order something")
       .argument("<menu...>", "Menu (one or more)")
@@ -155,7 +159,7 @@ describe("Command", () => {
   })
 
   it(".run() should throw an ActionError when action throws an `Error`", async () => {
-    const action = jest.fn(() => {
+    const action = vi.fn(() => {
       throw new Error("User Error")
     })
     const cmd = prog.command("order", "Order something").action(action)
@@ -164,7 +168,7 @@ describe("Command", () => {
   })
 
   it(".run() should throw an ActionError when action throws a message", async () => {
-    const action = jest.fn(() => {
+    const action = vi.fn(() => {
       throw "User Error"
     })
     const cmd = prog.command("order", "Order something").action(action)
@@ -173,14 +177,14 @@ describe("Command", () => {
   })
 
   it(".run() should throw an ActionError when action rejects", async () => {
-    const action = jest.fn().mockRejectedValue(new Error("Rejected!"))
+    const action = vi.fn().mockRejectedValue(new Error("Rejected!"))
     const cmd = prog.command("order", "Order something").action(action)
     await expect(cmd.run({ args: ["order"] })).rejects.toBeInstanceOf(ActionError)
     expect(action).toHaveBeenCalled()
   })
 
   it("processing a global flag returning false should stop further processing such as running the action, and run should return -1", async () => {
-    const action = jest.fn()
+    const action = vi.fn()
     const cmd = prog
       .command("order", "Order something")
       .action(action)
@@ -210,21 +214,21 @@ describe("Command", () => {
   })
 
   it("command should be callable via its alias", async () => {
-    const action = jest.fn().mockReturnValue("hey!")
+    const action = vi.fn().mockReturnValue("hey!")
     const cmd = prog.command("order", "Order something").alias("my-alias").action(action)
     await expect(cmd.run({ args: ["my-alias"] })).resolves.toBe("hey!")
     expect(action).toHaveBeenCalled()
   })
 
   it("command should be callable even if it's the program-command", async () => {
-    const action = jest.fn().mockReturnValue("hey!")
+    const action = vi.fn().mockReturnValue("hey!")
     prog.argument("<type>", "Pizza type").action(action)
     await expect(prog.run(["margherita"])).resolves.toBe("hey!")
     expect(action).toHaveBeenCalled()
   })
 
   it("command should be able to process arguments without validator", async () => {
-    const action = jest.fn().mockReturnValue("hey!")
+    const action = vi.fn().mockReturnValue("hey!")
     const cmd = prog
       .command("order", "Order something")
       .argument("<type>", "Pizza type")
@@ -239,7 +243,7 @@ describe("Command", () => {
   })
 
   it("command should be able to handle variadic arguments", async () => {
-    const action = jest.fn().mockReturnValue("OK!")
+    const action = vi.fn().mockReturnValue("OK!")
     prog
       .command("order", "Order something")
       .argument("<types...>", "Pizza types")
@@ -254,7 +258,7 @@ describe("Command", () => {
   })
 
   it("command should check arguments range (variable)", async () => {
-    const action = jest.fn().mockReturnValue("hey!")
+    const action = vi.fn().mockReturnValue("hey!")
     const cmd = prog
       .command("order", "Order something")
       .argument("<type>", "Pizza type")
@@ -268,7 +272,7 @@ describe("Command", () => {
 
   describe(".run() should handle the call validation", () => {
     it("with an (optional) argument having a default value", async () => {
-      const action = jest.fn().mockReturnValue("got it!")
+      const action = vi.fn().mockReturnValue("got it!")
       const cmd = prog
         .command("order", "Order something")
         .argument("<type>", " Pizza type", { default: ["margherita", "regina"] })
@@ -286,7 +290,7 @@ describe("Command", () => {
       )
     })
     it("without an (optional) argument without default value", async () => {
-      const action = jest.fn().mockReturnValue("got it!")
+      const action = vi.fn().mockReturnValue("got it!")
       const cmd = prog
         .command("order", "Order something")
         .argument("<type>", " Pizza type", { validator: ["margherita", "regina"] })
@@ -296,7 +300,7 @@ describe("Command", () => {
     })
 
     it("with options without validation", async () => {
-      const action = jest.fn().mockReturnValue("got it!")
+      const action = vi.fn().mockReturnValue("got it!")
       prog
         .command("order", "Order something")
         .argument("<type>", " Pizza type", { validator: ["margherita", "regina"] })
@@ -308,7 +312,7 @@ describe("Command", () => {
     })
 
     it("with options with validator and default value ", async () => {
-      const action = jest.fn().mockReturnValue("got it!")
+      const action = vi.fn().mockReturnValue("got it!")
       prog
         .command("order", "Order something")
         .argument("<type>", " Pizza type", { validator: ["margherita", "regina"] })
@@ -323,7 +327,7 @@ describe("Command", () => {
     })
 
     it("with required option not provided", async () => {
-      const action = jest.fn().mockReturnValue("got it!")
+      const action = vi.fn().mockReturnValue("got it!")
       prog
         .command("order", "Order something")
         .argument("<type>", " Pizza type", { validator: ["margherita", "regina"] })
@@ -336,7 +340,7 @@ describe("Command", () => {
     })
 
     it("with options not provided but having default value ", async () => {
-      const action = jest.fn().mockReturnValue("got it!")
+      const action = vi.fn().mockReturnValue("got it!")
       const cmd = prog
         .command("order", "Order something")
         .argument("<type>", " Pizza type", { validator: ["margherita", "regina"] })
@@ -349,7 +353,7 @@ describe("Command", () => {
     })
 
     it("with required options not provided and not having default value ", async () => {
-      const action = jest.fn().mockReturnValue("got it!")
+      const action = vi.fn().mockReturnValue("got it!")
       const cmd = prog
         .command("order", "Order something")
         .argument("<type>", " Pizza type", { validator: ["margherita", "regina"] })
@@ -365,7 +369,7 @@ describe("Command", () => {
     })
 
     it("should fail with missing arg ", async () => {
-      const action = jest.fn().mockReturnValue("got it!")
+      const action = vi.fn().mockReturnValue("got it!")
       prog
         .command("order", "Order something")
         .argument("<type>", " Pizza type", { validator: ["margherita", "regina"] })
@@ -376,7 +380,7 @@ describe("Command", () => {
     })
 
     it("should fail when an argument is invalid", async () => {
-      const action = jest.fn().mockReturnValue("got it!")
+      const action = vi.fn().mockReturnValue("got it!")
       prog
         .command("cancel", "cancel an order id")
         .argument("<order-id>", "Order ID", { validator: program.NUMBER })
@@ -389,20 +393,20 @@ describe("Command", () => {
     })
 
     it("should fail for the program-command when too many args are provided and config.strictArgsCount = true ", async () => {
-      const action = jest.fn().mockReturnValue("got it!")
+      const action = vi.fn().mockReturnValue("got it!")
       prog
         .argument("<type>", " Pizza type", { validator: ["margherita", "regina"] })
         .action(action)
       await expect(prog.run(["margherita", "unknown-arg"])).rejects.toBeInstanceOf(
         ValidationSummaryError,
       )
-      jest.runAllImmediates()
+      vi.runAllTimers()
       expect(action).not.toHaveBeenCalled()
-      expect(fatalErrorMock).not.toHaveBeenCalled()
+      expect(mocks.fatalError).not.toHaveBeenCalled()
     })
 
     it("should fail when too many args are provided and config.strictArgsCount = true ", async () => {
-      const action = jest.fn().mockReturnValue("got it!")
+      const action = vi.fn().mockReturnValue("got it!")
       prog
         .command("order", "Order something")
         .argument("<type>", " Pizza type", { validator: ["margherita", "regina"] })
@@ -411,13 +415,13 @@ describe("Command", () => {
       await expect(
         prog.run(["order", "margherita", "unknown-arg"]),
       ).rejects.toBeInstanceOf(ValidationSummaryError)
-      jest.runAllImmediates()
+      vi.runAllTimers()
       expect(action).not.toHaveBeenCalled()
-      expect(fatalErrorMock).not.toHaveBeenCalled()
+      expect(mocks.fatalError).not.toHaveBeenCalled()
     })
 
     it("should fail when too many args are provided (and a range is expected) and config.strictArgsCount = true ", async () => {
-      const action = jest.fn().mockReturnValue("got it!")
+      const action = vi.fn().mockReturnValue("got it!")
       prog
         .command("order", "Order something")
         .argument("<type>", " Pizza type", { validator: ["margherita", "regina"] })
@@ -427,12 +431,12 @@ describe("Command", () => {
         prog.run(["order", "margherita", "my-addon", "unknown-arg"]),
       ).rejects.toBeInstanceOf(ValidationSummaryError)
 
-      jest.runAllImmediates()
+      vi.runAllTimers()
       expect(action).not.toHaveBeenCalled()
     })
 
     it("should not fail when too many args are provided and config.strictArgsCount = false ", async () => {
-      const action = jest.fn().mockReturnValue("got it!")
+      const action = vi.fn().mockReturnValue("got it!")
       prog
         .configure({ strictArgsCount: false })
         .command("order", "Order something")
@@ -444,7 +448,7 @@ describe("Command", () => {
     })
 
     it("should fail with unknown option ", async () => {
-      const action = jest.fn().mockReturnValue("got it!")
+      const action = vi.fn().mockReturnValue("got it!")
       prog
         .command("order", "Order something")
         .argument("<type>", " Pizza type", { validator: ["margherita", "regina"] })
@@ -458,7 +462,7 @@ describe("Command", () => {
     })
 
     it("should not fail with unknown option when config.strictOptions = false", async () => {
-      const action = jest.fn().mockReturnValue("got it!")
+      const action = vi.fn().mockReturnValue("got it!")
       prog
         .configure({ strictOptions: false })
         .command("order", "Order something")
@@ -472,7 +476,7 @@ describe("Command", () => {
     })
 
     it("should fail with unknown option and suggest valid options", async () => {
-      const action = jest.fn().mockReturnValue("got it!")
+      const action = vi.fn().mockReturnValue("got it!")
       prog
         .command("order", "Order something")
         .argument("<type>", "Pizza type", { validator: ["margherita", "regina"] })
@@ -487,7 +491,7 @@ describe("Command", () => {
     })
 
     it("with non required flag not provided and not having default value ", async () => {
-      const action = jest.fn().mockReturnValue("got it!")
+      const action = vi.fn().mockReturnValue("got it!")
       prog
         .command("order", "Order something")
         .argument("<type>", " Pizza type", { validator: ["margherita", "regina"] })

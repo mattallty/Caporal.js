@@ -1,6 +1,7 @@
 import { validate } from "../validate"
 import { createArgument } from "../../argument"
 import { FunctionValidator } from "../../types"
+import { expect, it, describe } from "vitest"
 
 describe("validate()", () => {
   const arg = createArgument("<fake>", "Fake arg")
@@ -17,6 +18,7 @@ describe("validate()", () => {
     return expect(validate("TEST", /[A-Z]+/, arg)).toEqual("TEST")
   })
   it("should handle unknown validators", () => {
+    // @ts-expect-error for tests
     return expect(validate("TEST", 1000, arg)).toEqual("TEST")
   })
 })

@@ -3,6 +3,7 @@ import { Program } from "../../program"
 import { createCommand } from "../../command"
 import { findCommand } from "../../command/find"
 import strip from "strip-ansi"
+import { expect, it, describe, beforeEach } from "vitest"
 
 describe("help", () => {
   let prog = new Program()

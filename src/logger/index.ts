@@ -32,9 +32,9 @@ const caporalFormat = format.printf((data) => {
 
 function formatMeta(meta: Record<string, unknown>): string {
   delete meta.message
-  delete meta[(Symbol.for("level") as unknown) as string]
-  delete meta[(Symbol.for("message") as unknown) as string]
-  delete meta[(Symbol.for("splat") as unknown) as string]
+  delete meta[Symbol.for("level") as unknown as string]
+  delete meta[Symbol.for("message") as unknown as string]
+  delete meta[Symbol.for("splat") as unknown as string]
   if (Object.keys(meta).length) {
     return inspect(meta, {
       showHidden: false,
