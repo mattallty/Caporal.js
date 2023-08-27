@@ -1,7 +1,8 @@
 import { levenshtein } from "../levenshtein"
+import { expect, it, describe } from "vitest"
 
 describe("levenshtein", () => {
-  test.each([
+  it.each([
     ["hello", "bye", 5],
     ["some", "sometimes", 5],
     ["john", "jane", 3],

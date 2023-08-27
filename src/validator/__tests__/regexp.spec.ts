@@ -1,3 +1,5 @@
+import { expect, it, describe } from "vitest"
+
 import { validateWithRegExp } from "../regexp"
 import { createArgument } from "../../argument"
 import { createOption } from "../../option"

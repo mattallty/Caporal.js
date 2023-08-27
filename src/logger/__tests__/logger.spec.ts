@@ -4,14 +4,13 @@ import { Program } from "../../program"
 import { logger } from ".."
 import c from "chalk"
 import stripAnsi from "strip-ansi"
-
-let prog = program
-const EOL = require("os").EOL
+import { expect, it, describe, beforeEach, vi } from "vitest"
+import { EOL } from "os"
 
 describe("logger", () => {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-  // @ts-ignore
-  const logStdoutSpy = jest.spyOn(console._stdout, "write") // winston use this
+  // @ts-expect-error TS says _stdout does note exist on console but it does
+  const logStdoutSpy = vi.spyOn(console._stdout, "write") // winston use this
+  let prog = program
 
   beforeEach(() => {
     prog = new Program()
@@ -22,14 +21,14 @@ describe("logger", () => {
     logger.level = "info"
   })
 
-  test("logger should handle metadata", () => {
+  it("logger should handle metadata", () => {
     logger.info("foo", { blabla: "joe" })
-    expect(stripAnsi((logStdoutSpy.mock.calls[0][0] as unknown) as string)).toBe(
+    expect(stripAnsi(logStdoutSpy.mock.calls[0][0] as unknown as string)).toBe(
       `info: foo${EOL}info: { blabla: 'joe' }${EOL}`,
     )
   })
 
-  test("level string should be colorized by default", () => {
+  it("level string should be colorized by default", () => {
     logger.info("my-info")
     expect(logStdoutSpy).toHaveBeenLastCalledWith(
       `${c.hex("#569cd6")("info")}: my-info${EOL}`,
@@ -56,7 +55,7 @@ describe("logger", () => {
     expect(logStdoutSpy).toHaveBeenLastCalledWith(`http: foo${EOL}`)
   })
 
-  test("logger.disableColors() should disable colors", () => {
+  it("logger.disableColors() should disable colors", () => {
     logger.disableColors()
     logger.info("my-info")
     expect(logStdoutSpy).toHaveBeenLastCalledWith(`info: my-info${EOL}`)

@@ -10,7 +10,7 @@ export function colorize(text: string): string {
       return c.hex("#569cd6")(match)
     })
     .replace(/<command>/gi, (match) => {
-      return c.keyword("orange")(match)
+      return c.hex("#ff9900")(match)
     })
     .replace(/\[([^[\]]+)\]/gi, (match) => {
       return c.hex("#aaa")(match)

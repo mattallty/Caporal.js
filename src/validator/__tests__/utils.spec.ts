@@ -3,30 +3,31 @@ import { createOption } from "../../option"
 import { InvalidValidatorError } from "../../error"
 import { CaporalValidator } from "../../types"
 import isNumber from "lodash/isNumber"
+import { expect, it, describe } from "vitest"
 
 const validators = Object.values(CaporalValidator).filter(isNumber)
 
 describe("validator / utils", () => {
   describe("checkValidator()", () => {
     it("should throw InvalidValidatorError for an invalid Caporal Validator", () => {
+      // @ts-expect-error for tests
       expect(() => checkValidator(1001)).toThrowError(InvalidValidatorError)
     })
     it("should throw InvalidValidatorError for all valid Caporal Validators", () => {
+      // @ts-expect-error for tests
       expect(() => checkValidator(1001)).toThrowError(InvalidValidatorError)
     })
-    test.each(validators)("should not throw for %d", (v) => {
+    it.each(validators)("should not throw for %d", (v) => {
       expect(() => checkValidator(v)).not.toThrowError(InvalidValidatorError)
     })
 
     it("should throw for an invalid caporal validator", () => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
+      // @ts-expect-error for tests
       expect(() => checkValidator(1000)).toThrowError(InvalidValidatorError)
     })
 
     it("should throw for an invalid user defined validator", () => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
+      // @ts-expect-error for tests
       expect(() => checkValidator("wrong")).toThrowError(InvalidValidatorError)
     })
   })
@@ -50,15 +51,16 @@ describe("validator / utils", () => {
       expect(getTypeHint(opt)).toBeUndefined()
     })
     it("should throw InvalidValidatorError for all valid Caporal Validators", () => {
+      // @ts-expect-error for tests
       expect(() => checkValidator(1001)).toThrowError(InvalidValidatorError)
     })
-    test.each(validators)("should not throw for %d", (v) => {
+
+    it.each(validators)("should not throw for %d", (v) => {
       expect(() => checkValidator(v)).not.toThrowError(InvalidValidatorError)
     })
 
     it("should throw for an invalid user defined validator", () => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
+      // @ts-expect-error for tests
       expect(() => checkValidator("wrong")).toThrowError(InvalidValidatorError)
     })
   })

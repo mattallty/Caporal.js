@@ -159,7 +159,10 @@ class ArgumentParser {
   private variadicId?: number
   private key: "args" | "ddash" = "args"
 
-  constructor(private config: ParserOptions, argv: string[]) {
+  constructor(
+    private config: ParserOptions,
+    argv: string[],
+  ) {
     this.line = argv.join(" ")
     this.rawArgv = argv
   }
@@ -308,9 +311,8 @@ class OptionParser {
 
     if (this.isVariadic(cleanName, alias)) {
       const prop = this.options[cleanName]
-      this.rawOptions[name] = this.options[cleanName] = (isOptArray(prop)
-        ? prop
-        : [prop]
+      this.rawOptions[name] = this.options[cleanName] = (
+        isOptArray(prop) ? prop : [prop]
       ).concat(val)
     } else {
       this.rawOptions[name] = this.options[cleanName] = no ? !val : val

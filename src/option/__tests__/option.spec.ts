@@ -1,5 +1,6 @@
 import { createOption } from ".."
 import { OptionSynopsisSyntaxError } from "../../error"
+import { expect, it, describe } from "vitest"
 
 describe("createOption()", () => {
   it("should create a basic short option", () => {
@@ -103,7 +104,7 @@ describe("createOption()", () => {
     })
   })
 
-  test.each([["bad synopsis"], ["another"], ["---fooo"]])(
+  it.each([["bad synopsis"], ["another"], ["---fooo"]])(
     "should throw for a malformed synopsis '%s'",
     (a) => {
       expect(() => createOption(a, "My simple option")).toThrowError(

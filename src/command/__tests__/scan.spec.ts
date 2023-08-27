@@ -2,6 +2,7 @@ import { scanCommands } from "../scan"
 import { Program } from "../../program"
 import path from "path"
 import { Command } from ".."
+import { expect, it, describe } from "vitest"
 
 describe("scanCommands()", () => {
   const prog = new Program()

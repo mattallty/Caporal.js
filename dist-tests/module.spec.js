@@ -1,10 +1,12 @@
+import { expect, it, describe, beforeAll, beforeEach, afterAll, afterEach } from "vitest"
 const { default: prog, program, Program } = require("../dist")
 
 describe("Javascript module", () => {
-  test("default export should be a Program instance", () => {
+  it("default export should be a Program instance", async () => {
+    // const def = await import("../dist/index.js")
     expect(prog).toBeInstanceOf(Program)
   })
-  test("exports.program should be a Program instance", () => {
+  it("exports.program should be a Program instance", () => {
     expect(program).toBeInstanceOf(Program)
   })
 })

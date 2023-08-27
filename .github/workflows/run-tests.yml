@@ -1,26 +1,28 @@
-name: Release
+name: "Run tests"
+
 on:
-  push:
-    branches:
-      - master
-      - beta
-      - alpha
-      - next
-      - next-major
+  workflow_call:
+
 jobs:
-  release:
-    name: Release
-    runs-on: ubuntu-latest
+  run-tests:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        node: ["16", "18", "20"]
+        os: ["ubuntu-latest"]
+
+    name: "node ${{ matrix.node }} / ${{ matrix.os }}"
     steps:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2
         with:
           version: 8
           run_install: false
-
+      # Setup .npmrc file to publish to npm
       - uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: ${{ matrix.node }}
           cache: "pnpm"
 
       # See: https://github.com/pnpm/action-setup#use-cache-to-reduce-installation-time
@@ -53,10 +55,3 @@ jobs:
 
       - name: Run dist tests
         run: pnpm test:dist
-
-      - name: Semantic Release
-        uses: cycjimmy/semantic-release-action@v2
-        id: semantic
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

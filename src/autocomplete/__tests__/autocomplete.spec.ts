@@ -1,6 +1,7 @@
 import { complete } from ".."
 import { program } from "../__fixtures__/prog-autocomplete"
 import filter from "lodash/filter"
+import { expect, it, describe } from "vitest"
 
 /**
  * Helper to cimulate auto comp env

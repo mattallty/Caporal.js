@@ -2,9 +2,9 @@
  * @packageDocumentation
  * @internal
  */
-import type { Configurator } from "../types"
+import type { BaseConfig, Configurator } from "../types"
 
-export function createConfigurator<T>(defaults: T): Configurator<T> {
+export function createConfigurator<T extends BaseConfig>(defaults: T): Configurator<T> {
   const _defaults = defaults
   let config = defaults
   return {
@@ -19,7 +19,8 @@ export function createConfigurator<T>(defaults: T): Configurator<T> {
       return config
     },
     set(props: Partial<T>): T {
-      return Object.assign(config, props)
+      config = { ...config, ...props }
+      return config
     },
   }
 }

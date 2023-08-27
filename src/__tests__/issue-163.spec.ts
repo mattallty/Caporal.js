@@ -1,3 +1,4 @@
+import { expect, it, describe } from "vitest"
 import { parseArgv } from "../parser"
 
 describe("issue #163", () => {

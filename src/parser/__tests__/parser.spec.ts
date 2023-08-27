@@ -1,4 +1,5 @@
 import { parseLine, parseArgv } from ".."
+import { expect, it, describe } from "vitest"
 
 describe("Parser", () => {
   it("parseArgv() should work without options", () => {
@@ -157,7 +158,7 @@ describe("Parser", () => {
     })
 
     describe("should handle aliases", () => {
-      test("with simple options", () => {
+      it("with simple options", () => {
         const line = "--my-opt true --int 23456 --float=3.14159265 --on=on -t=my-type"
         const result = parseLine(line, {
           alias: {
@@ -178,7 +179,7 @@ describe("Parser", () => {
         })
       })
 
-      test("with repeatable options", () => {
+      it("with repeatable options", () => {
         const line =
           "--my-opt true --int 23456 --float=3.14159265 --on=on -t=my-type -t my-type2 -t hey-type-3 --type type4"
         const result = parseLine(line, {
@@ -201,7 +202,7 @@ describe("Parser", () => {
         })
       })
 
-      test("with repeated options but not marked as repeatable", () => {
+      it("with repeated options but not marked as repeatable", () => {
         const line =
           "--my-opt true --int 23456 --float=3.14159265 --on=on -t=my-type -t my-type2 -t hey-type-3 --type type4"
         const result = parseLine(line, {
