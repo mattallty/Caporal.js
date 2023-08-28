@@ -96,7 +96,9 @@ Of course you can add **multiple arguments** just by chaining them:
 
 ```js
 #!/usr/bin/env node
+
 const { program } = require("@caporal/core")
+
 program
   .argument("<name>", "Name to greet")
   .argument("<other-name>", "Another argument")
@@ -116,7 +118,7 @@ Let's add a way to modify the greeting by adding a `--greeting` option to our pr
 ```js
 #!/usr/bin/env node
 
-const program = require("@caporal/core")
+const { program } = require("@caporal/core")
 
 program
   .argument("<name>", "Name to greet")
@@ -144,7 +146,9 @@ short notation like this:
 
 ```js
 #!/usr/bin/env node
+
 const { program } = require("@caporal/core")
+
 program
   .argument("<name>", "Name to greet")
   // we will be able to use either `-g` or `--greeting` in the command line
@@ -173,8 +177,7 @@ complex to illustrate **commands**.
 ```ts
 #!/usr/bin/env ts-node
 
-// file: pizza-hit.ts
-import program from "@caporal/core"
+import { program } from "@caporal/core"
 
 program
   // First possible command: "order"
