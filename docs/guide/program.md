@@ -153,7 +153,33 @@ Checkout the [Action guide](action.md) to learn more about actions.
 Use [.command()](../api/classes/caporal_program.program.md#command) to add a command to
 your program.
 
-<<< @/examples/pizza-hit.ts{6,17}
+```ts{6,17}
+#!/usr/bin/env ts-node
+
+// file: pizza-hit.ts
+import program from "@caporal/core"
+
+program
+  // First command: "order"
+  .command("order", "Order a pizza")
+  .argument("<type>", "Type of pizza")
+  .option("-e, --extra-ingredients <ingredients>", "Extra ingredients")
+  .action(({ logger, args, options }) => {
+    logger.info("Order received: %s", args.type)
+    if (options.extraIngredients) {
+      logger.info("Extra: %s", options.extraIngredients)
+    }
+  })
+
+  // Another command: "cancel"
+  .command("cancel", "Cancel an order")
+  .argument("<order-id>", "Order id")
+  .action(({ logger, args }) => {
+    logger.info("Order canceled: %s", args.orderId)
+  })
+
+program.run()
+```
 
 In the example above, our program contains 2 commands: `order` and `cancel`, which can be
 called this way:
@@ -183,7 +209,20 @@ or for people who would like to split their commands into several files.
 Commands can also be loaded dynamically from the filesystem
 using [.discover()](../api/classes/caporal_program.program.md#discover).
 
-<<< @/examples/discover.ts{9}
+```ts
+#!/usr/bin/env node
+
+import { program } from "@caporal/core"
+import path from "path"
+
+program
+  .name("kubectl")
+  .version("1.0.0")
+  .description("Mimics the kubectl CLI")
+  .discover(path.join(__dirname, "discover/commands"))
+
+program.run()
+```
 
 Commands must be organized into files (one command per file) in a file tree like:
 
