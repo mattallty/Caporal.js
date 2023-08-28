@@ -20,6 +20,7 @@
     "docs:dev": "pnpm build:typedocs && vuepress dev docs",
     "docs:build": "vuepress build docs",
     "build:js": "tsup",
+    "build:watch": "tsup --watch",
     "test": "vitest run src",
     "test:dist": "vitest dist-tests",
     "test:watch": "vitest src",
