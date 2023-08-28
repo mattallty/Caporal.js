@@ -1,4 +1,8 @@
-# Help
+---
+sidebarDepth: 1
+---
+
+# Help / Usage
 
 Caporal automatically generates help/usage instructions for you. Help can be displayed
 using `-h` or `--help` options, or with the default `help` command.
@@ -9,7 +13,7 @@ You can add some custom help to the whole program or to specific commands using
 The text, even if multi-line, will be automatically indented. Multiple help sections with
 custom names are supported.
 
-## Customizing help for the whole program
+## Help for the whole program
 
 ### `program.help(text: string, options?: CustomizedHelpOpts)`
 
@@ -28,7 +32,7 @@ program
 program.run()
 ```
 
-## Custom help for specific commands
+## Help for specific commands
 
 ### `command.help(text: string, options?: CustomizedHelpOpts)`
 

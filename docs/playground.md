@@ -1,5 +1,0 @@
----
-layout: PlaygroundLayout
----
-
-# Playground

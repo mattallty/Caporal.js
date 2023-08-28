@@ -1,16 +1,14 @@
 {
   "name": "Caporal",
-  "stripInternal": true,
   "excludePrivate": true,
-  "excludeNotExported": true,
+  "excludeExternals": true,
+  "excludeInternal": true,
   "includeVersion": true,
-  "disableSources": true,
-  "disableOutputCheck": true,
+  "disableSources": false,
   "hideGenerator": true,
-  "theme": "vuepress",
-  "longTitle": false,
+  "cleanOutputDir": false,
   "readme": "docs/api.readme.md",
   "exclude": ["**/*.spec.ts", "**/__fixtures__/*.ts"],
-  "mode": "modules",
+  "externalPattern": ["**/node_modules/**", "**/examples/**/*.ts"],
   "out": "docs/api"
 }

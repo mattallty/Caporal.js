@@ -45,7 +45,7 @@ async function buildContributorsTable(options) {
   const cells = main.map((info) => {
     return `<a href="${info.html_url}">${
       info.name || `@${info.login}`
-    }<br><img class="contributor" border="0" src="${info.avatar_url}"></a>`
+    }<br /><img class="contributor" border="0" src="${info.avatar_url}" /></a>`
   })
   const rows = chunk(cells, options.columns)
   const table = mdTable(rows, { align: "c" })
