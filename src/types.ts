@@ -8,7 +8,7 @@
 import { Logger as WinstonLogger } from "winston"
 import { Program } from "./program"
 import { Command } from "./command"
-import { BaseError } from "./error"
+import { CommonError } from "./error"
 
 /**
  * The Caporal logger interface. It extends the [Winston](https://github.com/winstonjs/winston) Logger interface
@@ -367,7 +367,7 @@ export interface ParserResult {
 
 export interface ParserProcessedResult extends Omit<ParserResult, "args"> {
   args: ParsedArgumentsObject
-  errors: BaseError[]
+  errors: CommonError[]
 }
 
 export interface CreateCommandParameters {
@@ -381,7 +381,7 @@ export interface CommandCreator {
 /**
  * Available configuration properties for the program.
  */
-export interface ProgramConfig {
+export type ProgramConfig = {
   /**
    * Strict checking of arguments count. If enabled, any additional argument willl trigger an error.
    * Default to `true`.
@@ -403,7 +403,7 @@ export interface ProgramConfig {
    */
   logLevelEnvVar: string
 }
-export interface CommandConfig {
+export type CommandConfig = {
   /**
    * Strict checking of arguments count. If enabled, any additional argument willl trigger an error.
    */
@@ -422,7 +422,9 @@ export interface CommandConfig {
   visible: boolean
 }
 
-export interface Configurator<T extends {}> {
+export type BaseConfig = Record<string, boolean | string>
+
+export interface Configurator<T extends BaseConfig> {
   get<K extends keyof T>(key: K): T[K]
   getAll(): T
   set(props: Partial<T>): T

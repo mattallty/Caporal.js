@@ -1,5 +1,6 @@
 import { importCommand } from "../import"
 import path from "path"
+import { expect, it, describe } from "vitest"
 
 describe("Command", () => {
   describe("importCommand()", () => {

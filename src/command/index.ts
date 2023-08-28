@@ -439,7 +439,9 @@ export class Command {
       })
     } catch (err) {
       const ctor = Object.getPrototypeOf(err).constructor.name
-      throw err instanceof BaseError && ctor !== "Error" ? err : new ActionError(err)
+      throw err instanceof BaseError && ctor !== "Error"
+        ? err
+        : new ActionError(err as Error)
     }
   }
 }

@@ -1,96 +1,71 @@
-const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin")
-const path = require("path")
-const filter = require("lodash/filter")
+import path from "path"
+import fs from "fs"
+import { defineUserConfig } from "vuepress"
+import { typedocPlugin } from "vuepress-plugin-typedoc/next"
+import { defaultTheme } from "vuepress"
 
-let apiSidebar = require("./api-sidebar-relative.json")
+const loadJSON = (path) => JSON.parse(fs.readFileSync(new URL(path, import.meta.url)))
 
-const showInterfaces = [
-  "interfaces/caporal_types.action",
-  "interfaces/caporal_types.actionparameters",
-  "interfaces/caporal_types.createargumentopts",
-  "interfaces/caporal_types.commandconfig",
-  "interfaces/caporal_types.programconfig",
-  "interfaces/caporal_types.createoptionopts",
-  "interfaces/caporal_types.customizedhelp",
-  "interfaces/caporal_types.customizedhelpopts",
-  "interfaces/caporal_types.logger",
-  "interfaces/caporal_types.createoptionprogramopts",
-  "interfaces/caporal_types.createoptioncommandopts",
-  "interfaces/caporal_types.parseroptions",
-  "interfaces/caporal_types.parsedargumentsobject",
-  "interfaces/caporal_types.parsedoptions",
-]
+const sidebarPath = path.resolve(__dirname, "../api/typedoc-sidebar.json")
 
-apiSidebar = filter(apiSidebar, (section) => section.title !== "Enums")
-// filter entries in "modules"
-apiSidebar = apiSidebar.map((section) => {
-  if (section.title === "Modules") {
-    section.children = filter(
-      section.children,
-      (c) =>
-        c.startsWith("modules/") &&
-        !c.startsWith("modules/parser") &&
-        !c.startsWith("modules/caporal_types") &&
-        !c.startsWith("modules/caporal_help") &&
-        !c.startsWith("modules/caporal_command") &&
-        !c.startsWith("modules/caporal_option") &&
-        !c.startsWith("modules/caporal_autocomplete") &&
-        !c.startsWith("modules/caporal_program"),
-    )
-  } else if (section.title === "Interfaces") {
-    section.children.push({ title: "Type aliases", path: "modules/caporal_types" })
-    section.children = filter(section.children, (c) => showInterfaces.includes(c))
+let apiSidebar = fs.existsSync(sidebarPath) ? loadJSON(sidebarPath) : []
+
+apiSidebar = apiSidebar.map((s) => {
+  return {
+    ...s,
+    children: s.children.map((c) => ({
+      ...c,
+      collapsible: false,
+    })),
   }
-  // make it non collapsible
-  section.collapsable = false
-  return section
 })
 
-apiSidebar.push({
-  title: "Type aliases",
-  collapsable: false,
-  children: [{ title: "All types", path: "modules/caporal_types" }],
-})
-
-module.exports = {
+export default defineUserConfig({
   title: "Caporal",
   description: "A full-featured framework for building command line applications (CLI)",
   smoothScroll: true,
-  themeConfig: {
+  theme: defaultTheme({
     logo: "/assets/img/caporal.svg",
-    nav: [
+    navbar: [
       { text: "Guide", link: "/guide/" },
       { text: "API Reference", link: "/api/" },
-      { text: "Playground", link: "/playground" },
     ],
-    // Assumes GitHub. Can also be a full GitLab url.
     repo: "mattallty/Caporal.js",
-    repoLabel: "GitHub Project",
-    // if your docs are not at the root of the repo:
+    repoLabel: "GitHub",
+    docsBranch: "master",
+    contributors: false,
+    lastUpdated: false,
     docsDir: "docs",
-    // defaults to false, set to true to enable
     editLinks: false,
     sidebar: {
-      "/guide/": [
-        "", // /guide/
-        "program",
-        "commands",
-        "action",
-        "validation",
-        "help",
-        "migration",
-      ],
+      "/guide/": ["program", "commands", "action", "validation", "help", "migration"],
       "/api/": apiSidebar,
     },
-  },
-  head: [
-    [
-      "script",
-      {
-        src: `https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js`,
-        "data-main": "/assets/js/main",
+    sidebarDepth: 2,
+  }),
+  plugins: [
+    typedocPlugin({
+      // plugin options
+      out: "api",
+      sidebar: {
+        autoConfiguration: true,
+        fullNames: true,
+        parentCategory: "API",
       },
-    ],
+      // typedoc options
+      entryPoints: ["./src/index.ts"],
+      tsconfig: "../tsconfig.json",
+      cleanOutputDir: false,
+      hideInPageTOC: false,
+      excludePrivate: true,
+      excludeExternals: true,
+      excludeInternal: true,
+      includeVersion: true,
+      disableSources: false,
+      hideGenerator: true,
+    }),
+  ],
+  head: [
     [
       "link",
       {
@@ -99,44 +74,4 @@ module.exports = {
       },
     ],
   ],
-  configureWebpack: {
-    externals: {
-      caporal: "caporal",
-      LocalEchoController: "LocalEchoController",
-    },
-  },
-  chainWebpack: (config) => {
-    config.plugin("monaco-editor").use(MonacoWebpackPlugin, [
-      {
-        // Languages are loaded on demand at runtime
-        languages: ["javascript", "typescript"],
-        features: [
-          "accessibilityHelp",
-          "bracketMatching",
-          "caretOperations",
-          "codeAction",
-          "codelens",
-          "comment",
-          "coreCommands",
-          "cursorUndo",
-          // "folding",
-          "fontZoom",
-          "hover",
-          "inPlaceReplace",
-          "inspectTokens",
-          "linesOperations",
-          "links",
-          "multicursor",
-          "parameterHints",
-          "rename",
-          "smartSelect",
-          "suggest",
-          "transpose",
-          "wordHighlighter",
-          "wordOperations",
-          "wordPartOperations",
-        ],
-      },
-    ])
-  },
-}
+})

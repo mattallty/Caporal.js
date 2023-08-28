@@ -3,6 +3,7 @@ import { createArgument } from "../../argument"
 import { createOption } from "../../option"
 import { ValidationError } from "../../error"
 import { FunctionValidator } from "../../types"
+import { expect, it, describe } from "vitest"
 
 describe("validateWithFunction()", () => {
   const validator: FunctionValidator = function (value) {

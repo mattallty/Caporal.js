@@ -1,10 +1,11 @@
 import { fatalError } from "../fatal"
 import { BaseError } from "../base"
 import { logger } from "../../logger"
+import { expect, it, describe, afterEach, vi } from "vitest"
 
 describe("fatalError()", () => {
-  const loggerLogSpy = jest.spyOn(logger, "log")
-  const loggerErrSpy = jest.spyOn(logger, "error")
+  const loggerLogSpy = vi.spyOn(logger, "log")
+  const loggerErrSpy = vi.spyOn(logger, "error")
 
   afterEach(() => {
     logger.level = "info"

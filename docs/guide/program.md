@@ -1,3 +1,6 @@
+---
+sidebarDepth: 1
+---
 # Program
 
 A `Program` instance is directly generated for you by Caporal. This is what you get when

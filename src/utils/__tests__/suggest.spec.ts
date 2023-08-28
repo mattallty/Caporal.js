@@ -1,5 +1,6 @@
 import { getSuggestions, boldDiffString } from "../suggest"
 import c from "chalk"
+import { expect, it, describe } from "vitest"
 
 describe("Suggest", () => {
   describe("getSuggestions()", () => {

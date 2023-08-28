@@ -5,11 +5,12 @@ coverage
 .idea/tasks.xml
 .idea/watcherTasks.xml
 .DS_Store
-docs/.vuepress/dist
-docs/.vuepress/api-sidebar-relative.json
-docs/.vuepress/api-sidebar.json
-docs/.vuepress/public/assets/js/caporal.d.ts
-docs/.vuepress/public/assets/js/@caporal
+docs/.vitepress/dist
+docs/.vitepress/cache
+docs/.vitepress/api-sidebar-relative.json
+docs/.vitepress/api-sidebar.json
+docs/.vitepress/public/assets/js/caporal.d.ts
+docs/.vitepress/public/assets/js/@caporal
 docs/api
 local_tests
 .idea
@@ -17,3 +18,5 @@ dist
 *.tgz
 .secret.md
 .now
+.temp
+.cache

@@ -5,7 +5,7 @@ Actions can be synchronous functions - or asynchronous by returning a Promise.
 
 ## Setting an action
 
-### `.action(( params: ActionParameters ): unknown | Promise<unknown>)`
+### `.action(( params: ActionParameters ) => unknown | Promise<unknown>)`
 
 Actions take the following object as their only parameter:
 

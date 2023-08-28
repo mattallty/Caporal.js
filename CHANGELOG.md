@@ -3,6 +3,51 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/mattallty/Caporal.js/compare/v2.0.6...v3.0.0) (2023-08-28)
+
+
+### chore
+
+* prepare release cfe38a8
+
+
+### BREAKING CHANGES
+
+* drop support for Node < 16
+
+## [2.0.6](https://github.com/mattallty/Caporal.js/compare/v2.0.5...v2.0.6) (2023-08-27)
+
+
+### Bug Fixes
+
+* **build:** correctly pack files 982f4bf
+
+## [2.0.5](https://github.com/mattallty/Caporal.js/compare/v2.0.4...v2.0.5) (2023-08-27)
+
+
+### Bug Fixes
+
+* **ci:** remove push event from ci.yml (duplicate) 436de49
+
+## [2.0.4](https://github.com/mattallty/Caporal.js/compare/v2.0.3...v2.0.4) (2023-08-27)
+
+
+### Bug Fixes
+
+* **build:** Fix dist files inclusion glob 8d030f8
+
+## [2.0.3](https://github.com/mattallty/Caporal.js/compare/v2.0.2...v2.0.3) (2023-08-27)
+
+
+### Bug Fixes
+
+* ci 3c7dad9
+* **dependencies:** unpin dependencies 6e902f6, closes #210
+* Fix all the things! c78ff14
+* **guide:** Fix typo (greating => greeting) 9541e22
+* help snapshots 67c0599
+* update pnpm-lock.yaml 48347e4
+
 ## [2.0.2](https://github.com/mattallty/Caporal.js/compare/v2.0.1...v2.0.2) (2020-06-13)
 
 

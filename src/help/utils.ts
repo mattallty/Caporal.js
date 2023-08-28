@@ -102,7 +102,7 @@ export function getCommandsTable(
   const rows = commands
     .filter((c) => c.visible)
     .map((cmd) => {
-      return [chalk.keyword("orange")(cmd.name), cmd.description || ""]
+      return [chalk.hex("#ff9900")(cmd.name), cmd.description || ""]
     })
 
   return help + table(rows)

@@ -4,15 +4,15 @@ import { Program } from "../../program"
 import { logger } from "../../logger"
 import { Action } from "../../types"
 import { disableGlobalOption, findGlobalOption, resetGlobalOptions } from ".."
+import { expect, it, describe, vi, beforeEach, afterAll } from "vitest"
 
 let prog = program
 
 describe("option / global", () => {
-  const logSpy = jest.spyOn(console, "log")
-  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-  // @ts-ignore
-  const logStdoutSpy = jest.spyOn(console._stdout, "write") // winston use this
-  const loggerInfoSpy = jest.spyOn(logger, "info")
+  const logSpy = vi.spyOn(console, "log")
+  // @ts-expect-error TS says _stdout does note exist on console but it does
+  const logStdoutSpy = vi.spyOn(console._stdout, "write") // winston use this
+  const loggerInfoSpy = vi.spyOn(logger, "info")
 
   beforeEach(() => {
     prog = new Program()
@@ -30,17 +30,17 @@ describe("option / global", () => {
     logger.colorsEnabled = true
   })
 
-  test("-V should show program version and exit", async () => {
+  it("-V should show program version and exit", async () => {
     await prog.run(["-V"])
     expect(logSpy).toHaveBeenLastCalledWith("xyz")
   })
 
-  test("--version should show program version and exit", async () => {
+  it("--version should show program version and exit", async () => {
     await prog.run(["--version"])
     expect(logSpy).toHaveBeenLastCalledWith("xyz")
   })
 
-  test("--no-color should disable colors in output", async () => {
+  it("--no-color should disable colors in output", async () => {
     const action: Action = function ({ logger }) {
       logger.info("Hey!")
     }
@@ -49,7 +49,7 @@ describe("option / global", () => {
     expect(loggerInfoSpy).toHaveBeenLastCalledWith("Hey!")
   })
 
-  test("--color false should disable colors in output", async () => {
+  it("--color false should disable colors in output", async () => {
     const action: Action = function ({ logger }) {
       logger.info("Joe!")
     }
@@ -58,7 +58,7 @@ describe("option / global", () => {
     expect(loggerInfoSpy).toHaveBeenLastCalledWith("Joe!")
   })
 
-  test("-v should enable verbosity", async () => {
+  it("-v should enable verbosity", async () => {
     const action: Action = function ({ logger }) {
       logger.info("my-info")
       logger.debug("my-debug")
@@ -72,7 +72,7 @@ describe("option / global", () => {
     expect(logStdoutSpy).toHaveBeenLastCalledWith(expect.stringContaining("my-debug"))
   })
 
-  test("--verbose should enable verbosity", async () => {
+  it("--verbose should enable verbosity", async () => {
     const action: Action = function ({ logger }) {
       logger.info("my-info")
       logger.debug("my-debug")
@@ -86,7 +86,7 @@ describe("option / global", () => {
     expect(logStdoutSpy).toHaveBeenLastCalledWith(expect.stringContaining("my-debug"))
   })
 
-  test("--quiet should make the program only output warnings and errors", async () => {
+  it("--quiet should make the program only output warnings and errors", async () => {
     const action: Action = function ({ logger }) {
       logger.info("my-info")
       logger.debug("my-debug")
@@ -102,7 +102,7 @@ describe("option / global", () => {
     expect(logStdoutSpy).toHaveBeenCalledWith(expect.stringContaining("my-error"))
   })
 
-  test("--silent should output nothing", async () => {
+  it("--silent should output nothing", async () => {
     const action: Action = function ({ logger }) {
       logger.info("my-info")
       logger.debug("my-debug")
@@ -115,7 +115,7 @@ describe("option / global", () => {
     expect(logStdoutSpy).not.toHaveBeenCalled()
   })
 
-  test("disableGlobalOption() should disable a global option by name or notation", async () => {
+  it("disableGlobalOption() should disable a global option by name or notation", async () => {
     // by notation
     expect(findGlobalOption("version")).toBeTruthy()
     const result = disableGlobalOption("-V")
@@ -129,7 +129,7 @@ describe("option / global", () => {
     expect(findGlobalOption("help")).toBeUndefined()
   })
 
-  test("disableGlobalOption() should return false for an unknown global option", async () => {
+  it("disableGlobalOption() should return false for an unknown global option", async () => {
     // by notation
     const result = disableGlobalOption("--unknown")
     expect(result).toBe(false)

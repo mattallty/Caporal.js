@@ -5,6 +5,8 @@
 
 import { ErrorMetadata } from "../types"
 
+export type CommonError = Error | BaseError
+
 export class BaseError extends Error {
   public meta: ErrorMetadata
 

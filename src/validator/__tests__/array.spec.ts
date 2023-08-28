@@ -2,6 +2,7 @@ import { validateWithArray } from "../array"
 import { createArgument } from "../../argument"
 import { createOption } from "../../option"
 import { ValidationError } from "../../error"
+import { expect, it, describe } from "vitest"
 
 describe("validateWithArray()", () => {
   const arg = createArgument("<fake>", "Fake arg")

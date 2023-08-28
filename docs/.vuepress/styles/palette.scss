@@ -1,0 +1,319 @@
+// colors
+// $accentColor = #961C00;
+// $textColor = #222;
+// $borderColor = #eaecef;
+// $codeBgColor = #282c34;
+// $arrowBgColor = #ccc;
+// $badgeTipColor = #278a5d;
+// $badgeWarningColor = darken(#ffe564, 35%);
+// $badgeErrorColor = #b33e46;
+
+// // layout
+// $navbarHeight = 3.6rem
+// $sidebarWidth = 20rem
+// $contentWidth = 740px
+// $homePageWidth = 960px
+
+// // responsive breakpoints
+// $MQNarrow = 959px !default;
+// $MQMobile = 719px !default;
+// $MQMobileNarrow = 419px !default;
+
+:root {
+  // brand colors
+  --c-brand: #961C00;
+  --c-brand-light: #973721;
+
+  // background colors
+  --c-bg: #ffffff;
+  --c-bg-light: #f3f4f5;
+  --c-bg-lighter: #eeeeee;
+  --c-bg-dark: #ebebec;
+  --c-bg-darker: #e6e6e6;
+  --c-bg-navbar: var(--c-bg);
+  --c-bg-sidebar: var(--c-bg);
+  --c-bg-arrow: #cccccc;
+
+  // text colors
+  --c-text: #222;
+  --c-text-accent: var(--c-brand);
+  --c-text-light: #4c4b4b;
+  --c-text-lighter: #595959;
+  --c-text-lightest: #7a7a7a;
+  --c-text-quote: #999999;
+
+  // border colors
+  --c-border: #eaecef;
+  --c-border-dark: #dfe2e5;
+
+  // custom container colors
+  --c-tip: #961C00;
+  --c-tip-bg: var(--c-bg-light);
+  --c-tip-title: var(--c-text);
+  --c-tip-text: var(--c-text);
+  --c-tip-text-accent: var(--c-text-accent);
+  --c-warning: #ffc310;
+  --c-warning-bg: #fffae3;
+  --c-warning-bg-light: #fff3ba;
+  --c-warning-bg-lighter: #fff0b0;
+  --c-warning-border-dark: #f7dc91;
+  --c-warning-details-bg: #fff5ca;
+  --c-warning-title: #f1b300;
+  --c-warning-text: #746000;
+  --c-warning-text-accent: #edb100;
+  --c-warning-text-light: #c1971c;
+  --c-warning-text-quote: #ccab49;
+  --c-danger: #f11e37;
+  --c-danger-bg: #ffe0e0;
+  --c-danger-bg-light: #ffcfde;
+  --c-danger-bg-lighter: #ffc9c9;
+  --c-danger-border-dark: #f1abab;
+  --c-danger-details-bg: #ffd4d4;
+  --c-danger-title: #ed1e2c;
+  --c-danger-text: #660000;
+  --c-danger-text-accent: #bd1a1a;
+  --c-danger-text-light: #b5474d;
+  --c-danger-text-quote: #c15b5b;
+  --c-details-bg: #eeeeee;
+
+  // badge component colors
+  --c-badge-tip: var(--c-tip);
+  --c-badge-warning: #ecc808;
+  --c-badge-warning-text: var(--c-bg);
+  --c-badge-danger: #dc2626;
+  --c-badge-danger-text: var(--c-bg);
+
+  // transition vars
+  --t-color: 0.3s ease;
+  --t-transform: 0.3s ease;
+
+  // code blocks vars
+  --code-bg-color: #282c34;
+  --code-hl-bg-color: rgba(0, 0, 0, 0.66);
+  --code-ln-color: #9e9e9e;
+  --code-ln-wrapper-width: 3.5rem;
+
+  // font vars
+  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --font-family-code: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+
+  // layout vars
+  --navbar-height: 3.6rem;
+  --navbar-padding-v: 0.7rem;
+  --navbar-padding-h: 1.5rem;
+  --sidebar-width: 20rem;
+  --sidebar-width-mobile: calc(var(--sidebar-width) * 0.82);
+  --content-width: 740px;
+  --homepage-width: 960px;
+}
+
+code[class*="language-"],
+pre[class*="language-"] {
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	color: #eee;
+	background: #2f2f2f;
+	font-family: Roboto Mono, monospace;
+	font-size: 1em;
+	line-height: 1.5em;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+code[class*="language-"]::-moz-selection,
+pre[class*="language-"]::-moz-selection,
+code[class*="language-"] ::-moz-selection,
+pre[class*="language-"] ::-moz-selection {
+	background: #363636;
+}
+
+code[class*="language-"]::selection,
+pre[class*="language-"]::selection,
+code[class*="language-"] ::selection,
+pre[class*="language-"] ::selection {
+	background: #363636;
+}
+
+:not(pre) > code[class*="language-"] {
+	white-space: normal;
+	border-radius: 0.2em;
+	padding: 0.1em;
+}
+
+pre[class*="language-"] {
+	overflow: auto;
+	position: relative;
+	margin: 0.5em 0;
+	padding: 1.25em 1em;
+}
+
+.language-css > code,
+.language-sass > code,
+.language-scss > code {
+	color: #fd9170;
+}
+
+[class*="language-"] .namespace {
+	opacity: 0.7;
+}
+
+.token.atrule {
+	color: #f4a08e;
+}
+
+.token.attr-name {
+	color: #ffcb6b;
+}
+
+.token.attr-value {
+	color: #ffcb6b;
+}
+
+.token.attribute {
+	color: #ffcb6b;
+}
+
+.token.boolean {
+	color: #f4a08e;
+}
+
+.token.builtin {
+	color: #ffcb6b;
+}
+
+.token.cdata {
+	color: #80cbc4;
+}
+
+.token.char {
+	color: #80cbc4;
+}
+
+.token.class {
+	color: #ffcb6b;
+}
+
+.token.class-name {
+	color: #f2ff00;
+}
+
+.token.comment {
+	color: #a0a0a0;
+}
+
+.token.constant {
+	color: #f4a08e;
+}
+
+.token.deleted {
+	color: #ff6666;
+}
+
+.token.doctype {
+	color: #a0a0a0;
+}
+
+.token.entity {
+	color: #ff6666;
+}
+
+.token.function {
+	color: #f4a08e;
+}
+
+.token.hexcode {
+	color: #f2ff00;
+}
+
+.token.id {
+	color: #f4a08e;
+	font-weight: bold;
+}
+
+.token.important {
+	color: #f4a08e;
+	font-weight: bold;
+}
+
+.token.inserted {
+	color: #80cbc4 !important;
+}
+
+.token.keyword {
+	color: #f4a08e;
+}
+
+.token.number {
+	color: #fd9170;
+}
+
+.token.operator {
+	color: #89ddff;
+}
+
+.token.prolog {
+	color: #a0a0a0;
+}
+
+.token.property {
+	color: #80cbc4;
+}
+
+.token.pseudo-class {
+	color: #ffcb6b;
+}
+
+.token.pseudo-element {
+	color: #ffcb6b;
+}
+
+.token.punctuation {
+	color: #89ddff;
+}
+
+.token.regex {
+	color: #f2ff00;
+}
+
+.token.selector {
+	color: #ff6666;
+}
+
+.token.string {
+	color: #ffcb6b;
+}
+
+.token.symbol {
+	color: #f4a08e;
+}
+
+.token.tag {
+	color: #ff6666;
+}
+
+.token.unit {
+	color: #fd9170;
+}
+
+.token.url {
+	color: #ff6666;
+}
+
+.token.variable {
+	color: #ff6666;
+}
+
+div[class*="language-"] .highlight-lines .highlighted {
+    background-color: rgba(255,255,255,0.09);
+}
