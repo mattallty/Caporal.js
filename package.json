@@ -2,11 +2,15 @@
   "name": "@caporal/core",
   "version": "3.1.4",
   "description": "A full-featured framework for building command line applications (cli) with node.js",
-  "main": "./dist/",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "import": "./dist/index.mjs",
   "exports": {
-    "types": "./dist/index.d.ts",
-    "require": "./dist/index.js",
-    "import": "./dist/index.mjs"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
+    }
   },
   "scripts": {
     "lint": "eslint --ext .js,.ts,.tsx .",
