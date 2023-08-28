@@ -66,7 +66,7 @@ jobs:
           pnpm build:typedocs
           pnpm docs:build
           pnpm docs:build
-          pnpm exec wrangler pages deploy --branch ${{ github.ref_name }} --project-name caporal-website --commit-hash ${{ github.sha }}} docs/.vuepress/dist
+          pnpm exec wrangler pages deploy docs/.vuepress/dist --branch ${{ github.ref_name }} --project-name caporal-website
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
