@@ -15,7 +15,7 @@ import { createConfigurator } from "../config"
 import { fatalError, UnknownOrUnspecifiedCommandError } from "../error"
 import { customizeHelp } from "../help"
 import { CustomizedHelpOpts } from "../help/types"
-import { logger, setLogger } from "../logger"
+import { getLogger, logger, setLogger } from "../logger"
 import {
   addGlobalOption,
   createOption,
@@ -306,6 +306,13 @@ export class Program extends EventEmitter {
   logger(logger: Logger): Program {
     setLogger(logger)
     return this
+  }
+
+  /**
+   * Get the configured logger instance
+   */
+  getLogger(): Logger {
+    return getLogger()
   }
 
   /**
