@@ -253,12 +253,13 @@ class OptionParser {
 
   handleOptWithoutValue(name: string, tree: Tree): void {
     const next = tree.next()
-    const nextIsOptOrUndef = isOptionStr(next) || isDdash(next) || next === undefined
+    const cleanName = formatOptName(name)
+    const shouldTakeNextAsVal = this.shouldTakeNextAsValue(cleanName, next)
     this.compute(
       name,
-      cast(name, nextIsOptOrUndef ? true : (next as string), this.config),
+      cast(name, shouldTakeNextAsVal ? (next as string) : true, this.config),
     )
-    if (!nextIsOptOrUndef) {
+    if (shouldTakeNextAsVal) {
       tree.forward()
     }
   }
@@ -268,15 +269,17 @@ class OptionParser {
       val = true
       const next = tree.next()
       const last = names[names.length - 1]
-      const alias = this.config.alias[last]
-      const shouldTakeNextAsVal =
-        next && !isOptionStr(next) && !isDdash(next) && !this.isBoolean(last, alias)
-      if (shouldTakeNextAsVal) {
+      if (this.shouldTakeNextAsValue(last, next)) {
         tree.forward()
         val = next as string
       }
     }
     this.computeMulti(names, val)
+  }
+
+  shouldTakeNextAsValue(cleaned: string, next: string | undefined): boolean {
+    const nextIsOptOrUndef = isOptionStr(next) || isDdash(next) || next === undefined
+    return !nextIsOptOrUndef && !this.isBoolean(cleaned, this.config.alias[cleaned])
   }
 
   visit(tree: Tree): boolean {
@@ -315,7 +318,8 @@ class OptionParser {
         isOptArray(prop) ? prop : [prop]
       ).concat(val)
     } else {
-      this.rawOptions[name] = this.options[cleanName] = no ? !val : val
+      this.options[cleanName] = no ? !val : val
+      this.rawOptions[name] = val
     }
     if (alias) {
       this.options[alias] = this.options[cleanName]

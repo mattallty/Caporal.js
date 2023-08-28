@@ -257,6 +257,76 @@ describe("Command", () => {
     )
   })
 
+  describe("with boolean option before arguments", () => {
+    it("command should be able to handle variadic arguments with boolean option alias", async () => {
+      const action = jest.fn().mockReturnValue("OK!")
+      prog
+        .command("order", "Order something")
+        .argument("<types...>", "Pizza types")
+        .option("-v, --verbose", "Detailed log")
+        .action(action)
+      const args = ["order", "-v", "pepperoni", "regina"]
+      await prog.run(args)
+      expect(action).toHaveBeenCalledWith(
+        expect.objectContaining({
+          args: { types: ["pepperoni", "regina"] },
+          options: { v: true, verbose: true },
+        }),
+      )
+    })
+
+    it("command should be able to handle variadic arguments with boolean option", async () => {
+      const action = jest.fn().mockReturnValue("OK!")
+      prog
+        .command("order", "Order something")
+        .argument("<types...>", "Pizza types")
+        .option("-v, --verbose", "Detailed log")
+        .action(action)
+      const args = ["order", "--verbose", "pepperoni", "regina"]
+      await prog.run(args)
+      expect(action).toHaveBeenCalledWith(
+        expect.objectContaining({
+          args: { types: ["pepperoni", "regina"] },
+          options: { v: true, verbose: true },
+        }),
+      )
+    })
+
+    it("command should be able to handle variadic arguments with boolean option and explicit value", async () => {
+      const action = jest.fn().mockReturnValue("OK!")
+      prog
+        .command("order", "Order something")
+        .argument("<types...>", "Pizza types")
+        .option("-v, --verbose", "Detailed log")
+        .action(action)
+      const args = ["order", "--verbose=true", "pepperoni", "regina"]
+      await prog.run(args)
+      expect(action).toHaveBeenCalledWith(
+        expect.objectContaining({
+          args: { types: ["pepperoni", "regina"] },
+          options: { v: true, verbose: true },
+        }),
+      )
+    })
+
+    it("command should be able to handle variadic arguments with negative boolean option", async () => {
+      const action = jest.fn().mockReturnValue("OK!")
+      prog
+        .command("order", "Order something")
+        .argument("<types...>", "Pizza types")
+        .option("-v, --verbose", "Detailed log")
+        .action(action)
+      const args = ["order", "--no-verbose", "pepperoni", "regina"]
+      await prog.run(args)
+      expect(action).toHaveBeenCalledWith(
+        expect.objectContaining({
+          args: { types: ["pepperoni", "regina"] },
+          options: { v: false, verbose: false },
+        }),
+      )
+    })
+  })
+
   it("command should check arguments range (variable)", async () => {
     const action = vi.fn().mockReturnValue("hey!")
     const cmd = prog

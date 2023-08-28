@@ -89,20 +89,66 @@ describe("Parser", () => {
       expect(result.args).toEqual(["my-arg1", "my-arg2"])
     })
 
-    it("should handle 'boolean' option", () => {
-      const line =
-        "--my-opt true --my-bool 1 --my-false=0 --another=yes --not-now=no -y=yes --not-forced=yes"
-      const result = parseLine(line, {
-        boolean: ["myOpt", "myBool", "myFalse", "another", "notNow", "y"],
+    describe("boolean options", () => {
+      it("should handle 'boolean' option", () => {
+        const line =
+          "--my-opt --my-bool --my-false=0 --another=yes --not-now=no -y=yes --not-forced=yes --no-negative"
+        const result = parseLine(line, {
+          boolean: ["myOpt", "myBool", "myFalse", "another", "notNow", "y", "negative"],
+        })
+        expect(result.options).toEqual({
+          myOpt: true,
+          myBool: true,
+          myFalse: false,
+          another: true,
+          notNow: false,
+          y: true,
+          notForced: "yes",
+          negative: false,
+        })
       })
-      expect(result.options).toEqual({
-        myOpt: true,
-        myBool: true,
-        myFalse: false,
-        another: true,
-        notNow: false,
-        y: true,
-        notForced: "yes",
+
+      it("should handle flag followed by arguments", async () => {
+        const line = "-v arg1 arg2"
+        const result = parseLine(line, {
+          boolean: ["v"],
+        })
+        expect(result.options).toEqual({
+          v: true,
+        })
+      })
+
+      it("should handle long option followed by arguments", async () => {
+        const line = "--verbose arg1 arg2"
+        const result = parseLine(line, {
+          boolean: ["verbose"],
+        })
+        expect(result.options).toEqual({
+          verbose: true,
+        })
+      })
+
+      it("should handle negative option followed by arguments", async () => {
+        const line = "--no-verbose arg1 arg2"
+        const result = parseLine(line, {
+          boolean: ["verbose"],
+        })
+        expect(result.options).toEqual({
+          verbose: false,
+        })
+      })
+
+      it("should handle negative option correcly in rawOptions", async () => {
+        const line = "--no-verbose"
+        const result = parseLine(line, {
+          boolean: ["verbose"],
+        })
+        expect(result.options).toEqual({
+          verbose: false,
+        })
+        expect(result.rawOptions).toEqual({
+          "--no-verbose": true,
+        })
       })
     })
 
