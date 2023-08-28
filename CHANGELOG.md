@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.1](https://github.com/mattallty/Caporal.js/compare/v3.1.0...v3.1.1) (2023-08-28)
+
+
+### Bug Fixes
+
+* **help:** fix generated help when using default() 3eb6ca2, closes #196
+
 # [3.1.0](https://github.com/mattallty/Caporal.js/compare/v3.0.0...v3.1.0) (2023-08-28)
 
 
