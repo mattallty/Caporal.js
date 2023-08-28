@@ -62,6 +62,8 @@ export class Program extends EventEmitter {
   private _discoveryPath?: string
   private _discoveredCommands?: Command[]
 
+  private argv: string[] = []
+
   /**
    * Number validator. Check that the value looks like a numeric one
    * and cast the provided value to a javascript `Number`.
@@ -530,6 +532,13 @@ export class Program extends EventEmitter {
   }
 
   /**
+   * Returns the raw argv array
+   */
+  public getRawArgv() {
+    return this.argv
+  }
+
+  /**
    * Run the program by parsing command line arguments.
    * Caporal will automatically detect command line arguments from `process.argv` values,
    * but it can be overridden by providing the `argv` parameter. It returns a Promise
@@ -561,6 +570,8 @@ export class Program extends EventEmitter {
       }
     }
 
+    this.argv = argv
+
     /*
       Search for the command from args, then, if a default command exists,
       take it, otherwise take the command attached to the program,
@@ -591,7 +602,22 @@ export class Program extends EventEmitter {
    * @param argv
    */
   private async findCommand(argv: string[]): ReturnType<typeof findCommand> {
-    return (await findCommand(this, argv)) || this.defaultCommand || this._progCommand
+    const cmd = await findCommand(this, argv)
+    if (cmd) {
+      return cmd
+    }
+    /**
+     * If we've been asked for help (and only help) and there is no progCommand,
+     * so we should return undefined in order for the help command to display
+     * the global help.
+     * Fixes this particular use case: Fixes this particular use case:
+     * https://github.com/mattallty/Caporal.js/issues/196
+     */
+    if (argv.every((arg) => arg === "--help") && !this._progCommand) {
+      return
+    }
+
+    return this.defaultCommand || this._progCommand
   }
 
   /**
