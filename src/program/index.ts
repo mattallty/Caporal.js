@@ -62,8 +62,6 @@ export class Program extends EventEmitter {
   private _discoveryPath?: string
   private _discoveredCommands?: Command[]
 
-  private argv: string[] = []
-
   /**
    * Number validator. Check that the value looks like a numeric one
    * and cast the provided value to a javascript `Number`.
@@ -532,13 +530,6 @@ export class Program extends EventEmitter {
   }
 
   /**
-   * Returns the raw argv array
-   */
-  public getRawArgv() {
-    return this.argv
-  }
-
-  /**
    * Run the program by parsing command line arguments.
    * Caporal will automatically detect command line arguments from `process.argv` values,
    * but it can be overridden by providing the `argv` parameter. It returns a Promise
@@ -569,8 +560,6 @@ export class Program extends EventEmitter {
         argv = process.argv.slice(2)
       }
     }
-
-    this.argv = argv
 
     /*
       Search for the command from args, then, if a default command exists,
