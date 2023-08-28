@@ -59,3 +59,14 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      # we run docs:build twice because of the way the sidebar in vuepress plugin is generated
+      - name: Deploy website
+        run: |
+          pnpm build:typedocs
+          pnpm docs:build
+          pnpm docs:build
+          pnpm exec wrangler pages deploy --branch ${{ github.ref_name }} --project-name caporal-website --commit-hash ${{ github.sha }}} docs/.vuepress/dist
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
