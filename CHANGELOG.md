@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/mattallty/Caporal.js/compare/v3.0.0...v3.1.0) (2023-08-28)
+
+
+### Features
+
+* **logger:** new method: program.getLogger() a8b5fb6, closes #205
+
 # [3.0.0](https://github.com/mattallty/Caporal.js/compare/v2.0.6...v3.0.0) (2023-08-28)
 
 
