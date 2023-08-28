@@ -10,7 +10,7 @@
   },
   "scripts": {
     "lint": "eslint --ext .js,.ts,.tsx .",
-    "lint:fix": "eslint --fix .",
+    "lint:fix": "eslint --ext .js,.ts,.tsx --fix .",
     "build": "rimraf dist && pnpm build:js",
     "build:ci": "npm run build:all",
     "build:all": "run-p -n build:js docs:build",
@@ -112,11 +112,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "husky": {
-    "hooks": {
-      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
-      "pre-commit": "npm run lint:fix && npm test"
-    }
   }
 }
