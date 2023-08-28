@@ -30,8 +30,6 @@ export default defineUserConfig({
       { text: "Guide", link: "/guide/" },
       { text: "API Reference", link: "/api/" },
     ],
-    colorMode: "light",
-    colorModeSwitcher: false,
     repo: "mattallty/Caporal.js",
     repoLabel: "GitHub",
     docsBranch: "master",
