@@ -290,7 +290,9 @@ class OptionParser {
       return false
     }
 
-    const [name, rawval] = tree.current.split("=", 2)
+    const parts = tree.current.split("=")
+    const name = parts.shift() || ""
+    const rawval = parts.length ? parts.join("=") : undefined
     const concatOpts = isConcatenatedOpt(name)
 
     if (concatOpts) {
