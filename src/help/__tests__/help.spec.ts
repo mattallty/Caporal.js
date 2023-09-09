@@ -49,6 +49,16 @@ describe("help", () => {
       return expect(strip(await getHelp(prog))).toMatchSnapshot()
     })
 
+    it("should display help for a program with options in order given", async () => {
+      prog
+        .argument("<foo>", "Mandarory foo arg")
+        .argument("[other]", "Other args")
+        .option("-f, --file <file>", " Output file")
+        .option("-e, --ext <extension>", " extension file")
+      return expect(strip(await getHelp(prog))).toMatchSnapshot()
+    })
+
+
     it("should display help for a program having at least one command (with args & options)", async () => {
       prog
         .command("test-command", "Test command")
